@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>w2 - v2.4</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .main {
+      height: 5000px;
+      background: #883;
+    }
+  </style>
+  <!-- 向下滚动300px 出现 回到顶部的向上箭头 to-top -->
+  <!--浮出框动画从左往右 81px -> 57px -->
+  <!--浮出框有右侧指向小箭头-->
+</head>
+<body>
+<div class="main"></div>
+<div class="bar-fixed" style="bottom: 188px;">
+  <a class="item to-top" href="#">
+    <span class="ic-back-top-white ic"></span>
+
+    <div class="txt">
+      <img src="images/guding01.png" alt=""/>
+    </div>
+  </a>
+  <a class="item m" href="javascript:;">
+    <span class="ic-fuwu-white ic"></span>
+
+    <div class="txt">
+      <p>服务</p>
+
+      <p style="margin-top: 2px">热线</p>
+    </div>
+    <div class="desc">
+      <p class="mt-5">服务热线&nbsp;&nbsp;4000-723-770</p>
+    </div>
+  </a>
+  <a class="item m" href="#">
+    <span class="ic-weixin-white ic"></span>
+
+    <div class="txt">
+      <p>官方</p>
+
+      <p style="margin-top: 2px">微信</p>
+    </div>
+    <div class="desc desc-weixin">
+      <!--<img src="images/weichat-qrcode.jpg" width="80" alt="">-->
+      <img src="./images/qrcode_for_gh_b21a67753f7c_258.jpg"/>
+
+      <p class="mt-5 txt-center">微信扫一扫</p>
+
+      <p class="mt-5 txt-center">关注我们了解更多信息</p>
+    </div>
+    <!-- /.desc -->
+  </a>
+  <a class="item m" href="#">
+    <span class="ic-yijian-white ic"></span>
+
+    <div class="txt">
+      <p>意见</p>
+
+      <p style="margin-top: 2px">反馈</p>
+    </div>
+    <!-- /.txt -->
+    <div class="desc">
+      <p>客服QQ <span>点击&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进行反馈</span>
+        <img src="./images/qqbt.png" class="fankui-icon"/>
+      </p>
+
+      <p class="mt-5">工作日周一到周日 9:00 — 21:00</p>
+    </div>
+    <!-- /.desc -->
+  </a>
+
+  <a class="item m" href="#">
+    <span class="ic-tougao-white ic"></span>
+
+    <div class="txt">
+      <p>我要</p>
+
+      <p style="margin-top: 2px">投稿</p>
+    </div>
+    <div class="desc">
+      <p>投稿邮箱&nbsp;&nbsp;cnanime@yeah.net</p>
+    </div>
+    <!-- /.desc -->
+  </a>
+</div>
+<script src="jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  $(function () {
+    //bar-fixed
+    var $bar = $('.bar-fixed')
+      , $windowHeight = $(window).height()
+      , $elementHeight = $bar.height();
+    //reset the bar position
+    $bar.css({
+      bottom: ($windowHeight - $elementHeight) / 3 + 'px'
+    });
+    $bar.find('.item').hover(function () {
+      $(this).find('.ic').hide();
+      $(this).find('.txt').show();
+      $(this).find('.desc').show().animate({right: '57px', opacity: 1});
+    }, function () {
+      $(this).find('.txt').hide();
+      $(this).find('.ic').show();
+      $(this).find('.desc').animate({right: '81px', opacity: 0}).hide();
+    });
+
+  })
+
+  $(function () {
+    // 滚动 显示/隐藏 to-top 键
+    $(window).scroll(function () {
+      var scrollY = $(document).scrollTop(); // 获取垂直滚动的距离，即滚动了多少
+      var $bar = $('.bar-fixed')
+      if (scrollY > 300) { //如果滚动距离大于300px则显示，反之隐藏
+        $bar.find('.to-top').show();
+      } else {
+        $bar.find('.to-top').hide();
+      }
+    });
+  })
+</script>
+</body>
+</html>

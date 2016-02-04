@@ -1,0 +1,209 @@
+@charset "UTF-8";
+/* 预设样式 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  /*vertical-align: baseline;*/
+}
+
+a {
+  color: #333333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff5054;
+  text-decoration: underline;
+}
+
+.bar-fixed {
+  bottom: 300px;
+  /*right: 0;*/
+  position: fixed;
+  right: 3px;
+}
+
+.bar-fixed .item {
+  /*background: #e12b2b;*/
+  box-sizing: border-box;
+  border-radius: 2px;
+  color: #ffffff;
+  display: block;
+  /*font-size: 12px;*/
+  /*height: 40px;*/
+  /*padding-top: 5px;*/
+  position: relative;
+  text-align: center;
+  /*width: 40px;*/
+  line-height: 12px;
+
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "微软雅黑";
+  line-height: 20px;
+
+}
+
+.bar-fixed .item:hover {
+  background: #f16a3b;
+}
+
+.bar-fixed .item .txt {
+  display: none;
+  /*margin-top: 5px;*/
+}
+
+.bar-fixed .item .txt:before, .bar-fixed .item .txt:after {
+  content: "";
+  display: table;
+}
+
+.bar-fixed .item .txt p {
+  margin-top: 5px;
+}
+
+.bar-fixed .item:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.bar-fixed .item.m {
+  margin-top: 2px;
+}
+
+.bar-fixed .item .ic {
+  margin-left: auto;
+  margin-right: auto;
+  /*padding: 8px 0 0 12px;*/
+}
+
+.bar-fixed .item .desc {
+  background: #fff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  /*color: #333333;*/
+  color: #b8b6b4;
+  display: none;
+  right: 81px;
+  opacity: 0;
+  padding: 15px 10px;
+  position: absolute;
+  text-align: left;
+  top: -5px;
+  width: 262px;
+  z-index: 1000;
+}
+
+.bar-fixed .item .desc .fankui-icon {
+  /*position: relative;*/
+  /*top: 9px;*/
+  /*left: 0px;*/
+  position: absolute;
+  top: 9px;
+  left: 110px;
+}
+
+/*浮现框的右侧指向性小三角图片*/
+.bar-fixed .item .desc:after, .bar-fixed .item .desc:before {
+  left: 100%;
+  top: 25%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.bar-fixed .item .desc:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-left-color: #ffffff;
+  border-width: 7px;
+  margin-top: -7px;
+}
+
+.bar-fixed .item .desc:before {
+  border-color: rgba(221, 221, 221, 0);
+  border-left-color: #dddddd;
+  border-width: 8px;
+  margin-top: -8px;
+}
+
+/* 微信图片太高 调到top: 5% 避免指向错误图标*/
+.bar-fixed .item .desc-weixin:after, .bar-fixed .item .desc-weixin:before {
+  top: 5%;
+}
+
+.bar-fixed .item .desc .desc-table {
+  line-height: 20px;
+}
+
+.bar-fixed .item .desc .desc-table .col-1 {
+  padding-right: 5px;
+  text-align: right;
+}
+
+.bar-fixed .to-top {
+  display: none;
+}
+
+/*橙色向上箭头 图片 高55px 所有样式（:before :after）加一起 超了
+所以先直接限定最终高度，避免位移*/
+.bar-fixed .to-top .txt {
+  height: 55px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.ic-back-top-white {
+  background: url(./../images/guding00.png) no-repeat;
+  display: block;
+  height: 55px;
+}
+
+.ic-fuwu-white {
+  background: url(./../images/guding02.png) no-repeat;
+  display: block;
+  height: 55px;
+}
+
+.ic-weixin-white {
+  background: url(./../images/guding04.png) no-repeat;
+  display: block;
+  height: 55px;
+}
+
+.ic-yijian-white {
+  background: url(./../images/guding06.png) no-repeat;
+  display: block;
+  height: 55px;
+}
+
+.ic-tougao-white {
+  background: url(./../images/guding08.png) no-repeat;
+  display: block;
+  height: 55px;
+}
+
+.txt-center {
+  text-align: center;
+}
