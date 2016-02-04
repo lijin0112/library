@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>w2 - v2.4</title>
+  <title>w2 - v2.5</title>
   <link rel="stylesheet" href="css/style.css"/>
   <style>
     .main {
@@ -13,6 +13,10 @@
   <!-- 向下滚动300px 出现 回到顶部的向上箭头 to-top -->
   <!--浮出框动画从左往右 81px -> 57px -->
   <!--浮出框有右侧指向小箭头-->
+  <!--v2.5
+  1 增加 stop() 修复反复触发动画 bug
+  2 调整浮出框移动位置，使鼠标可以移动上去
+  -->
 </head>
 <body>
 <div class="main"></div>
@@ -101,11 +105,11 @@
     $bar.find('.item').hover(function () {
       $(this).find('.ic').hide();
       $(this).find('.txt').show();
-      $(this).find('.desc').show().animate({right: '57px', opacity: 1});
+      $(this).find('.desc').show().stop(true,false).animate({right: '55px', opacity: 1});
     }, function () {
       $(this).find('.txt').hide();
       $(this).find('.ic').show();
-      $(this).find('.desc').animate({right: '81px', opacity: 0}).hide();
+      $(this).find('.desc').stop(true,false).animate({right: '81px', opacity: 0}).hide();
     });
 
   })
