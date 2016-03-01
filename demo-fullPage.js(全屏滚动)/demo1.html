@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="overflow: hidden; height: 100%;">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>demo1-鼠标滚轮可控制 slide滑动- 有bug未解决</title>
+  <link rel="stylesheet" href="css/jquery.fullPage.css">
+  <link rel="stylesheet" href="css/demo1.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/jquery.fullPage.js"></script>
+  <script>
+    /* 有bug：
+     对于 鼠标滚轮 控制 slide 滑动的 事件，
+     如果 在包含slide的section后面没有 新的section，那么就不会触发 onLeave 事件，导致 控制slide滑动的语句未执行，失效
+
+     在slider-scrolling(moousewheel) 使用新的逻辑，解决鼠标滚轮控制slide滑动的事件。逻辑简单，无bug。
+     */
+    $(function () {
+      var HOME = 1,
+        CAT = 2,
+        CUSTOM = 3,
+        NEWS = 4,
+        ABOUT = 5;
+      var firstSlideIsActive = false,
+        lastSlideIsActive = false,
+        allowAllScrolls = false;
+
+      if ($.browser.msie && $.browser.version < 10) {
+        $('body').addClass('ltie10');
+      }
+//      $.fn.fullpage({
+      $("#superContainer").fullpage({
+        verticalCentered: false,
+        anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+        //, 'page6', 'page7', 'page8', 'page9', 'page10'],
+        navigation: true,
+        navigationTooltips: ['首页', '视觉', '交互', '皮肤', '功能'],
+        //, '待办邮件', '联系人邮件', '科技', '连接易信', '马上体验']
+        paddingTop: '80px',//可以配合 header 导航条
+//        loopHorizontal: false,
+        slidesNavigation: true,
+        slidesNavPosition: 'bottom',
+        controlArrows: false, // 去掉slides的左右箭头
+        menu: '.header-box', // 绑定 导航栏，控制section
+
+        /*添加 鼠标滚轮 控制slides滑动事件
+         *
+         * 逻辑：
+         * (afterLoad:)切换到含有slide的section时，获取 第一页和最后一页的激活状态
+         * (afterSlideLoad:)slide滑动后的回调函数，为了获取 第一页和最后一页的激活状态
+         * //不需要 (onSlideLeave:)slide滑动前的回调，在指定slide页，滚动到下一个section
+         * (onLeave:)滚动前的回调，判断上下滚动操作，是要向左向右滑动slide，还是正常向上向下滚动section
+         * */
+        afterLoad: function (anchorLink, index) {
+          if (index === NEWS) {
+            firstSlideIsActive = $('.test-slides .slide:first-child').hasClass('active');
+            lastSlideIsActive = $('.test-slides .slide:last-child').hasClass('active');
+          }
+
+          console.log("--afterLoad: ", anchorLink, index)
+          console.log('  lastSlideIsActive: ' + lastSlideIsActive);
+          console.log("  firstSlideIsActive: " + firstSlideIsActive);
+          allowAllScrolls = false;
+        },
+
+        afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
+          console.log('--afterSlideLoad: ' + anchorLink, index, slideAnchor, slideIndex);
+          if (index === NEWS) {
+            firstSlideIsActive = (slideIndex === 0);
+            lastSlideIsActive = (slideIndex === 3);
+          }
+          console.log('  lastSlideIsActive: ' + lastSlideIsActive);
+          console.log("  firstSlideIsActive: " + firstSlideIsActive);
+        },
+
+//        onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
+//          console.log('--onSlideLeave: ', anchorLink, index, slideIndex, direction, nextSlideIndex);
+//          if (slideIndex === 3) {
+//            console.log('???')
+//            $.fn.fullpage.moveSectionDown();
+//          }
+//        },
+
+        onLeave: function (index, nextIndex, direction) {
+          console.log('--onLeave: ', index, nextIndex, direction);
+          console.log('  allowAllScrolls: ', allowAllScrolls);
+
+          // if click on main nav, skip the checks below
+          if (allowAllScrolls) {
+            if (index === NEWS) {
+              setFirstSlideActive();
+            }
+            return true;
+          }
+
+          if (index === NEWS && direction === 'down') {
+            /* 当前是包含slides的section，并向下滚动 时
+             *  判断：
+             *  如果 当前不是最后一个slide，就阻止向下滚动动作，变为向右滑动slide
+             */
+            if (!lastSlideIsActive) {
+              //$.fn.fullpage.setMouseWheelScrolling(false);
+              $.fn.fullpage.moveSlideRight();
+              return false;
+            }
+          }
+
+          if (index === NEWS && direction === 'up') {
+            /*
+             当前是包含slides的section，并向上滚动 时
+             判断：
+             如果 当前不是第一个slide，就阻止向上滚动动作，变为向左滑动slide
+             */
+            if (!firstSlideIsActive) {
+              $.fn.fullpage.moveSlideLeft();
+              return false;
+            }
+          }
+
+          if (index === NEWS) {
+            /*
+             滚动操作未终止，而脱离包含slides的section时，
+             将当前section的slide 的 active状态设置给第一个slide，
+             这样当从别的section再次滚动到此section时，保持先看见的是第一个slide，
+             而不是默认的前一次离开时的slide
+             $('.test-slides .slide').removeClass('active');
+             $('.test-slides .slide:first-child').addClass('active');
+             */
+            setFirstSlideActive();
+          }
+
+          return true;
+        },
+      });
+
+
+      //确保点击上部 nav导航栏，可以顺利跳转，不会受到 slides左右滑动判断的影响
+      $('.header ul li > a').on('click',
+        function (event) {
+          allowAllScrolls = true;
+        });
+
+      //确保点击右侧fp-nav导航栏，可以顺利跳转，不会受到 slides左右滑动判断的影响
+      $('#fp-nav ul li > a').on('click',
+        function (event) {
+          allowAllScrolls = true;
+        });
+
+      // 设置slide的激活状态，保持默认展示第一个slide
+      function setFirstSlideActive() {
+        /*
+         滚动操作未终止，而脱离包含slides的section时，
+         将当前section的slide 的 active状态设置给第一个slide，
+         这样当从别的section再次滚动到此section时，保持先看见的是第一个slide，
+         而不是默认的前一次离开时的slide
+         */
+        $('.test-slides .slide').removeClass('active');
+        $('.test-slides .slide:first-child').addClass('active');
+      }
+    });
+  </script>
+</head>
+<body>
+<header class="header">
+  <div class="header-box">
+    <a class="header-logo">
+      <img src="images/b_logo.png">
+    </a>
+    <ul>
+      <li><a href="#page1">page1</a></li>
+      <li><a href="#page2">page2</a></li>
+      <li><a href="#page3">page3</a></li>
+      <li><a href="#page4">page4</a></li>
+      <li><a href="#page5">page5</a></li>
+    </ul>
+    <div>
+    </div>
+    <div class="header-right-item">
+      <img src="images/ss02.png">
+    </div>
+    <div class="header-search-item">
+      <div id="sb-search" class="sb-search">
+        <form>
+          <input class="sb-search-input" placeholder="请输出搜索内容" type="text" value="" name="search" id="search">
+          <input class="sb-search-submit" type="submit" value="">
+          <span class="sb-icon-search"></span>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<div id="superContainer">
+  <div class="section">
+    <div class="bg"><img src="images/bg1.png" alt=""></div>
+    <div class="bg01">
+      <img src="images/lc01.png"/>
+    </div>
+    <div class="bg02">
+      <img src="images/section1_title.png"/>
+      <a class="slide-bt" href="javascript:;">查看详细</a>
+    </div>
+    <!--雪花-->
+    <div class="hero__canvas" id="canvas__particles" data-bg-color="#9e34d0">
+      <div
+        style="position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; z-index: 0; overflow: hidden; background-color: #9e34d0;">
+        <canvas width="1291" height="978" style="width: 1291px; height: 978px;"></canvas>
+      </div>
+    </div>
+    <script src="js/three.min.js"></script>
+    <!-- 雪花script-->
+    <script src="js/snow.js"></script>
+
+  </div>
+
+  <div class="section">
+    <div class="bg"><img src="images/section1.jpg" alt=""></div>
+    <p class="p11">网易邮箱6.0版——2014年最具创意气质的重量级新邮箱，重生光华，为之瞩目。唯美<br>的视觉设计和视觉化交互，无可替代的独创动态情景皮肤，多项国内创意产品专利技术，<br>成就无与伦比的出众品味，无可比拟的美妙体验。
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="bg"><img src="images/section2.jpg" alt=""></div>
+    <div class="bg23"></div>
+    <strong>[ 视觉·简 ]</strong>
+
+    <p class="p1">秉承网易邮箱经典的清新简洁的设计风格，邮箱 6.0 版带来全新一代的设计理念，更追求极致唯美的视觉设计、传承更多人文和艺术底蕴，华丽蜕变，带来更舒服更爽心悦目的视觉享受。</p>
+  </div>
+
+  <div class="section test-slides">
+    <div class="bg"><img src="images/section3.jpg" alt=""></div>
+    <div class="slide">第三屏的第一屏
+      <div class="testing">testing</div>
+    </div>
+    <div class="slide">第三屏的第二屏
+      <div class="testing">testing</div>
+    </div>
+    <div class="slide">第三屏的第三屏
+      <div class="testing">testing</div>
+    </div>
+    <div class="slide">第三屏的第四屏
+      <div class="testing">testing</div>
+    </div>
+  </div>
+  <!--
+     对于 鼠标滚轮 控制 slide 滑动的 事件，
+     如果 在包含slide的section后面没有 新的section，那么就不会触发 onLeave 事件，导致 控制slide滑动的语句未执行，失效
+  -->
+  <div class="section">
+    final page section ~~~~
+  </div>
+</div>
+</body>
+<script>
+  $(function () {
+    $(".slide-bt").hover(function () {
+      $(this).css({"background-color": "#fff", "color": "#444", "font-weight": "bold"});
+      $(this).html("查看详细 &gt;");
+    }, function () {
+      $(this).css({"background-color": "transparent", "color": "#fff", "font-weight": "normal"});
+      $(this).html("查看详细");
+    })
+  })
+</script>
+<script src="js/classie.js"></script>
+<script src="js/uisearch.js"></script>
+<script>
+  /* header 的搜索框 */
+  new UISearch(document.getElementById('sb-search'));
+</script>
+</html>

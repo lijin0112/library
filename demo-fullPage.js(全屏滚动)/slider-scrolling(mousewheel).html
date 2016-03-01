@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/jquery.fullPage.css">
+  <style>
+    #dowebok .section {
+      background: #fdd;
+    }
+  </style>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+  <script src="js/jquery.fullPage.js"></script>
+  <script>
+    /*
+     鼠标滚轮控制slider-section的slider滑动事件： bug已解决
+     http://stackoverflow.com/questions/35598110/fullpage-js-scrolling-the-sliders
+
+     v1.3
+     添加  allowAllScrolls = false
+     为了通过点击 侧边导航 切换section的功能正常工作，
+     当设置allowAllScrolls为true时，直接执行跳转动作(回避onLeave中的判断逻辑)
+
+     v1.2
+     slider-section的slide 滑动时，chrome不会激活 onLeave 回调函数，而Firefox会激活 onLeave回调函数，
+     所以在onLeave回调函数中，添加判断逻辑，阻止slide滑动时的 section向上/下的滚动动作。
+
+     添加
+     firstSlideIsActive = false,
+     lastSlideIsActive = false;
+     判断条件的原因：
+
+     Firefox中  onLeave回调 早于 afterSlideLoad回调 被触发，晚于 onSlideLeave回调 被触发
+
+     所以，如果在onLeave中，现取slide的active状态会不准，因为插件在onSlideLeave后就将active状态切换过了，
+     因此，需要在afterSlideLoad中获取slide的active状态，以供下一次滚动操作在onLeave回调中做判断条件
+
+     防止 从slider-section的第2个slide鼠标滚轮向上滚动，结果没有滑动到第一个slide，反而直接滚动到了前一个section的bug出现。
+
+     同时，
+     防止第一次滚进slider-section就直接滚出slider-section (此时 onSlideLoad 均未触发过)判断条件无正确状态，
+     在afterLoad回调函数中获取当前的首末页slide的active状态，用以在滚动时触发的onLeave回调函数中做判断条件
+
+     v1
+     chrome 工作正常
+     Firefox bug
+     */
+    $(function () {
+
+      var allowAllScrolls = false,
+        firstSlideIsActive = false,
+        lastSlideIsActive = false;
+
+      $("#dowebok").fullpage({
+        verticalCentered: false,
+        anchors: ['page1', 'page2', 'page3', 'page4'],
+        navigation: true,
+        navigationTooltips: ['1', '2', '3', '4'],
+
+        afterLoad: function (anchorLink, index) {
+//          console.log('--afterLoad:\n\t anchorLink:', anchorLink, " index:", index);
+          if (index === 3) {
+            firstSlideIsActive = $('.first-slide').hasClass('active');
+            lastSlideIsActive = $('.last-slide').hasClass('active');
+          }
+          allowAllScrolls = false;
+//          console.log('------------------------------');
+        },
+
+        onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
+//          console.log('--onSlideLeave:\n\t anchorLink:' + anchorLink, " index:", index, " slideIndex:", slideIndex, " direction:", direction, " nextSlideIndex:", nextSlideIndex);
+
+        },
+
+        afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {
+//          console.log('--afterSlideLoad:\n\t anchorLink:' + anchorLink, " index:", index, " slideAnchor:", slideAnchor, " slideIndex:", slideIndex);
+          if (index === 3) {
+            firstSlideIsActive = (slideIndex === 0);
+            lastSlideIsActive = (slideIndex === 3);
+          }
+        },
+
+        onLeave: function (index, nextIndex, direction) {
+//          console.log('--onLeave:\n\t  index:', index, " nextIndex:", nextIndex, " direction:", direction);
+
+          // if click on main nav, skip the checks below
+          if (allowAllScrolls) {
+            return true;
+          }
+
+          /* other logic
+
+           只要是脱离slider-section，
+           将当前slider-section的 active slide 状态设置给第一个slide，
+
+           这样当从别的section再次滚动到slider-section时，将看到第一个slide，
+           而不是默认的前一次离开时的slide
+           */
+//            $('.slider-section .slide').removeClass('active');
+//            $('.slider-section .first-slide').addClass('active');
+
+          if (index === 3 && direction === 'up') {
+            if (!firstSlideIsActive) {
+//              $.fn.fullpage.moveSlideLeft();
+              return false;
+            } else {
+//              $.fn.fullpage.moveSectionUp();
+            }
+          }
+
+          if (index === 3 && direction === 'down') {
+            if (!lastSlideIsActive) {
+//              $.fn.fullpage.moveSlideRight();
+              return false;
+            } else {
+//              $.fn.fullpage.moveSectionDown();
+            }
+          }
+        }
+      });
+
+      /*
+       为.slider-section追加鼠标滚轮事件
+       当向上滚动
+       --当 .first-slide 不是active 时，将向左滑动，反之 向上滚动section
+       当向下滚动
+       --当 .last-slide 不是active 时， 将向右滑动，反之 向下滚动section
+       */
+      $('.slider-section').bind('mousewheel DOMMouseScroll', function (e) {
+        if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+          if (!$('.first-slide').hasClass('active')) {
+            $.fn.fullpage.moveSlideLeft();
+          } else {
+            $.fn.fullpage.moveSectionUp();
+          }
+        } else {
+          if (!$('.last-slide').hasClass('active')) {
+            $.fn.fullpage.moveSlideRight();
+          } else {
+            $.fn.fullpage.moveSectionDown();
+          }
+        }
+        return false;
+      });
+
+      //确保点击右侧fp-nav导航栏，可以顺利跳转，不会受到 slides左右滑动判断的影响
+      $('#fp-nav ul li > a').on('click',
+        function (event) {
+          allowAllScrolls = true;
+        });
+
+    });
+  </script>
+</head>
+<body>
+<div id="dowebok">
+  <div class="section">first section</div>
+  <div class="section">second section</div>
+  <div class="section slider-section">
+    <div class="slide first-slide">1st slide</div>
+    <div class="slide">2nd slide</div>
+    <div class="slide">3rd slide</div>
+    <div class="slide last-slide">4th slide</div>
+  </div>
+  <div class="section">forth section</div>
+</div>
+</body>
+</html>
