@@ -4,14 +4,9 @@
   <title>countUp.js example</title>
 </head>
 <body>
-<h1 id="c1"></h1>
-
-<h1 id="c2"></h1>
-
-<h1 id="c3"></h1>
-
 <h1 class="jumbo" id="myTargetElement1">94.62</h1>
-<h1 class="jumbo" id="myTargetElement">94.62</h1>
+
+<!--<h1 class="jumbo" id="myTargetElement">94.62</h1>-->
 
 <script src="js/countUp.js"></script>
 <script>
@@ -29,20 +24,33 @@
    options = (see demo, optional) formatting/easing options object
    Decimals, duration, and options can be left out to use the default values.
 
-  */
+   */
   var options = {
-    useEasing : true,
-    useGrouping : true,
-    separator : ',',
-    decimal : '.',
-    prefix : '',
-    suffix : ''
+    useEasing: true,
+    useGrouping: true,
+    separator: ',',
+    decimal: '.',
+    prefix: '',
+    suffix: ''
   };
   var demo = new CountUp("myTargetElement1", 0, 2779, 0, 2.5, options);
   demo.start();
 
-</script>
+  /*
+   可配置的参数：
+   target = 目标元素的 ID；
+   startVal = 开始值；
+   endVal = 结束值；
+   decimals = 小数位数，默认值是0；
+   duration = 动画延迟秒数，默认值是2；
 
+   使用示例：
+
+   var demo = new countUp("myTargetElement", 24.02, 94.62, 2, 2.5);
+   demo.start();
+   * */
+</script>
+<!--
 <script type="text/javascript">
 
   // set CountUp options
@@ -232,5 +240,6 @@
   }
 
 </script>
+-->
 </body>
 </html>
