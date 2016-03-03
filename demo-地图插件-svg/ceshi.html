@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="css/ceshi.css"/>
+  <script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/raphael-min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/network_new.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+  <script src="js/jquery.tmplPlus.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://api.map.baidu.com/api?v=1.3" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript"
+          src="http://api.map.baidu.com/getscript?v=1.3&amp;ak=&amp;services=&amp;t=20150527115231"></script>
+  <link rel="stylesheet" type="text/css" href="http://api.map.baidu.com/res/13/bmap.css">
+</head>
+
+<body>
+<div class="fuwu_ditu">
+  <div class="changecontent fuwu_left">
+
+    <div class="map">
+      <div class="map_container" id="map_container">
+
+        <div class="map_bg"></div>
+        <div class="map_hover" style="background-image: none; display: none;"></div>
+
+      </div>
+      <script>
+        jQuery(document).ready(function () {
+          jQuery(".typelist li").click(function () {
+            //alert($(this).text())
+            $("#typebot").val($(this).data('type'));
+            var $w = $(this).data('type');
+            if ($w == 0) {
+              $("#header .log img").attr('src', '/web/static/oppo/images/logo2.jpg');
+
+            } else {
+              $("#header .log img").attr('src', '/web/static/oppo/images/jdlogo.jpg');
+            }
+
+            jQuery(".type span").text($(this).text());
+            jQuery(".typelist").hide();
+          });
+
+        })
+        var flashvars = {
+          cityArrStr: []			//heilongjiang,xinjiang,yunnan,neimenggu,gansu,qinghai,xizang,sichuan,jilin,liaoning,tianjin,shandong,jiangsu,zhejiang,fujian,guangdong,taiwan,hainan,guangxi,guizhou,anhui,jiangxi,henan,hubei,hunan,chongqing,hebei,shanxi,shaanxi,ningxia,beijing,xianggang,aomen,shanghai
+          //cityArrStr:'heilongjiang,xinjiang,yunnan,neimenggu,gansu,qinghai,xizang,sichuan,jilin,beijing,shanghai'
+        }
+
+
+        flashvars.cityArrStr.push({en_name: "anhui", cn_name: "安徽"});
+        flashvars.cityArrStr.push({en_name: "beijing", cn_name: "北京"});
+        flashvars.cityArrStr.push({en_name: "chongqing", cn_name: "重庆"});
+        flashvars.cityArrStr.push({en_name: "fujian", cn_name: "福建"});
+        flashvars.cityArrStr.push({en_name: "gansu", cn_name: "甘肃"});
+        flashvars.cityArrStr.push({en_name: "guangdong", cn_name: "广东"});
+        flashvars.cityArrStr.push({en_name: "guangxi", cn_name: "广西"});
+        flashvars.cityArrStr.push({en_name: "guizhou", cn_name: "贵州"});
+        flashvars.cityArrStr.push({en_name: "hainan", cn_name: "海南"});
+        flashvars.cityArrStr.push({en_name: "hebei", cn_name: "河北"});
+        flashvars.cityArrStr.push({en_name: "heilongjiang", cn_name: "黑龙江"});
+        flashvars.cityArrStr.push({en_name: "henan", cn_name: "河南"});
+        flashvars.cityArrStr.push({en_name: "hubei", cn_name: "湖北"});
+        flashvars.cityArrStr.push({en_name: "hunan", cn_name: "湖南"});
+        flashvars.cityArrStr.push({en_name: "jiangsu", cn_name: "江苏"});
+        flashvars.cityArrStr.push({en_name: "jiangxi", cn_name: "江西"});
+        flashvars.cityArrStr.push({en_name: "jilin", cn_name: "吉林"});
+        flashvars.cityArrStr.push({en_name: "liaoning", cn_name: "辽宁"});
+        flashvars.cityArrStr.push({en_name: "neimenggu", cn_name: "内蒙古"});
+        flashvars.cityArrStr.push({en_name: "ningxia", cn_name: "宁夏"});
+        flashvars.cityArrStr.push({en_name: "qinghai", cn_name: "青海"});
+        flashvars.cityArrStr.push({en_name: "shaanxi", cn_name: "陕西"});
+        flashvars.cityArrStr.push({en_name: "shandong", cn_name: "山东"});
+        flashvars.cityArrStr.push({en_name: "shanghai", cn_name: "上海"});
+        flashvars.cityArrStr.push({en_name: "shanxi", cn_name: "山西"});
+        flashvars.cityArrStr.push({en_name: "sichuan", cn_name: "四川"});
+        flashvars.cityArrStr.push({en_name: "tianjin", cn_name: "天津"});
+        flashvars.cityArrStr.push({en_name: "xinjiang", cn_name: "新疆"});
+        flashvars.cityArrStr.push({en_name: "xizang", cn_name: "西藏"});
+        flashvars.cityArrStr.push({en_name: "yunnan", cn_name: "云南"});
+        flashvars.cityArrStr.push({en_name: "zhejiang", cn_name: "浙江"});
+      </script>
+      <div id="flashcontent"></div>
+    </div>
+
+  </div>
+  <div class="stores fuwu_rig">
+
+    <div class="searchbox">
+      <h3 class="title">查找欧普经销商</h3>
+
+      <h4>产品选择</h4>
+
+      <div class="type"><span>灯具</span>
+        <input name="type" type="hidden" value="0" id="typebot">
+        <a href="javascript:;" onclick=""></a>
+      </div>
+      <div class="typelist">
+        <ul>
+          <li data-type="0">灯具</li>
+          <li data-type="1">集成吊顶</li>
+        </ul>
+      </div>
+
+      <h4>店铺地址查询</h4>
+
+      <div class="province"><span>-选择省份-</span>
+        <a href="#"></a>
+      </div>
+      <div class="provincelist" style="display: none;">
+        <ul>
+          <li en_name="anhui">安徽</li>
+          <li en_name="beijing">北京</li>
+          <li en_name="chongqing">重庆</li>
+          <li en_name="fujian">福建</li>
+          <li en_name="gansu">甘肃</li>
+          <li en_name="guangdong">广东</li>
+          <li en_name="guangxi">广西</li>
+          <li en_name="guizhou">贵州</li>
+          <li en_name="hainan">海南</li>
+          <li en_name="hebei">河北</li>
+          <li en_name="heilongjiang">黑龙江</li>
+          <li en_name="henan">河南</li>
+          <li en_name="hubei">湖北</li>
+          <li en_name="hunan">湖南</li>
+          <li en_name="jiangsu">江苏</li>
+          <li en_name="jiangxi">江西</li>
+          <li en_name="jilin">吉林</li>
+          <li en_name="liaoning">辽宁</li>
+          <li en_name="neimenggu">内蒙古</li>
+          <li en_name="ningxia">宁夏</li>
+          <li en_name="qinghai">青海</li>
+          <li en_name="shaanxi">陕西</li>
+          <li en_name="shandong">山东</li>
+          <li en_name="shanghai">上海</li>
+          <li en_name="shanxi">山西</li>
+          <li en_name="sichuan">四川</li>
+          <li en_name="tianjin">天津</li>
+          <li en_name="xinjiang">新疆</li>
+          <li en_name="xizang">西藏</li>
+          <li en_name="yunnan">云南</li>
+          <li en_name="zhejiang" style="border-bottom-width: 0px; border-bottom-style: none;">浙江</li>
+        </ul>
+      </div>
+
+      <h4>关键字查询</h4>
+
+      <div class="keyword">
+        <input type="text" placeholder="请输入经销商地址或名称" class="keyword" name="key" id="key"><a class="searchbutton"
+                                                                                            href="#">搜索</a></div>
+      <div class="storetype">
+        <span>经销商查询结果：</span>
+      </div>
+    </div>
+    <div class="storelist" id="storelist">
+      <dl class="dt_title">
+        <dt>1</dt>
+        <dd>
+          <p>北京玉盘明珠商贸有限公司</p>
+
+          <p>详细地址:北京万家灯火装饰城二层</p>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

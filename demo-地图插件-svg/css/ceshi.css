@@ -1,0 +1,331 @@
+@charset "utf-8";
+.fuwu_ditu {
+	float: left;
+	height: 550px;
+	width: 960px;
+	margin:15px 0;
+}
+.fuwu_left {
+	float: left;
+	height: 548px;
+	width: 610px;
+	border:1px #0046aa solid;
+}
+.fuwu_rig {
+	float: left;
+	height: 550px;
+	width: 348px;
+	background-color:#f1f1f1;
+}
+
+.chaochu {
+height:1200px;
+overflow:hidden;}
+
+.wd960 {
+width:960px;}
+#main_container div.network,
+#main_container div.memberarea,
+#main_container div.recruitment,
+#main_container div.case,
+#main_container div.faq,
+#main_container div.news,
+#main_container div.catalogue,
+#main_container div.contact,
+#main_container div.sitemap,
+#main_container div.responsiblecare,
+#main_container div.award,
+#main_container div.hydrotect,
+#main_container div.honor{ border:1px solid #b5b5b5}
+
+
+#main_container div.network div.changecontent,
+#main_container div.case div.caselist,
+#main_container div.case div.casedetail,
+#main_container div.catalogue div.cataloguedetail,
+#main_container div.faq div.faqdetail,
+#main_container div.news div.newsdetail,
+#main_container div.catalogue div.content,
+#main_container div.memberarea div.content,
+#main_container div.recruitment div.content{float:left;width:754px; border-right:1px solid #b5b5b5;}
+
+
+
+
+
+#main_container div.network div.stores,
+#main_container div.case div.category,
+#main_container div.case div.cases,
+#main_container div.faq div.faqs,
+#main_container div.catalogue div.catalogues,
+#main_container div.news div.newslist,
+#main_container div.memberarea div.menus,
+#main_container div.recruitment div.menus{ float:left; }
+
+
+/*地图右侧css*/
+
+.jcarousel-container {
+    position: relative;
+}
+
+.jcarousel-clip {
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.jcarousel-list {
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel-list li,
+.jcarousel-item {
+    float: left;
+    list-style: none;
+    
+    width: 75px;
+    height: 75px;
+}
+
+
+.jcarousel-next {
+    z-index: 3;
+    display: none;
+}
+
+.jcarousel-prev {
+    z-index: 3;
+    display: none;
+}
+
+/*地图css*/
+
+#main_container div.network div.changecontent{width:632px; height:540px;overflow:hidden; position:relative}
+#main_container div.network div.map{ width:632px; height:540px;position:relative;}
+
+#main_container div.network div.welcome{ display: none; left:24px; top:23px; font-size:20px; color:#646464; margin-bottom:37px; position:absolute}
+
+#main_container div.network div.storedetail{  width:753px; height:536px; position:absolute;top:0;left:0; display:none; z-index:100; background-color:#ffffff}
+#main_container div.network div.storedetail div.storename{ margin-left:13px; margin-top:14px; font-size:20px; color:#646464}
+#main_container div.network div.storedetail div.address{ margin-top:12px;}
+#main_container div.network div.storedetail div.address,
+#main_container div.network div.storedetail div.tel,
+#main_container div.network div.storedetail div.fax{ font-size:12px; color:#868686;margin-left:13px;}
+#main_container div.network div.storedetail div.tel,
+#main_container div.network div.storedetail div.fax{ float:left; margin-right:1px;}
+#main_container div.network div.storedetail div.return,
+#main_container div.network div.storedetail div.googlemap{ float:right; margin-top:22px; margin-right:11px; padding-right:11px; background:url("../images/ditu/store_detail_arrow_right.jpg") no-repeat right 3px; font-size:12px; color:#646464; cursor:pointer; *background-position:right 1px; _margin-right:6px;}
+#main_container div.network div.storedetail div.googlemap{ position:absolute; right:11px; top:50px; margin:0; background-position:right 7px}
+#main_container div.network div.storedetail div.googlemap img{ margin-right:6px; }
+#main_container div.network div.storedetail div.googlemap a{font-size:12px; color:#646464; text-decoration:none}
+#main_container div.network div.storedetail div.storepicture{ padding-left:5px; padding-right:5px; padding-bottom:7px; padding-top:17px; clear:both; text-align:center}
+
+
+#main_container div.network div.stores { width:365px;height: 540px; background-color: #f9f9f9}
+
+
+
+
+
+#main_container div.network div.stores ul li.current a div.bg span.title,
+#main_container div.network div.stores ul li a:hover div.bg span.title{ }
+
+
+
+
+.searchbox{ padding-left: 0px; padding-right: 0px;font-family: '微软雅黑'; margin-top: 20px}
+.searchbox h3.title{ font-size: 26px;font-weight: normal; margin: 10px 0 15px 0; padding-left: 15px;}
+.searchbox h4{ font-size: 12px; font-weight: normal; margin: 15px 0 6px 0; padding-left: 15px;}
+.searchbox .icon{ height: 16px; float:left; width: 10px; display: inline-block; line-height: 16px; padding-left: 15px; /*background: url("../images/ditu/search_icon.png") no-repeat scroll 1px 8px transparent;*/}
+
+.searchbox .province{ border: 1px solid #ccc;height:35px; width: 171px;line-height: 35px; margin:4px 0 4px 15px; }
+.searchbox .province span{ display: inline-block;float:left;width: 134px; line-height: 34px; font-size: 12px; color: #666; text-align: center;}
+.searchbox .province a{ background: url("../img/search_select_button.jpg") no-repeat 1px 2px; float: right; width: 35px; height: 32px; display: inline-block;}
+.searchbox .provincelist{background-color: #FFFFFF; overflow: auto; display: none; border: 1px solid #C3C3C3; height: 200px; margin-top: -5px; position: absolute; width: 171px; z-index: 10000;
+margin-left:15px;}
+.searchbox .provincelist li{border-bottom: 1px solid #C3C3C3; color: #868686;  cursor: pointer; font-size: 12px; height: 20px; padding-left: 4px; padding-top: 5px;}
+.searchbox .provincelist li.current{ background-color: #ededed}
+
+.searchbox .type{ border: 1px solid #ccc;height:35px; width: 171px;line-height: 35px; margin:4px 0 4px 15px; }
+.searchbox .type span{ display: inline-block;float:left;width: 134px; line-height: 34px; font-size: 12px; color: #666; text-align: center;}
+.searchbox .type a{ background: url("../img/search_select_button.jpg") no-repeat 1px 2px; float: right; width: 35px; height: 32px; display: inline-block;}
+.searchbox .typelist{background-color: #FFFFFF; overflow: auto; display: none; border: 1px solid #C3C3C3; margin-top: -5px; position: absolute; width: 171px; z-index: 10000;
+margin-left:15px;}
+.searchbox .typelist li{border-bottom: 1px solid #C3C3C3; color: #868686;  cursor: pointer; font-size: 12px; height: 20px; padding-left: 4px; padding-top: 5px;}
+.searchbox .typelist li.current{ background-color: #ededed}
+
+
+.searchbox .line{ border-top: dashed 1px #a0a0a0; margin: 14px 0 8px 0}
+.searchbox div.keyword{line-height: 35px;}
+.searchbox input.keyword{ border: 1px solid #ccc; padding: 7px; width: 235px; height: 20px; float: left; margin-left:15px;}
+.searchbox a.searchbutton{ border: 1px solid #ccc; background-color: #0146ab; float: left; text-align: center; text-decoration: none;  color: #fff; font-size: 16px; height: 35px; width: 60px; display: inline-block; margin-left: 4px}
+.searchbox .storetype{ font-size: 16px; line-height: 35px;clear: both;}
+.searchbox .storetype span{float:left;   background:#d8d8d8; width:333px; float:left; margin:15px 0 5px 0; padding:0 0 0 15px;}
+.searchbox .storetype input{ position: relative; top: 3px;}
+
+.storelist{ display: none; float:left; margin:5px; height:205px; overflow-y:scroll; overflow-x:hidden; scrollbar-base-color:#d8d8d8;}
+.storelist .title{  border-bottom: 1px solid #B5B5B5; height: 36px; background-color: #efefef; width:100%;}
+.storelist .title .icon{ border-right: 1px solid #B5B5B5; line-height:36px; height: 36px; width: 33px; background: url("../images/ditu/store_list_icon_1.png") no-repeat center center; float: left;}
+.storelist .title .text{ color: #333; font-size: 14px; line-height: 36px; margin-left: 7px; float: left;}
+.storelist .title .return{ background: url("../images/ditu/store_list_icon_2.png") no-repeat scroll 0 11px transparent; color: #333333; float: right;  font-size: 12px; line-height: 36px;  padding-left: 12px; text-decoration: none; margin-right: 12px}
+.storelist ul{ }
+.storelist ul li{ clear: both; position: relative; border-bottom: 1px solid #f2f2f2; font-size: 12px; padding: 10px 0 6px 9px}
+.storelist ul li.current, .storelist ul li.selected{background-color: #edf1f5;}
+.storelist ul li .number{ float: left; margin-left: 0px; margin-right: 8px; line-height: 21px; height: 21px; width: 27px; text-align: center;background-color: #045ba8; color: #fff}
+.storelist ul li .info{ float: left;  width: 305px;line-height: 20px}
+.storelist ul li .info .header .icon{ line-height: 16px; padding: 2px 16px 4px 6px; padding: 4px 16px 2px 6px\9; padding: 3px 16px 2px 6px\9\0; background: url("../images/ditu/store_list_store_type_bg.png") no-repeat scroll right 1px transparent;color: #FFFFFF;display: inline-block;margin-left: 6px;}
+.storelist ul li .info .header .icon.dealer{ background-position: right -19px;}
+.storelist ul li .info .text{ color: #666}
+.storelist ul li .info .links { margin-top: 6px;}
+.storelist ul li .info .links a{ display: inline-block;line-height: 20px; float: left; margin-right: 12px; color: #000; text-decoration: none;}
+.storelist ul li .info .links a.map{ background: url("../images/ditu/store_list_store_address_icon.png") no-repeat 1px 2px; padding-left: 18px}
+.storelist ul li .info .links a.picture{ background: url("../images/ditu/store_list_store_picture_icon.png") no-repeat 1px 3px; padding-left: 22px}
+
+
+.changecontent{font-family: '微软雅黑';}
+
+.storemap{ display: none; position:relative; margin: 10px 15px 10px 15px;}
+.storemap h3,.storepicture h3{ font-size: 18px; color: #333; margin:0; font-weight: normal;margin-bottom: 12px;}
+.storemap .return,.storepicture .return{ font-size: 12px; padding-left: 12px; line-height: 18px; color: #000; text-decoration: none; position: absolute;right: 2px; top:0px;background: url("../images/ditu/changecontent_icon_1.png") no-repeat scroll 0 3px transparent;}
+.storemap .address,.storepicture .picturecount{font-size: 12px; color: #666}
+.storemap .baidumap,.storepicture .picturelist{ width: 602px; height: 466px; margin-top: 3px;}
+.map_massage li{ font-size: 12px; color: #666}
+.map_massage li.title{ color: #000}
+
+.storepicture{ display: none;position:relative; margin: 10px 15px 10px 15px;}
+.storepicture .picturelist{ overflow: hidden;}
+.storepicture .picturelist ul{ width:1806px }
+.storepicture .picturelist li{ float: left;}
+.storepicture .picturelist img{ width: 602px; height: 466px; }
+.storepicture a.prev,.storepicture a.next{   position: absolute;top: 240px; width: 23px; height: 37px; display:none; background: url("../images/ditu/changecontent_picture_arrow_icon.png") no-repeat ;}
+.storepicture a.prev{ left: 6px;}
+.storepicture a.next{ right: 6px;background-position: -65px 0;}
+
+
+#main_container div.network div.smallstoredetail{ background:url("../images/ditu/network_stores_smaldetail_bg_2.gif") no-repeat bottom left; width:221px;display:none; position:absolute;top:0;left:0; display:none; z-index:110; padding-bottom:8px}
+#main_container div.network div.smallstoredetail div.bg{ background:url("../images/ditu/network_stores_smaldetail_bg_1.gif") no-repeat left top; width:215px; padding-left:11px;  padding-top:9px ;}
+#main_container div.network div.smallstoredetail div.bg div.smallstorepicture{ padding-bottom:7px;}
+#main_container div.network div.smallstoredetail div.bg div.loading{ height:150px;}
+#main_container div.network div.smallstoredetail div.bg div.storename,
+#main_container div.network div.smallstoredetail div.bg div.address,
+#main_container div.network div.smallstoredetail div.bg div.intro,
+#main_container div.network div.smallstoredetail div.bg div.googlemap a,
+#main_container div.network div.smallstoredetail div.bg div.viewpicture a{font-size:12px; color:#646464}
+#main_container div.network div.smallstoredetail div.bg div.smallstorepicture,
+#main_container div.network div.smallstoredetail div.bg div.loading,
+#main_container div.network div.smallstoredetail div.bg div.storename,
+#main_container div.network div.smallstoredetail div.bg div.address,
+#main_container div.network div.smallstoredetail div.bg div.intro{ width:180px; margin-bottom:4px;}
+#main_container div.network div.smallstoredetail div.bg div.intro img{ margin-bottom:1px; margin-right:3px;}
+#main_container div.network div.smallstoredetail div.bg div.googlemap a,
+#main_container div.network div.smallstoredetail div.bg div.viewpicture a{ text-decoration:none}
+#main_container div.network div.smallstoredetail div.bg div.viewpicture a{ background:url("../images/ditu/network_stores_smaldetail_icon_picture_arrow.gif") no-repeat right  3px; padding-right:12px;line-height:24px;*line-height:26px; *background-position:right 1px}
+#main_container div.network div.smallstoredetail div.bg div.googlemap,
+#main_container div.network div.smallstoredetail div.bg div.viewpicture{ float:left; margin-right:8px; height:25px;margin-bottom:12px;}
+#main_container div.network div.smallstoredetail div.bg div.googlemap img,
+#main_container div.network div.smallstoredetail div.bg div.viewpicture img{ margin-right:6px;margin-bottom:2px;}
+#main_container div.network div.smallstoredetail div.bg div.intro{ clear:both; margin-bottom:12px;}
+
+
+#main_container div.network div.stores .jspHorizontalBar{ display: none;}
+#main_container div.network div.stores .jspVerticalBar{ width: 7px;background: url("../images/ditu/scrollpane_track.gif") repeat-y scroll 0 0 #FFFFFF;}
+#main_container div.network div.stores .jspTrack{background: none}
+#main_container div.network div.stores .jspDrag{background: url("../images/ditu/scrollpane_drag_middle.gif") repeat-y scroll 0 0 transparent;}
+#main_container div.network div.stores .jspDragTop{ position: absolute; top: 0; height: 9px; width: 6px; background: url("../images/ditu/scrollpane_drag_up.gif") no-repeat scroll 1px top #FFFFFF;}
+#main_container div.network div.stores .jspDragBottom{ position: absolute; bottom: 0px; height: 9px; width: 6px; background: url("../images/ditu/scrollpane_drag_bottom.gif") no-repeat scroll 1px top #FFFFFF;}
+#main_container div.network div.stores .jspArrow {background: url("../images/ditu/scrollpane_track.gif") repeat-y scroll 0 0 #FFFFFF; height: 8px}
+
+
+
+#main_container div.network div.stores div.scrollpane{ height:239px;}
+#main_container div.network div.stores .jScrollPaneContainer {	position: relative;	overflow: hidden;z-index: 1; outline:none}
+#main_container div.network div.stores .jScrollPaneTrack {	position: absolute;	cursor: pointer;right: 1px;top: 0px;height: 100%;background: url("../images/ditu/scrollpane_track.gif") repeat-y #ffffff;  margin-bottom:1px; }
+#main_container div.network div.stores .jScrollPaneDrag {position: absolute;cursor: pointer;	overflow: hidden; margin-left:1px;background:url("../images/ditu/scrollpane_drag_middle.gif") repeat-y -1px 0px}
+#main_container div.network div.stores .jScrollPaneDragTop {position: absolute;top: 0;left: 0;	overflow: hidden; height:9px; background:url("../images/ditu/scrollpane_drag_up.gif") no-repeat 0px top #ffffff; _background-position:0px top;}
+#main_container div.network div.stores .jScrollPaneDragBottom {position: absolute;	bottom: 0;left: 0;overflow: hidden;height:9px; background:url("../images/ditu/scrollpane_drag_bottom.gif") no-repeat 0px top #ffffff; _background-position:0px top; }
+#main_container div.network div.stores a.jScrollArrowUp {display: block;position: absolute;z-index: 1;	top: 0;	right: 1px;text-indent: -2000px;overflow: hidden;		height: 8px;}
+#main_container div.network div.stores a.jScrollArrowUp:hover {}
+#main_container div.network div.stores a.jScrollArrowDown {display: block;	position: absolute;	z-index: 1;	bottom: 0;right: 1px;text-indent: -2000px;overflow: hidden;	height: 8px;}
+#main_container div.network div.stores a.jScrollArrowDown:hover {}
+#main_container div.network div.stores a.jScrollActiveArrowButton,
+#main_container div.network div.stores a.jScrollActiveArrowButton:hover {}
+#main_container div.network div.stores a.jScrollArrowUp,
+#main_container div.network div.stores a.jScrollArrowUp:hover {background: url("../images/ditu/scrollpane_track.gif") repeat-y #ffffff;}
+#main_container div.network div.stores a.jScrollArrowDown {background: url("../images/ditu/scrollpane_track.gif") repeat-y #ffffff;}
+#main_container div.network div.stores a.jScrollArrowDown:hover { }
+#main_container div.network div.stores a.jScrollActiveArrowButton,
+#main_container div.network div.stores  a.jScrollActiveArrowButton:hover {background-position: 0 0px;}
+#main_container div.network div.stores .scroll-pane {width: 313px;height: 330px;overflow: auto;float: left;}
+ 
+
+.jspContainer{overflow: hidden;position: relative;}
+.jspPane{position: absolute;}
+.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;background: red; }
+.jspHorizontalBar{position: absolute;bottom: 0;left: 0;width: 100%;height: 16px;background: red;}
+.jspVerticalBar *,.jspHorizontalBar *{margin: 0;padding: 0;}
+.jspCap{display: none;}
+.jspHorizontalBar .jspCap{float: left;}
+.jspTrack{background: #dde;position: relative;}
+.jspDrag{background: #bbd;position: relative;top: 0;left: 0;cursor: pointer;}
+.jspHorizontalBar .jspTrack,.jspHorizontalBar .jspDrag{float: left;height: 100%;}
+.jspArrow{background: #50506d;text-indent: -20000px;display: block;cursor: pointer;}
+.jspArrow.jspDisabled{cursor: default;background: #80808d;}
+.jspVerticalBar .jspArrow{height: 16px;}
+.jspHorizontalBar .jspArrow{width: 16px;float: left;height: 100%;}
+.jspVerticalBar .jspArrow:focus{outline: none;}
+.jspCorner{background: #eeeef4;float: left;height: 100%;}
+
+
+
+.xlkuang{
+height:250px;
+overflow:scroll;
+width:340px;
+float:left;}
+.dt_title {
+	float: left;
+	height: 62px;
+	border-bottom:1px #CCCCCC solid;
+	width: 100%;
+	margin:5px 0 0 0;
+/*	padding:0 0 8px 0;*/
+}
+.dt_title dt,.dt_title dd{
+height:62px;
+float:left;
+}
+.dt_title dt{
+width:34px;
+background: url("../images/ditu/dtlbbg.png") no-repeat center 0px;
+text-align:center;
+color:#FFFFFF;
+line-height:22px;
+font-weight:bold;}
+.dt_title dd{
+width:270px;
+font-size:12px;
+color:#333333;
+padding:0 0 0 10px;}
+.dt_title dd p{
+line-height:20px;}
+.dt_title_good{background:url(../images/icon_zy.png) 295px 0px no-repeat;}
+
+
+
+* html .jspCorner{margin: 0 -3px 0 0;}
+ 
+ 
+.loading {
+    background: transparent url("../images/ditu/loading.gif") 50% 50% no-repeat;
+}
+
+
