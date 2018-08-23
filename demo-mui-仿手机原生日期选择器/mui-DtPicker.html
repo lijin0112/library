@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="mui.min.css">
+  <link rel="stylesheet" href="mui.picker.min.css">
+  <script src="jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="mui.min.js"></script>
+  <script type="text/javascript" src="mui.picker.min.js"></script>
+  <style>
+    input[type=text] {
+      width: 30%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="data">
+  <input type="text" id="date1"/> 至 <input type="text" id="date2"/>
+</div>
+<script>
+  // 对Date的扩展，将 Date 转化为指定格式的String
+  // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+  // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+  // 例子：
+  // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+  // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+  Date.prototype.Format = function(fmt)
+  { //author: meizz
+    var o = {
+      "M+" : this.getMonth()+1,                 //月份
+      "d+" : this.getDate(),                    //日
+      "h+" : this.getHours(),                   //小时
+      "m+" : this.getMinutes(),                 //分
+      "s+" : this.getSeconds(),                 //秒
+      "q+" : Math.floor((this.getMonth()+3)/3), //季度
+      "S"  : this.getMilliseconds()             //毫秒
+    };
+    if(/(y+)/.test(fmt))
+      fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    for(var k in o)
+      if(new RegExp("("+ k +")").test(fmt))
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+    return fmt;
+  }
+</script>
+</body>
+<script>
+  /*
+  MUI 最接近原生APP体验的高性能前端框架
+   http://dev.dcloud.net.cn/mui/
+   url: http://dev.dcloud.net.cn/mui/ui/#dtpicker
+   sample: http://www.dcloud.io/hellomui/
+
+   1.参数:type
+   Type: JSON
+   设置日历初始视图模式
+   支持的值:
+   'datetime'	完整日期视图(年月日时分)
+   'date'	年视图(年月日)
+   'time'	时间视图(时分)
+   'month'	月视图(年月)
+   'hour'	时视图(年月日时)
+
+   3.参数:labels
+   Type: Array
+   设置默认标签区域提示语
+   可设置["年", "月", "日", "时", "分"]这五个字段,
+   可以根据视图模式选择设置个别标签,也可以设置所有标签,
+   dtpicker显示的时候只会根据当前视图显示设置项,
+   *建议不要设置空字符串,会影响美观哦
+
+   4.参数:beginDate
+   Type: Date
+   设置可选择日期最小范围
+   可单独设置最小年范围, 如: beginYear:2015,
+   其他日期支持Date格式,如:new Date(2016,5)可指定最小月份6月
+
+   5.参数:endDate
+   Type: Date
+   设置可选择日期最大范围
+   可单独设置最大年范围, 如: endYear:2017,
+   其他日期支持Date格式,如:new Date(2016,10)可指定最大月份11月
+
+   完整示例:
+   var dtpicker = new mui.DtPicker({
+   type: "datetime",//设置日历初始视图模式
+   beginDate: new Date(2015, 04, 25),//设置开始日期
+   endDate: new Date(2016, 04, 25),//设置结束日期
+   labels: ['Year', 'Mon', 'Day', 'Hour', 'min'],//设置默认标签区域提示语
+   customData: {
+   h: [
+   { value: 'AM', text: 'AM' },
+   { value: 'PM', text: 'PM' }
+   ]
+   }//时间/日期别名
+   })
+   dtpicker.show(function(e) {
+   console.log(e);
+   })
+  */
+  var time = document.getElementById('date1');
+  time.addEventListener('tap', function(event) {
+    timeShow("date1");
+
+  });
+  var time2 = document.getElementById('date2');
+  time2.addEventListener('tap', function(event) {
+    timeShow("date2");
+
+  });
+  time.value = (new Date()).Format("yyyy-MM-dd");
+  time2.value = (new Date()).Format("yyyy-MM-dd");
+  function timeShow(_id) {
+    var dtpicker = new mui.DtPicker({
+      type: "date",//设置日历初始视图模式
+      //beginDate: new Date(2015, 04, 25),//设置开始日期
+      endDate: new Date(),//设置结束日期
+      labels: ['Year', 'Mon', 'Day']//设置默认标签区域提示语
+    });
+
+    dtpicker.setSelectedValue( $("#"+_id).val());
+    dtpicker.show(function (e) {
+      console.log(e);
+      $("#"+_id).val(e.text);
+    })
+  }
+
+
+</script>
+</html>

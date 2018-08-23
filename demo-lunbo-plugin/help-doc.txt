@@ -1,0 +1,129 @@
+http://www.htmleaf.com/jQuery/Slideshow-Scroller/201512152906.html
+
+简要教程
+jssor slider是一款功能非常强大的可制作超过30种不同类型的幻灯片|轮播图|旋转木马的jQuery插件。jssor具有高性能，轻量级，跨浏览器等特点，它可以支持IE6+的浏览器，并且可以支持移动触摸设备。它的特点还有：
+轻量级，压缩版本只有17KB大小。
+高性能，通过消耗很少的CPU来完成平滑过渡效果。
+跨浏览器支持：IE6+, Chrome 3+, Firefox 3.6+, Safari 3.1+, Opera 10+。
+可以作为jQuery插件来使用，也可以通过纯JavaScript来使用。
+支持移动触摸和拖拽。
+实时响应式，缩放没有延迟。
+390+种不同的标题和动画过渡效果。
+360+种slideshow效果。
+自动侦测来完成水平或垂直切换图片。
+可以制作带缩略图，tabs和圆点导航的效果。
+任何的HTML代码都可以放置在slider中。
+一个页面可以实例化多个slider。
+ 使用方法
+使用该幻灯片插件需要引入jquery和jssor.slider.mini.js文件（纯JavsScript版本只需要引入jssor.slider.mini.js文件）。
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jssor.slider.mini.js"></script>
+ HTML结构
+
+最简单的幻灯片结构如下：
+jQuery版本的幻灯片结构：
+<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px;">
+    <!-- Slides Container -->
+    <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;">
+        <div><img u="image" src="image1.jpg" /></div>
+        <div><img u="image" src="image2.jpg" /></div>
+    </div>
+</div>
+纯JavaScript版本的幻灯片结构：
+<div id="slider1_container" style="position: relative; top: 0px; left: 0px; width: 600px; height: 300px;">
+    <!-- Slides Container -->
+    <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 600px; height: 300px;">
+        <div><img u="image" src="image1.jpg" /></div>
+        <div><img u="image" src="image2.jpg" /></div>
+    </div>
+    <!-- Trigger -->
+    <script>jssor_slider1_starter('slider1_container');</script>
+</div>
+ 初始化插件
+
+在页面DOM元素加载完毕之后，可以通过下面的方法来初始化该幻灯片插件。
+jQuery版本：
+jQuery(document).ready(function ($) {
+    var options = { $AutoPlay: true };
+    var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+});
+纯JavaScript版本：
+jssor_slider1_starter = function (containerId) {
+    var options = { $AutoPlay: true };
+    var jssor_slider1 = new $JssorSlider$(containerId, options);
+};
+ 配置参数
+Jssor Slider的可用配置参数如下：
+参数	是否必须	默认值	描述
+$FillMode	可选	0	slide中填充图片的模式：0表示stretch（拉伸），1表示contain（保持比例并全部放入slide中），2表示cover（保持比例边覆盖整个slide），4表示实际尺寸，5表示包含一个大图和一个实际尺寸的小图。
+$LazyLoading	可选	1	图片懒加载模式，默认图片在slide到来时才加载，可以设置一个整数（1,2,3等）表示距离该图片多少张图片间隔时就加载图片。
+$StartIndex	可选	0	初始化时显示的图片的序号。
+$AutoPlay	可选	false	是否自动播放，对于slideshow，该参数必须设置为true。
+$AutoPlaySteps	可选	1	自动播放的步长，可以为正数或负数。
+$Loop	可选	1	旋转木马是否无限循环。0表示停止，1表示循环，2表示rewind
+$Idle	可选	3000	自动播放模式下从前一张图片停止到下一张图片播放的时间间隔，单位毫秒。
+$PauseOnHover	可选	1	是否自动播放模式下鼠标经过图片时停止播放。0表示不暂停，1表示在桌面设备中暂停，2表示在移动触摸设置中暂停，3表示在桌面和移动设置中都暂停，4表示在桌面设备中冻结(freeze)，8表示在移动设置中冻结，12表示在桌面和移动设置中都冻结。
+$ArrowKeyNavigation	可选	1	点击箭头导航按钮时slide移动的步长。
+$SlideDuration	可选	500	指定从左到右的动画的持续时间，单位毫秒。
+$SlideEasing	可选	$JssorEasing$.$EaseOutQuad	指定从左到右的easing动画。
+$MinDragOffsetToSlide	可选	20	触发slide的最小拖拽距离。
+$SlideWidth	可选		每一个slide的宽度，单位像素。默认是'slides'容器的宽度。
+$SlideHeight	可选		每一个slide的高度，单位像素。默认是'slides'容器的高度。
+$SlideSpacing	可选	0	每一个slide之间的距离，单位像素。
+$Cols	可选	1	在'slides'容器中显示的slide数量。如果值大于1slideshow将不可用。
+$Align	可选	0	在'slides'容器中来移动位置对齐当前的slide，
+$UISearchMode	可选	1	The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+$PlayOrientation	可选	1	slide的方向。1表示水平，2表示垂直。
+$DragOrientation	可选	1	拖动slide的方向。0表示不拖动，1表示水平，2表示垂直，3表示两个方向。
+{$BulletNavigatorOptions}	可选	null	指定是否启用导航按钮。
+{$ArrowNavigatorOptions}	可选	null	指定是否启用箭头导航按钮。
+{$ThumbnailNavigatorOptions}	可选	null	指定是否启用缩略图导航。
+{$SlideshowOptions}	可选	null	指定是否启用slideshow。
+{$CaptionSliderOptions}	可选	null	指定是否启用动画标题。
+{$BulletNavigatorOptions}的可用配置参数如下：
+参数	是否必须	默认值	描述
+$Class	必须	$JssorBulletNavigator$	navigator实例的class类。
+$ChanceToShow	必须	2	0: Never, 1: Mouse Over, 2: Always
+$ActionMode	可选	1	0: None, 1: act by click, 2: act by mouse hover, 3: both
+$AutoCenter	可选	0	自动在父元素内居中。0: None, 1: Horizontal, 2: Vertical, 3: Both
+$Steps	可选	1	移动到下一个slide的步长。
+$Rows	可选	1	圆点导航的行数。
+$SpacingX	可选	10	每一个项之间的水平距离，单位像素。
+$SpacingY	可选	10	每一个项之间的垂直距离，单位像素。
+$Orientation	可选	1	navigator的方向，1表示水平，2表示垂直。
+$Scale	可选	true	当slider缩放时是否缩放圆点导航按钮。
+{$ArrowNavigatorOptions}的可用配置参数如下：
+参数	是否必须	默认值	描述
+$Class	必须	$JssorArrowNavigator$	创建箭头导航实例的class类。
+$ChanceToShow	必须	2	0: Never, 1: Mouse Over, 2: Always
+$AutoCenter	可选	0	箭头自动在父容器中居中。0: None, 1: Horizontal, 2: Vertical, 3: Both
+$Steps	可选	1	移动到下一个slide的步长。
+$Scale	可选	true	当slider缩放时是否缩放箭头导航按钮。
+{$ThumbnailNavigatorOptions}的可用配置参数如下：
+参数	是否必须	默认值	描述
+$Class	必须	$JssorThumbnailNavigator$	创建缩略图导航实例的class类。
+$ChanceToShow	必须	2	0: Never, 1: Mouse Over, 2: Always
+$ActionMode	可选	1	0: None, 1: act by click, 2: act by mouse hover, 3: both
+$Loop	可选	1	允许旋转木马无限循环。0: stop, 1: loop, 2 rewind
+$AutoCenter	可选	3	缩略图自动在父容器中居中。0: None, 1: Horizontal, 2: Vertical, 3: Both
+$Cols	可选	1	显示缩略图的行数。
+Rows	可选	1	显示缩略图的列数。
+$SpacingX	可选	0	缩略图之间的水平间距。
+$SpacingY	可选	0	缩略图之间的垂直间距。
+$ParkingPosition	可选	0	The offset position to park thumbnail
+$Orientation	可选	1	缩略图的布局方向，1表示水平，2表示垂直。
+$Scale	可选	true	当slider缩放时是否缩放缩略图。
+$NoDrag	可选	false	是否禁止拖动。
+{$SlideshowOptions}的可用配置参数如下：
+参数	是否必须	默认值	描述
+$Class	必须	$JssorSlideshowRunner$	创建slideshow实例的class类。
+$Transitions	必须		一个slideshow过渡动画的数组。
+$TransitionsOrder	可选	0	slideshow过渡动画的方式。1: Sequence, 0: Random。
+$ShowLink	可选	false	Whether to bring slide link on top of the slider when slideshow is running
+{$SlideshowOptions}的可用配置参数如下：
+参数	是否必须	默认值	描述
+$Class	必须	$JssorCaptionSlider$	创建动画标题实例的class类。
+$CaptionTransitions	必须		标题过渡动画的数组。
+$PlayInMode	可选	1	标题进入的方式。0: None (no play), 1: Chain (goes after main slide), 3: Chain Flatten (goes after main slide and flatten all caption animations)
+$PlayOutMode	可选	1	标题离开的方式。0: None (no play), 1: Chain (goes before main slide), 3: Chain Flatten (goes before main slide and flatten all caption animations)
+关于Jssor slider幻灯片更详细的介绍请参考：http://www.jssor.com/development/index.html

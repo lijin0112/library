@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <title>Socket.IO chat</title>
+  <link rel="stylesheet" href="bootstrap.css"/>
+  <link rel="stylesheet" href="index.css"/>
+  <!--
+  doc：
+  http://socket.io/get-started/chat/
+
+  cmd：
+  node index.js
+  browser：
+  http://localhost:3000/
+  -->
+</head>
+<body>
+<div class="online-users"></div>
+<ul id="messages"></ul>
+<form action="">
+  <div class="bottom-bar">
+    <select id="sel-user"> </select>
+    <input id="cur-input" autocomplete="off"/>
+    <button>Send</button>
+  </div>
+</form>
+
+<div class="modal fade" id="alert-box">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">修改用户昵称</h4>
+      </div>
+      <div class="modal-body">
+        <label for="nickname">用户昵称:</label>
+        <input type="text" name="nickname" id="nickname"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" onclick="modifyNickname()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.js"></script>
+<script src="bootstrap.js"></script>
+<script src="lib.js"></script>
+<script src="index-chat.js"></script>
+</body>
+</html>

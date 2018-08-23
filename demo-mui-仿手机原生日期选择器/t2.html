@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="mui.min.css">
+  <link rel="stylesheet" href="mui.picker.min.css">
+  <script src="jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="mui.min.js"></script>
+  <script type="text/javascript" src="mui.picker.min.js"></script>
+</head>
+<body>
+
+<div class="data">
+  <span class="data-get">借款周期</span>
+  <span id="data-num">1个月</span>
+</div>
+</body>
+<script>
+$(function (){
+
+  // 日期改变
+  (function($) {
+    var time = document.getElementById('data-num');
+    time.addEventListener('tap', function(event) {
+      timeShow();
+
+    });
+
+    function timeShow() {
+      $.init();
+      var picker = new $.PopPicker({
+        layer: 2
+      });
+      //				var picker = new mui.PopPicker();
+      var timeData = [];
+      for (var i = 1; i <= 90; i++) {
+        timeData.push({
+          value: i,
+          text: i + '天'
+        })
+      }
+      var timeMonth = [];
+      for (var j = 1; j <= 12; j++) {
+        timeMonth.push({
+          value: j,
+          text: j + '个月'
+        })
+      }
+      picker.setData([{
+        value: "1",
+        text: "按月",
+        children: timeMonth
+      }, {
+        value: "0",
+        text: "按日",
+        children: timeData
+      }]);
+
+      picker.show(function(selectItems) {
+        console.log(selectItems[0].value);
+        console.log(selectItems[1].value);
+        var timeNumber = selectItems[1].text;
+        console.log(timeNumber);
+        time.innerHTML = timeNumber;
+        picker.dispose();
+      });
+
+    }
+  })(mui);
+
+})
+</script>
+</html>
