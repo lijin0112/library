@@ -1,0 +1,13 @@
+1
+index.html
+animate.min.css
+
+
+2
+animate.css
+https://github.com/daneden/animate.css
+
+
+$('#yourElement').addClass('animated bounceOutLeft');
+
+$('#yourElement').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', doSomething);
