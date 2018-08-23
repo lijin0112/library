@@ -1,0 +1,4 @@
+给数字(num)补齐指定位数(size)的0；
+function leftpad(num,size){num+=Math.pow(10,size+1); num+=""; return num.slice(-size);}
+
+function leftpad(b){b+=100; b+=""; return b.slice(-2);}

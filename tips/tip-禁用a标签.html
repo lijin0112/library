@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>禁用a标签</title>
+</head>
+<body>
+<a href="#" onclick="alert('test');">daddafd</a>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+  $(function(){
+    $('a').addClass('disableCss');
+    $('.disableCss').removeAttr('href');//去掉a标签中的href属性
+    $('.disableCss').removeAttr('onclick');//去掉a标签中的onclick事件
+  });
+
+</script>
+</body>
+</html>

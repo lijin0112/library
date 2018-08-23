@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="full-screen" content="yes">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+  <title>银子抽奖</title>
+  <link href="http://static.wjdai.com/css/common.css" rel="stylesheet"/>
+  <script type="text/javascript" src="http://static.wjdai.com/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="http://static.wjdai.com/js/jquery.form.min.js"></script>
+  <!--<link rel="stylesheet" href="may4th.css"/>-->
+  <link rel="stylesheet" href="http://teststatic.wjdai.com/css/activity/may4th.css"/>
+</head>
+<body>
+<div class="container all align-center relative ">
+  <div class="top">
+    <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/1.jpg" alt=""/>
+  </div>
+  <div class="content-box">
+
+    <div class="box2">
+      <div class="list">
+        <marquee behavior="scroll" direction="left" scrolldelay="5" scrollamount="3" onmouseover="this.stop();"
+                 onmouseout="this.start();"
+                 style="width: 100%;margin-left: 2rem;margin-top: 0.1rem;border: 1px solid #610306; line-height: 3rem;background-color: #fff;font-size:1rem;">
+          用户133******1 抽中了MacBook13.3寸
+        </marquee>
+      </div>
+      <div class="myRecords">
+        <span class="btn" id="myRecords">我的获奖记录>></span>
+      </div>
+      <img src="http://teststatic.wjdai.com/img/activity/may4/13.png" alt=""/>
+      <img src="http://teststatic.wjdai.com/img/activity/may4/13.png" alt=""/>
+    </div>
+    <div id="lottery">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="lottery-unit lu-blue lottery-unit-0">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/1.png">MacBook
+          </td>
+          <td class="lottery-unit lu-red lottery-unit-1">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/7.png">50元红包
+          </td>
+          <td class="lottery-unit lu-blue lottery-unit-2">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/5.png">真皮卡套
+          </td>
+          <td class="lottery-unit lu-red lottery-unit-3">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/6.png">100元红包
+          </td>
+        </tr>
+        <tr>
+          <td class="lottery-unit lu-red lottery-unit-9">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/8.png">20元红包
+          </td>
+          <td colspan="2" id="click">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/btn1.png">
+            <span class="desc c-f00">今日还有<span id="remaining">3</span>次机会</span>
+            <b>点我抽奖</b>
+          </td>
+          <td class="lottery-unit lu-blue lottery-unit-4">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/2.png">ipad2
+          </td>
+        </tr>
+        <tr>
+          <td class="lottery-unit lu-blue lottery-unit-8">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/4.png">指环支架
+          </td>
+          <td class="lottery-unit lu-red lottery-unit-7">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/9.png">30银子
+          </td>
+          <td class="lottery-unit lu-blue lottery-unit-6">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/3.png">迷你风扇
+          </td>
+          <td class="lottery-unit lu-red lottery-unit-5">
+            <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/10.png">50银子
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="box3">
+      <span class="btn">我的银子：<span id="mysilver">30000</span></span>
+      <span class="btn">抽奖一次消耗银子：50</span>
+    </div>
+    <div class="box title">
+      <span class="btn rule">活动规则</span>
+    </div>
+    <div class="box box4 ">
+      <div class="p4">
+        <p>1.抽奖获得的银子奖励和红包奖励，可通过万家贷“我的账户”查看。</p>
+
+        <p>2.活动期间每天每位用户最多可获得3次抽奖机会。</p>
+
+        <p>3.抽奖获得的实物奖品，客服将在活动结束后的7个工作日内联系中奖者获取地址，并将奖品以快递方式寄出。</p>
+
+        <p>4.本活动最终解释权归万家金融所有，如有疑问请联系在线客服或拨打400-698-0607。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="mask-alert"></div>
+<div class="wrapper-alert alert red-theme">
+  <div class="pa">
+    <p class="firstline">恭喜您！</p>
+
+    <p class="secondline">抽中100元红包</p>
+
+    <p class="thirdline">您可通过万家贷我的账号查看</p>
+    <span class="btn sure"> 确定 </span>
+  </div>
+</div>
+
+
+<div class="wrapper-alert alert2">
+  <span class="close">X</span>
+
+  <div class="norecord ">
+    <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/14.png">
+    <span>您还没有中奖纪录</span>
+  </div>
+</div>
+
+<div class="wrapper-alert alert4">
+  <span class="close">X</span>
+
+  <div class="norecord ">
+    <img class="full-x" src="http://teststatic.wjdai.com/img/activity/may4/14.png">
+    <span>您还没有中奖纪录</span>
+  </div>
+</div>
+
+<!--最多 5 行 获奖记录-->
+<div class="wrapper-alert alert3">
+  <span class="close">X</span>
+
+  <div class="title">我的获奖记录</div>
+  <ul>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize9.jpg" alt=""/>
+
+      <div class="pr">
+        <p>50元红包</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize2.jpg" alt=""/>
+
+      <div class="pr">
+        <p>迷你风扇</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize3.jpg" alt=""/>
+
+      <div class="pr">
+        <p>卡套</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize2.jpg" alt=""/>
+
+      <div class="pr">
+        <p>迷你风扇</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize3.jpg" alt=""/>
+
+      <div class="pr">
+        <p>卡套</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize2.jpg" alt=""/>
+
+      <div class="pr">
+        <p>迷你风扇</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize3.jpg" alt=""/>
+
+      <div class="pr">
+        <p>卡套</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize2.jpg" alt=""/>
+
+      <div class="pr">
+        <p>迷你风扇</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+    <li class="record">
+      <img src="http://teststatic.wjdai.com/img/activity/may4/prize3.jpg" alt=""/>
+
+      <div class="pr">
+        <p>卡套</p>
+
+        <p>抽奖时间：2016.5.12</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+</body>
+<!--<script src="http://teststatic.wjdai.com/js/activity/may4th.js"></script>-->
+<script src="may4th.js"></script>
+</html>

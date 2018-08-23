@@ -1,0 +1,25 @@
+js给原型自定义属性，调用时不用()  - 即(8).double() 成为 (8).double
+
+ES5规定，每个对象的属性都有一个取值方法get，用来自定义该属性的读取操作。
+
+Number.prototype = Object.defineProperty(
+  Number.prototype, "double", {
+    get: function (){return (this + this)} 
+  }
+);
+
+Number.prototype =  Object.defineProperty(
+  Number.prototype, "square", {
+    get: function (){return (this * this)} 
+  }
+);
+
+上面代码在 Number.prototype 上定义了两个属性 double 和 square ，以及它们的取值方法 get 。
+因此，在任一数值上，读取这两个属性，就可以写成下面的样子。
+
+(8).double.square
+// 256
+也可以改用方括号运算符。
+
+8["double"]["square"]
+// 256

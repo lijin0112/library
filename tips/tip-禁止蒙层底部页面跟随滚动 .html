@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<h3>https://juejin.im/post/5a27cad56fb9a045186a9d94</h3>
+禁止蒙层底部页面跟随滚动 <br/>
+
+
+<p>弹窗是一种常见的交互方式，而蒙层是弹窗必不可少的元素，用于隔断页面与弹窗区块，暂时阻断页面的交互。但是，在蒙层元素中滑动的时候，滑到内容的尽头时，再继续滑动，蒙层底部的页面会开始滚动，显然这不是我们想要的效果，因此需要阻止这种行为。</p>
+
+<p>那么，如何阻止呢？请看以下分析：</p>
+
+<h2 class="heading" data-id="heading-1">方案分析</h2>
+
+<h3 class="heading" data-id="heading-2">方案一</h3>
+<ul>
+  <li>打开蒙层时，给body添加样式：</li>
+</ul>
+<pre><code class="hljs css" lang="css"><span class="hljs-selector-tag">overflow</span>: <span class="hljs-selector-tag">hidden</span>;
+  <span class="hljs-selector-tag">height</span>: 100%;
+</code></pre>
+<p>在某些机型下，你可能还需要给根节点添加样式：</p>
+<pre><code class="hljs css" lang="css"><span class="hljs-selector-tag">overflow</span>: <span class="hljs-selector-tag">hidden</span>;
+</code></pre>
+<ul>
+  <li>关闭蒙层时，移除以上样式。</li>
+</ul>
+<p><strong>优点：</strong>
+  简单方便，只需添加css样式，没有复杂的逻辑。</p>
+
+<p><strong>缺点：</strong>
+  兼容性不好，适用于pc，移动端就尴尬了。
+  部分安卓机型以及safari中，无法无法阻止底部页面滚动。</p>
+
+<p>如果需要应用于移动端，那么你可能需要方案二。</p>
+
+<h3 class="heading" data-id="heading-3">方案二</h3>
+
+<p>就是利用移动端的touch事件，来阻止默认行为（这里可以理解为页面滚动就是默认行为）。</p>
+<pre><code class="hljs js" lang="js"><span class="hljs-comment">// node为蒙层容器dom节点</span>
+  node.addEventListener(<span class="hljs-string">'touchstart'</span>, e =&gt; {
+  e.preventDefault()
+  }, <span class="hljs-literal">false</span>)
+</code></pre>
+<p>简单粗暴，滚动时底部页面也无法动弹了。假如你的蒙层内容不会有滚动条，那么上述方法prefect。</p>
+
+<p>但是，最怕空气突然安静，假如蒙层内容有滚动条的话，那么它再也无法动弹了。因此我们需要写一些js逻辑来判断要不要阻止默认行为，复杂程度明显增加。</p>
+
+<p>具体思路：判定蒙层内容是否滚动到尽头，是则阻止默认行为，反之任它横行。</p>
+<del>
+  Tip：这里我发现了一个小技巧，可以省略不少代码。在一次滑动中，若蒙层内容可以滚动，则蒙层内容滚动，过程中即使蒙层内容已滚至尽头，只要不松手（可以理解为`touchend`事件触发前），继续滑动时页面内容不会滚动，此时若松手再继续滚动，则页面内容会滚动。利用这一个小技巧，我们可以精简优化我们的代码逻辑。
+</del>
+<p>示例代码如下：</p>
+<pre><code class="hljs html" lang="html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"page"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- 这里多添加一些，直至出现滚动条 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>页面<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>页面<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn"</span>&gt;</span>打开蒙层<span class="hljs-tag">&lt;/<span
+      class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>页面<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"layer"</span>&gt;</span><span class="hljs-tag">&lt;/<span
+      class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- 这里多添加一些，直至出现滚动条 --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>蒙层<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>蒙层<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>蒙层<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+</code></pre><pre><code class="hljs css" lang="css"><span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+  }
+
+  <span class="hljs-selector-class">.btn</span> {
+  <span class="hljs-attribute">border</span>: none;
+  <span class="hljs-attribute">outline</span>: none;
+  <span class="hljs-attribute">font-size</span>: inherit;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">1em</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ff5777</span>;
+  }
+
+  <span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">position</span>: fixed;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1001</span>;
+  <span class="hljs-attribute">display</span>: none;
+  }
+
+  <span class="hljs-selector-class">.layer</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(0, 0, 0, .3);
+  }
+
+  <span class="hljs-selector-class">.content</span> {
+  <span class="hljs-attribute">position</span>: absolute;
+  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">z-index</span>: <span class="hljs-number">2</span>;
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f6f6f6</span>;
+  <span class="hljs-attribute">overflow-y</span>: auto;
+  }
+</code></pre><pre><code class="hljs js" lang="js"><span class="hljs-keyword">const</span> btnNode = <span class="hljs-built_in">document</span>.querySelector(<span
+    class="hljs-string">'.btn'</span>)
+  <span class="hljs-keyword">const</span> containerNode = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.container'</span>)
+  <span class="hljs-keyword">const</span> layerNode = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.layer'</span>)
+  <span class="hljs-keyword">const</span> contentNode = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.content'</span>)
+  <span class="hljs-keyword">let</span> startY = <span class="hljs-number">0</span> <span class="hljs-comment">// 记录开始滑动的坐标，用于判断滑动方向</span>
+  <span class="hljs-keyword">let</span> status = <span class="hljs-number">0</span> <span class="hljs-comment">// 0：未开始，1：已开始，2：滑动中</span>
+
+  <span class="hljs-comment">// 打开蒙层</span>
+  btnNode.addEventListener(<span class="hljs-string">'click'</span>, () =&gt; {
+  containerNode.style.display = <span class="hljs-string">'block'</span>
+  }, <span class="hljs-literal">false</span>)
+
+  <span class="hljs-comment">// 蒙层部分始终阻止默认行为</span>
+  layerNode.addEventListener(<span class="hljs-string">'touchstart'</span>, e =&gt; {
+  e.preventDefault()
+  }, <span class="hljs-literal">false</span>)
+
+  <span class="hljs-comment">// 核心部分</span>
+  contentNode.addEventListener(<span class="hljs-string">'touchstart'</span>, e =&gt; {
+  status = <span class="hljs-number">1</span>
+  startY = e.targetTouches[<span class="hljs-number">0</span>].pageY
+  }, <span class="hljs-literal">false</span>)
+
+  contentNode.addEventListener(<span class="hljs-string">'touchmove'</span>, e =&gt; {
+  <span class="hljs-comment">// 判定一次就够了</span>
+  <span class="hljs-keyword">if</span> (status !== <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>
+
+  status = <span class="hljs-number">2</span>
+
+  <span class="hljs-keyword">let</span> t = e.target || e.srcElement
+  <span class="hljs-keyword">let</span> py = e.targetTouches[<span class="hljs-number">0</span>].pageY
+  <span class="hljs-keyword">let</span> ch = t.clientHeight <span class="hljs-comment">// 内容可视高度</span>
+  <span class="hljs-keyword">let</span> sh = t.scrollHeight <span class="hljs-comment">// 内容滚动高度</span>
+  <span class="hljs-keyword">let</span> st = t.scrollTop <span class="hljs-comment">// 当前滚动高度</span>
+
+  <span class="hljs-comment">// 已经到头部尽头了还要向上滑动，阻止它</span>
+  <span class="hljs-keyword">if</span> (st === <span class="hljs-number">0</span> &amp;&amp; startY &lt; py) {
+  e.preventDefault()
+  }
+
+  <span class="hljs-comment">// 已经到低部尽头了还要向下滑动，阻止它</span>
+  <span class="hljs-keyword">if</span> ((st === sh - ch) &amp;&amp; startY &gt; py) {
+  e.preventDefault()
+  }
+  }, <span class="hljs-literal">false</span>)
+
+  contentNode.addEventListener(<span class="hljs-string">'touchend'</span>, e =&gt; {
+  status = <span class="hljs-number">0</span>
+  }, <span class="hljs-literal">false</span>)
+</code></pre>
+<p>问题虽然是解决了，但是回头来看，复杂程度和代码量明显增加了一个梯度。
+  本着简单方便的原则，我们是不是还可以探索其他的方案呢？</p>
+
+<p>既然touch事件判定比较复杂，何不跳出这个框框，另辟蹊径，探索更加合适的方案。
+  于是，便有了我们的方案三。</p>
+
+<h3 class="heading" data-id="heading-4">方案三</h3>
+
+<p>来讲讲我的思路，既然我们要阻止页面滚动，那么何不将其固定在视窗（即<code>position: fixed</code>），这样它就无法滚动了，当蒙层关闭时再释放。
+  当然还有一些细节要考虑，将页面固定视窗后，内容会回头最顶端，这里我们需要记录一下，同步top值。</p>
+
+<p>示例代码：</p>
+<pre><code class="hljs js" lang="js"><span class="hljs-keyword">let</span> bodyEl = <span class="hljs-built_in">document</span>.body
+  <span class="hljs-keyword">let</span> top = <span class="hljs-number">0</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stopBodyScroll</span> (<span class="hljs-params">isFixed</span>) </span>{
+  <span class="hljs-keyword">if</span> (isFixed) {
+  top = <span class="hljs-built_in">window</span>.scrollY
+
+  bodyEl.style.position = <span class="hljs-string">'fixed'</span>
+  bodyEl.style.top = -top + <span class="hljs-string">'px'</span>
+  } <span class="hljs-keyword">else</span> {
+  bodyEl.style.position = <span class="hljs-string">''</span>
+  bodyEl.style.top = <span class="hljs-string">''</span>
+
+  <span class="hljs-built_in">window</span>.scrollTo(<span class="hljs-number">0</span>, top) <span class="hljs-comment">// 回到原先的top</span>
+  }
+  }
+</code></pre>
+<h2 class="heading" data-id="heading-5">思考总结</h2>
+<ul>
+  <li>若应用场景是pc，推荐方案一，真的是不要太方便</li>
+  <li>若应用场景是h5，你可以采用方案二，但是我建议你采用方案三</li>
+  <li>若应用场景是全平台，那么方案三你不容错过</li>
+</ul>
+<p>本文到这里也即将结束了，在这里我强烈推荐一下方案三，原因在于简单、方便、兼容性好，一次封装，永久受用。</p>
+
+<div class="btn" onclick="stopBodyScroll(true)">click stopBodyScroll</div>
+</body>
+<script>
+  /*https://juejin.im/post/5a27cad56fb9a045186a9d94*/
+  var bodyEl = document.body;
+  var _top = 0;
+
+  function stopBodyScroll(isFixed) {
+    if (isFixed) {
+      _top = window.scrollY;
+
+      bodyEl.style.position = 'fixed';
+      bodyEl.style.top = '-' + _top + 'px';
+    } else {
+      bodyEl.style.position = '';
+      bodyEl.style.top = '';
+
+      window.scrollTo(0, _top); // 回到原先的top
+    }
+  }
+
+</script>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div class="bar-fixed" style="bottom: 188px;">
+  <a class="item advisor-trigger" href="javascript:;">
+    <span class="ic-advisor-white ic" ></span>
+
+    <div class="txt" style="display: block;">
+      <p>理财</p>
+
+      <p style="margin-top: 2px">顾问</p>
+    </div>
+  </a>
+  <a class="item m" href="#">
+    <span class="ic-weixin-white ic"></span>
+
+    <div class="txt">
+      <p>添加</p>
+
+      <p style="margin-top: 2px">微信</p>
+    </div>
+    <div class="desc">
+      <img src="images/weichat-qrcode.jpg" width="80" alt="">
+
+      <p class="mt-5 txt-center">发财金理财客户群</p>
+    </div>
+    <!-- /.desc -->
+  </a>
+  <a class="item m" target="_blank"
+     href="http://crm2.qq.com/page/portalpage/wpa.php?uin=4006380808&amp;aty=0&amp;a=0&amp;curl=www.facaijin.com&amp;ty=1">
+    <span class="ic-qq-white ic"></span>
+
+    <div class="txt">
+      <p>QQ</p>
+
+      <p style="margin-top: 2px">客服</p>
+    </div>
+    <!-- /.txt -->
+    <div class="desc">
+      <p>发财金</p>
+
+      <p class="mt-5">投资理财QQ群</p>
+
+      <p class="cl-red mt-5">343177881</p>
+    </div>
+    <!-- /.desc -->
+  </a>
+
+  <a class="item m" href="/login/to-login">
+    <span class="ic-feedback-white ic"></span>
+
+    <div class="txt">
+      <p>意见</p>
+
+      <p style="margin-top: 2px">反馈</p>
+    </div>
+  </a>
+</div>
+<script src="jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  $(function(){
+    //top hover
+    $('.top').find('.ic').hover(function(){
+      $(this).addClass('hover').siblings('.sub-item').show().animate({top: '30px', opacity: 1});
+    }, function(){
+      $(this).removeClass('hover').siblings('.sub-item').animate({top: '45px', opacity: 0}).hide();
+    });
+
+    //bar-fixed
+    var $bar = $('.bar-fixed')
+      , $windowHeight = $(window).height()
+      , $elementHeight = $bar.height();
+    //reset the bar position
+    $bar.css({
+      bottom: ($windowHeight - $elementHeight) / 3 + 'px'
+    });
+    $bar.find('.item').hover(function(){
+      $(this).find('.ic').hide();
+      $(this).find('.txt').show();
+      $(this).find('.desc').show().animate({right: '51px', opacity: 1});
+    }, function(){
+      $(this).find('.txt').hide();
+      $(this).find('.ic').show();
+      $(this).find('.desc').animate({right: '61px', opacity: 0}).hide();
+    });
+
+//    $bar.find('.advisor-trigger').click(function(){
+//      $('.advisor-box').toggle();
+//    });
+//
+//    $('.advisor-box').find('.close').click(function(){
+//      $('.advisor-box').hide();
+//    });
+  })
+</script>
+</body>
+</html>

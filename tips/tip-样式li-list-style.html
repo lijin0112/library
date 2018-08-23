@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <!--
+  list-style-type:none/disc/circle/square/demical/lower-alpha/upper-alpha/lower-roman/upper-roman
+　　list-style-type属性的属性值有很多，在这里我们只是列举了比较常用的几个。
+none：不使用项目符号。 disc：实心圆。 circle：空心圆。 square：实心方块。 demical：阿拉伯数字。 lower-alpha：小写英文字母。 upper-alpha：大写英文字母。 lower-roman：小写罗马数字。 upper-roman：大写罗马数字。
+  -->
+  <!--
+  list-style-image属性
+　　list-style-image属性用来定义使用图片代替项目符号。它也是一个可继承属性，其语法结构如下：
+　　list-style-image:none/url
+　　list-style-image属性可以取两个值：
+none：没有替换的图片。 url：要替换图片的路径。
+　　来看一段代码：
+li{
+list-style-image:url(images/bg03.gif);}
+<ul>
+<li>这里是列表内容</li>
+<li>这里是列表内容</li>
+<li>这里是列表内容</li>
+</ul>
+  -->
+  <!--
+  三、list-style-position属性
+　　list-style-position属性，是用来定义项目符号在列表中显示位置的属性。它同样是一个可继承的属性，语法结构如下：
+　　list-style-position:inside/outside
+inside：项目符号放置在文本以内。 outside：项目符号放置在文本以外。
+　　使用list-style-position属性的示例如下：
+li{
+list-style-type:square;
+list-style-position:outside;}
+<ul>
+<li>这里是使用list-style-position属性值为outside的示例。请注意换行以后项目符号的位置。</li>
+<li>这里是列表内容</li>
+<li>这里是列表内容</li>
+</ul>
+-->
+  <style>
+    li {
+      padding-left: 10px;
+      list-style: inside
+    }
+  </style>
+</head>
+<body>
+<ul>
+  <li class="li_1">itemlisy-1</li>
+  <li class="li_2">itemlisy-2</li>
+  <li class="li_3">itemlisy-3</li>
+</ul>
+</body>
+</html>

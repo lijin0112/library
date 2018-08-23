@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <!-- http://www.w3cplus.com/css3/create-radial-progress-bar-with-jQuery-and-css3.html -->
+  <style>
+
+  .circles {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    border-radius: 50%;
+    background: #fc3f41;
+  }
+  .pie_left, .pie_right {
+    width:70px;
+    height:70px;
+    position: absolute;
+    top: 0;left: 0;
+  }
+  ._lefts, ._rights {
+    width:70px;
+    height:70px;
+    background:#ccc;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .pie_right, ._rights {
+    clip:rect(0,auto,auto,35px);
+  }
+  .pie_left, ._lefts {
+    clip:rect(0,35px,auto,0);
+  }
+  ._mask {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    left: 5px;
+    top: 5px;
+    background: #FFF;
+    position: absolute;
+    text-align: center;
+    line-height: 60px;
+  }
+    ._mask span {
+      color: #fc3f41;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<a href="http://www.w3cplus.com/css3/create-radial-progress-bar-with-jQuery-and-css3.html">demo link</a>
+<div class="circles" style="left:0">
+  <div class="pie_left"><div class="_lefts"></div></div>
+  <div class="pie_right"><div class="_rights"></div></div>
+  <div class="_mask"><span>0</span>%</div>
+</div>
+<div class="circles" style="left:220px">
+  <div class="pie_left"><div class="_lefts"></div></div>
+  <div class="pie_right"><div class="_rights"></div></div>
+  <div class="_mask"><span>15</span>%</div>
+</div>
+<div class="circles" style="left:440px">
+  <div class="pie_left"><div class="_lefts"></div></div>
+  <div class="pie_right"><div class="_rights"></div></div>
+  <div class="_mask"><span>30</span>%</div>
+</div>
+<div class="circles" style="left:660px">
+  <div class="pie_left"><div class="_lefts"></div></div>
+  <div class="pie_right"><div class="_rights"></div></div>
+  <div class="_mask"><span>60</span>%</div>
+</div>
+<div class="circles" style="left:880px">
+  <div class="pie_left"><div class="_lefts"></div></div>
+  <div class="pie_right"><div class="_rights"></div></div>
+  <div class="_mask"><span>90</span>%</div>
+</div>
+
+<script type="text/javascript" src="http://static.wjdai.com/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery-1.10.2.min.js"></script>
+<script>
+    $(function() {
+      $('.circles').each(function(index, el) {
+        var num = $(this).find('span').text() * 3.6;
+        if (num<=180) {
+          $(this).find('._rights').css('transform', "rotate(" + num + "deg)");
+        } else {
+          $(this).find('._rights').css('transform', "rotate(180deg)");
+          $(this).find('._lefts').css('transform', "rotate(" + (num - 180) + "deg)");
+        };
+      });
+    });
+
+</script>
+</body>
+</html>

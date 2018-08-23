@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    list-style: none
+  }
+
+  #DI, #MX {
+    width: 240px;
+    height: 160px;
+    margin: 0 auto;
+  }
+
+  #MX {
+    overflow: hidden
+  }
+
+  #MX ul {
+    width: 1200px;
+    height: 160px;
+    position: relative;
+    left: 0px
+  }
+
+  #DI div {
+    width: 240px;
+    height: 160px;
+    display: none;
+  }
+
+  #UI {
+    overflow: hidden;
+    position: relative;
+    left: 240px;
+    width: 960px;
+    height: 160px;
+  }
+
+  #UI li, #MX li {
+    position: absolute;
+    height: 1630px;
+    width: 240px
+  }
+</style>
+<body>
+<div id="DI">
+  <div id="div1" style="background:pink"></div>
+  <div id="div2" style="background:red"></div>
+  <div id="div3" style="background:black"></div>
+  <div id="div4" style="background:yellow"></div>
+  <div id="div5" style="background:green"></div>
+</div>
+<ul id="UI">
+  <li style="background:pink"></li>
+  <li style="background:red"></li>
+  <li style="background:black"></li>
+  <li style="background:yellow"></li>
+  <li style="background:green"></li>
+</ul>
+<div id="MX">
+  <ul>
+    <li style="background:pink"></li>
+    <li style="background:red"></li>
+    <li style="background:black"></li>
+    <li style="background:yellow"></li>
+    <li style="background:green"></li>
+  </ul>
+</div>
+<script>
+  //轮播一
+  var div = document.querySelectorAll("#DI div");
+  var BUI = -1;
+  setInterval(function () {
+    BUI++;
+    if (BUI < div.length) {
+      div[BUI].style.display = "block";
+      BUI > 0 && (div[BUI - 1].style.display = "none");
+    } else if (BUI == div.length) {
+      BUI = 0;
+      div[0].style.display = "block";
+      div[div.length - 1].style.display = "none";
+    }
+  }, 2000);
+
+
+  //轮播二
+  var li = document.querySelectorAll("#UI li");
+  for (var i = 0; i < li.length; i++) {
+    li[i].style.left = i * 240 + "px";
+  }
+  setInterval(function () {
+    for (var i = 0; i < li.length; i++) {
+      left = parseInt(document.defaultView.getComputedStyle(li[i], null).left);
+      if (left != -240) {
+        left--;
+        li[i].style.left = left + "px";
+      } else {
+        li[i].style.left = 240 * (li.length - 1) - 1 + "px";
+      }
+    }
+  }, 10);
+
+
+  //轮播三  如果图片下面有索引 一样的道理添加在其中就OK   使用ul进行操做
+  var liT = document.querySelectorAll("#MX li");
+  for (var i = 0; i < liT.length; i++) {
+    liT[i].style.left = i * 240 + "px";
+  }
+  var lieft = parseInt(document.defaultView.getComputedStyle(document.querySelector("#MX ul"), null).left);
+  var MOVE = 0;//一个循环移动次数
+  TI = setInterval(function () {
+    MOVE++;
+    timer = setInterval(auto, 1);
+    function auto() {
+      if (lieft != -240 * MOVE) {
+        lieft -= 6;//小动画每1MS移动的步长
+        document.querySelector("#MX ul").style.left = lieft + "px";
+      } else {
+        clearInterval(timer);
+        timer = null;
+        if (lieft == -240 * (liT.length - 1)) {
+          MOVE = 0;
+          lieft = 0;
+          document.querySelector("#MX ul").style.left = 0;
+          //重置left一定要注意参数情况
+          var last = liT[liT.length - 1];
+          var NEWA = new Array();
+          for (var i = 0; i < liT.length - 1; i++) {
+            NEWA[i + 1] = liT[i];
+          }
+          NEWA[0] = last;
+          liT = NEWA;//调换liT中元素位置
+          console.log(liT);// 1，2，3，4，5  5，1，2，3，4  4，5，1，2，3.............
+          for (var i = 0; i < liT.length; i++) {//遍历新数组中的元素设置其left
+            liT[i].style.left = i * 240 + "px";
+          }
+        }
+      }
+    }
+
+  }, 3000);
+</script>
+</body>
+</html>

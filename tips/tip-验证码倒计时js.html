@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+<input type="button" value="获取验证码" onclick="sendCode(this)" style="padding: 5px 5px;"/>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+  var clock = '';
+  var nums = 60;
+  var btn;
+  function sendCode(thisBtn) {
+    btn = thisBtn;
+    btn.disabled = true;
+    btn.value = nums + '秒后重发验证码';
+    clock = setInterval(doLoop, 1000);
+  }
+  function doLoop() {
+    nums--;
+    if (nums > 0) {
+      btn.value = nums + '秒后重发验证码';
+    } else {
+      clearInterval(clock);
+      clock = null;
+      btn.disabled = false;
+      btn.value = '获取验证码';
+      nums = 10;
+    }
+  }
+</script>
+<script>
+  $("#val").attr("disabled",false);
+  var time=60;
+  var code=$("#val");
+  code.css({background:"#E6E6E6",color:"#818080",border:"1px solid #CCC"});
+
+  var t=setInterval(function  () {
+    code.attr("disabled",true);
+    time--;
+    $(code).val(time+" 秒后重新获取");
+
+    if (time==0) {
+      clearInterval(t);
+      $(code).val("未收到？重新获取");
+
+      code.css({background:"#65B5FC",color:"#fff",border:"0px"});
+      validCode=true;
+      code.attr("disabled",false);
+    }
+  },1000);
+</script>
+</body>
+</html>

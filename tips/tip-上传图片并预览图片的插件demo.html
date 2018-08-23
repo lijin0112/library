@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>万家贷线下充值</title>
+<meta name="full-screen" content="yes" />
+<meta id="viewport"  name="viewport" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="format-detection" content="telphone=no, email=no"/>
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport" />
+<link type="text/css" rel="stylesheet" href="http://static.wjdai.com/css/common.css" />
+<script type="text/javascript" src="http://static.wjdai.com/js/jquery-1.10.2.min.js"></script>
+<script src="http://static.wjdai.com/js/jquery.form.min.js"></script>
+<script src="http://static.wjdai.com/js/jquery.data.resource.js"></script>
+<script src="http://static.wjdai.com/js/H5/underscore-min.js"></script>
+<link rel="shortcut icon"  href="http://static.wjdai.com/ico.ico"/>
+<script type="text/javascript">
+  (function () {
+    // deicePixelRatio ：设备像素
+    var scale = 1 / devicePixelRatio;
+    //设置meta 压缩界面 模拟设备的高分辨率
+    //document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    //debounce 为节流函数，自己实现。或者引入underscoure即可。
+    var reSize = _.debounce(function () {
+ //var deviceWidth = document.documentElement.clientWidth > 1300 ? 1300 : document.documentElement.clientWidth;
+    var deviceWidth = document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth;
+    //按照640像素下字体为100px的标准来，得到一个字体缩放比例值 6.4
+      document.documentElement.style.fontSize = (deviceWidth / 6.4) + 'px';
+    }, 50);
+    window.onresize = reSize;
+    reSize();
+  })();
+</script>
+<style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  width: 100%;
+  font-size: 100px;
+}
+.all
+{
+	margin: 0 auto;
+	max-width: 1923px;
+	min-width: 1200px;
+	width: 100%;
+	overflow: hidden;
+}
+.clearfix{*zoom:1;}
+.top{
+	width:100%;
+	height: 265px;
+	border-bottom:1px solid #eee;
+}
+.inner{
+	width:1200px;
+	margin:0 auto;
+}
+.xchong{
+	text-align:left;
+	float:left;
+	padding-top: 200px;
+}
+.login_box{
+	float:right;
+	padding-top: 225px;
+}
+.login_box a:hover{
+	color:red;
+}
+/*充值样式*/
+.page{
+	width: 900px;
+    margin: 0 auto;
+}
+.content {
+    height: 600px;
+    position: relative;
+}
+.tishi {
+    background: #f0f7ff;
+    font-size: 14px;
+    line-height: 60px;
+    margin-top: 23px;
+    margin-bottom: 20px;
+    padding-left: 40px;
+}
+.tab {
+    margin-left: 35px;
+}
+.float-left {
+    float: left;
+}
+.tab .col-1 {
+    text-align: right;
+    padding-right: 5px;
+    width: 84px;
+}
+.tab td {
+    line-height: 56px;
+    font-size: 14px;
+}
+.tab .col-2 {
+    text-align: left;
+}
+.daxie {
+    color: #e12b2b;
+    font-size: 14px;
+    line-height: 56px;
+    left: 252px;
+    width: 300px;
+    top: 0;
+    text-align: left;
+    overflow: hidden;
+    max-height: 56px;
+}
+#offway {
+    width: 220px;
+    line-height: 40px;
+    display: block;
+    height: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 0px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+#offway option {
+    border-color: #ccc;
+    cursor: pointer;
+    font-family: "微软雅黑";
+    padding: 0 10px;
+}
+.pingzheng {
+    width: 218px;
+    height: 98px;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+#upload {
+    display: inline-block !important;
+    position: absolute !important;
+    width: 100%;
+    line-height: 50px;
+    top: 0;
+    left: 0;
+}
+.tab input {
+    line-height: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    width: 198px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+.tab .cz {
+    margin-top: 8px;
+}
+.tab .cz {
+    width: 220px;
+    background: #E12B2B;
+    border-radius: 5px;
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.info {
+    margin-top: 50px;
+    padding: 0 90px 74px 60px;
+    border-left: 1px solid #e6e6e6;
+    max-width: 310px;
+    margin-left: 50px;
+}
+.float-right {
+    float: right;
+}
+.info table {
+    width: 320px;
+    border: 1px solid #ccc;
+}
+.info td {
+    line-height: 40px;
+    font-size: 14px;
+}
+.info .col-1 {
+    text-align: right;
+    padding-left: 15px;
+    padding-right: 5px;
+}
+.info .col-2 {
+    padding-right: 15px;
+    max-width: 190px;
+    line-height: normal;
+}
+.content-alert1 {
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    border-radius: 8px;
+    width: 300px;
+    position: absolute;
+    top: 112px;
+    left: 50%;
+    margin-left: -150px;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 0;
+    line-height: 32px;
+    z-index: 33;
+}
+</style>
+</head>
+<body>  
+<input type="hidden" id="message" value="${message}"/>
+<input type="hidden" id="sessionMessage" value="${getAccountBalance.tip}"/> 
+<div class='all clearfix'>
+
+	<!-- 充值区域 -->
+	<div class="page">
+		<form id="offlineForm" action="${pageContext.request.contextPath }/myAccount/recharge/offline.do" enctype="multipart/form-data" method="post">
+			<div class="content center" style="display: block;">
+				<div class="clearfix">
+					<table class="float-left tab tab-2">
+					<tbody>
+					<tr>
+						<td class="col-1">充值金额：</td>
+						<td class="col-2 relative">
+							<input id="offMoney" name="offMoney" value="" class="recharge" maxlength="20">元
+							<p class="absolute daxie"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-1" style="vertical-align: top;">打款凭证：</td>
+						<td class="col-2">
+							<div class="pingzheng">
+								<div id='upload' format="view(file)">请上传<br>图片凭证</div>
+								<input name="file" id="file" class="hide" type="file"/>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="col-1">
+						</td>
+						<td class="col-2" style="padding-top: 20px;">
+							<a id="offcz" class="cz" style="cursor: pointer;" onclick="offline()">立即充值</a>
+						</td>
+					</tr>
+					</tbody>
+					</table>
+					<div class="float-left info">
+						
+					</div>
+				</div>
+				<div id="offAlert" class="content-alert1 center hide">
+					<img src="http://teststatic.wjdai.com/img/mycount/cz/alert.png">
+					<p id="offTip"></p>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+<script src="http://static.wjdai.com/js/activity/qrcode.js"></script>
+<script src="http://static.wjdai.com/js/mycount/cz.js"></script>
+<script>
+$.extend({ 
+/**
+	 * 将目标文本格式化
+	 */
+	formatText: function(jQ) {
+		jQ = (jQ && (jQ.attr("format") || jQ.find("[format]"))) || $("[format]");
+		jQ.each(function() {
+			var formats = $(this).attr("format") || "",
+				format = formats.split("#");
+			for (var i = 0; i < format.length; i++) {
+				var text = $(this).vals(),
+					name = format[i].substring(0, format[i].indexOf("(")),
+					params = format[i].substring(format[i].indexOf("(") + 1, format[i].indexOf(")"));
+				if (name == "substring") $(this).text(eval("text.substring(" + params + ")"));
+				if (name == "value") params == "" ? $(this).val(text) : $(this).text($(params).val());
+				if (name == "moneySplit") {
+					var c = text.indexOf(".") == -1 ? text.length : text.indexOf(".");
+					$(this).text($.dataFormatMethod.toSplit(text.substring(0, c), 3, ",") + text.substr(c));
+				}
+				if (name == "decimal") {
+					var val = parseFloat(text);
+					if (text != val) return;
+					$(this).text(val.toFixed(params));
+				}
+				if (name == "before") $(this).text(params + text);
+				if (name == "after") $(this).text(text + params);
+				if (name == "long2date") text.trim() != "" && !isNaN(text * 1000) && $(this).text($.dataFormatMethod.toDATE(text * 1000, params || "yyyy-MM-dd"));
+				if (name == "long2val") text.trim() != "" && !isNaN(text * 1000) && $(this).val($.dataFormatMethod.toDATE(text * 1000, params || "yyyy-MM-dd"));
+				if (name == "long2time") text.trim() != "" && !isNaN(text * 1000) && $(this).text($.dataFormatMethod.toTIME(parseInt(text), params || "yyyy-MM-dd HH:mm:ss"));
+				if (name == "eval") $(this).text(eval(text));
+				if (name == "unselect") $(this).attr('unselectable', 'on').css({
+					'-moz-user-select': '-moz-none',
+					'-moz-user-select': 'none',
+					'-o-user-select': 'none',
+					'-khtml-user-select': 'none',
+					'-webkit-user-select': 'none',
+					'-ms-user-select': 'none',
+					'user-select': 'none'
+				}).bind('selectstart', function() {
+					return false;
+				});
+				if (name == "view") {
+					var jq = $(this),
+						input = $("<input type='file' class='hide' name='" + params + "' id='" + params + "'>");
+					$(this).after(input).click(function() {
+						input.click();
+					});
+					input.change(function() {
+						var z = $(this).get(0);
+						if (z.files && z.files[0]) {
+							r = new FileReader();
+							r.onload = function(e) {
+								jq.html('<img src="' + e.target.result + '" class="full"/>');
+							};
+							r.readAsDataURL(z.files[0]);
+						} else {
+							jq.html('<div class="img full" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + z.value + '\'"></div>');
+						}
+					});
+				}
+				if (name == "devideBlock") {
+					var html = "";
+					for (var ind = 0; ind < text.trim().length; ind++) html += '<div class="inline-block mr-2" style="background:url(\'http://static.wjdai.com/img/home/bg-num.png\');width:24px;height:31px;"><p class="f-17 bold c-333 hidden-y full-x block relative" style="height:28px"><span class="block center-text lh-28 absolute full-x">' + text.trim().charAt(ind) + '</span></p></div>';
+					$(this).html(html);
+				}
+				if (name == "scrollUp") {
+					$(this).find("span").each(function(ind, e) {
+						var html = 0;
+						for (var j = 1; j < (ind * 2 + 1) * 10 + parseInt($(e).html()) + 1; j++) html += "<br>" + j % 10;
+						$(e).html(html).animate({
+							"top": "-" + ($(e).height() - 28) + "px"
+						}, ind * (params.split(",")[0] || 300) + parseInt(params.split(",")[1] || 2000));
+					});
+				}
+			}
+		});
+	}
+
+})
+$(function(){
+	$.formatText($('.pingzheng'));
+	/*
+	上传图片插件
+							<div class="pingzheng">
+								<div id='upload' format="view(file)">请上传<br>图片凭证</div>
+								<input name="file" id="file" class="hide" type="file"/>
+							</div>
+	1 引用 $.extend
+	2 给要调用此方法的元素的父元素绑上扩展方法  $.formatText($('.pingzheng'));
+	3 调用此方法的元素 添加属性 format="view(file)"
+	*/
+})
+</script>
+</html>

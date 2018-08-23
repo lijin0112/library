@@ -1,0 +1,9 @@
+Math.floor(Math.random()*(max-min+1)+min);
+
+值 = Math.floor(Math.random() * 可能值的总数 + 第一个可能的值)
+
+function selectFrom(startNumber, endNumber) {
+    var choice = endNumber - startNumber + 1;
+    return Math.floor(Math.random() * choice + startNumber)
+}
+var rand2 = selectFrom(2,8);//产生2至8的随机数

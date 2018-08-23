@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<link rel="stylesheet" href="css/bootstrap.css"/>-->
+  <link rel="stylesheet" href="../css/index.css"/>
+</head>
+<body>
+<style>
+  body {
+    font-size: 1rem;
+  }
+
+  .i-btn-group {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .i-btn-group-justified {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+  }
+
+  .i-btn-group-justified > .i-btn, .i-btn-group-justified > .btn-group {
+    display: table-cell;
+    float: none;
+    width: 1%;
+  }
+
+  .i-btn {
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    text-align: center;
+    /*height: 40px;*/
+    /*line-height: 20px;*/
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+</style>
+<div id="ss-bj">
+  <div class="container-fluid">
+    <div class="i-btn-group i-btn-group-justified">
+      <div class="i-btn  ss-bj-green border-right-line">
+        <div>Copper</div>
+        <div>
+          <label id="label-Copper">28667</label>
+          <i class="am-icon-long-arrow-down"></i>
+        </div>
+      </div>
+      <div class="i-btn ss-bj-green border-right-line">
+        <div>
+          USOil
+        </div>
+        <div>
+          <label id="label-USOil">32.2</label>
+          <i class="am-icon-long-arrow-down"></i>
+        </div>
+      </div>
+      <div class="i-btn ss-bj-red border-right-line">
+        <div>
+          XAGUSD
+        </div>
+        <div>
+          <label id="label-XAGUSD">2813</label>
+          <i class="am-icon-long-arrow-up"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

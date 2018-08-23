@@ -1,0 +1,76 @@
+span.normal {
+  padding-left: .06rem;
+  background: #494f61;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  -webkit-background-clip: text;
+}
+
+.trOrange {
+  /* background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffa25e), to(#ff5051)); */
+  background: -webkit-linear-gradient(top, #ffa25e, #ff5051);
+  background: -moz-linear-gradient(top, #ffa25e, #ff5051);
+  background: -o-linear-gradient(top, #ffa25e, #ff5051);
+  background: -ms-linear-gradient(top, #ffa25e, #ff5051);
+  background: linear-gradient(to bottom, #ffa25e, #ff5051);
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.trGreen {
+  background: -webkit-linear-gradient(top, rgba(190,223,118,.96), rgba(59,216,118,.96));
+  background: -moz-linear-gradient(top, rgba(190,223,118,.96), rgba(59,216,118,.96));
+  background: -o-linear-gradient(top, rgba(190,223,118,.96), rgba(59,216,118,.96));
+  background: -ms-linear-gradient(top, rgba(190,223,118,.96), rgba(59,216,118,.96));
+  background: linear-gradient(to bottom, rgba(190,223,118,.96), rgba(59,216,118,.96));
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.trBlue {
+  /* background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8190ff), to(#21b9f8)); */
+  background: -webkit-linear-gradient(top, rgba(129,144,255,.96), rgba(33,185,248,.96));
+  background: -moz-linear-gradient(top, rgba(129,144,255,.96), rgba(33,185,248,.96));
+  background: -o-linear-gradient(top, rgba(129,144,255,.96), rgba(33,185,248,.96));
+  background: -ms-linear-gradient(top, rgba(129,144,255,.96), rgba(33,185,248,.96));
+  background: linear-gradient(to bottom, rgba(129,144,255,.96), rgba(33,185,248,.96));
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+///////////////////////////////////
+svg实现方法
+
+<style>
+  .text { fill: url(#gr-simple); }
+  .test1 {
+  width: 384px;height: 90px;}
+</style>
+
+<svg width="0" height="0">
+    <defs>
+  <linearGradient id="gr-simple" x1="0" y1="0" x2="0" y2="100%"> 
+    <stop stop-color="#ffa25e" offset="0%"/>
+    <stop stop-color="#ff5051" offset="100%"/> 
+  </linearGradient>
+    </defs>
+</svg>
+<svg viewBox="0 0 380 90" class="test1">
+ <text id="txt" text-anchor="start" x="0" y="50%" font-size="55" dy=".35em" class="text" > SVG </text> 
+</svg>
+
+
+
+<script>
+  text = 1000;
+  textnode = document.getElementById("txt");
+  function changeTextTest(){
+    text += 50;
+    textnode.textContent = text;
+    if (text < 70000) {
+    	setTimeout(changeTextTest,50);
+    }
+  }
+  changeTextTest();
+</script>

@@ -1,0 +1,384 @@
+//--给window添加fun函数
+$.extend(window, {
+  getUser: function() {
+    var userId = getCookie('userId');
+    var tokenId = getCookie('tokenId');
+    return (userId == null || userId == "") && (tokenId == null || tokenId == "") ? null : {
+      'userId': userId,
+      'tokenId': tokenId
+    }
+  },
+  getPhone: function() {
+    return getCookie('userMobileNo');
+  },
+  getQueryString: function(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURIComponent(r[2]);
+    return "";
+  }
+});
+
+//如果需要设定自定义过期时间
+//那么把上面的setCookie　函数换成下面两个函数就ok;
+//程序代码
+setCookie = function(name, value, time) {
+  var strsec = getsec(time);
+  var exp = new Date();
+  exp.setTime(exp.getTime() + strsec * 1);
+  document.cookie = name + "=" + escape(value) + "; path=/;expires=" + exp.toGMTString();
+}
+
+getsec = function(str) {
+  var str1 = str.substring(1, str.length) * 1;
+  var str2 = str.substring(0, 1);
+  if (str2 == "s") {
+    return str1 * 1000;
+  } else if (str2 == "h") {
+    return str1 * 60 * 60 * 1000;
+  } else if (str2 == "d") {
+    return str1 * 24 * 60 * 60 * 1000;
+  }
+}
+//这是有设定过期时间的使用示例：
+//s20是代表20秒
+//h是指小时，如12小时则是：h12
+//d是天数，30天则：d30
+//setCookie("name","hayden","s20");
+
+
+//读取cookies
+getCookie = function(name) {
+  var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+  if (arr = document.cookie.match(reg))
+
+    return unescape(arr[2]);
+  else
+    return null;
+}
+
+checkCookie = function() {
+  username = getCookie('username')
+  if (username != null && username != "") {
+    alert('Welcome again ' + username + '!')
+  } else {
+    username = prompt('Please enter your name:', "")
+    if (username != null && username != "") {
+      setCookie('username', username, 365)
+    }
+  }
+}
+
+//删除cookies
+delCookie = function(name) {
+  setCookie(name, "", "0s");
+}
+
+// getUser
+getUser = function() {
+  var userId = getCookie('userId');
+  var tokenId = getCookie('tokenId');
+  return (userId == null || userId == "") && (tokenId == null || tokenId == "") ? null : {
+    'userId': userId,
+    'tokenId': tokenId
+  }
+}
+
+// setUer
+setUser = function(userId, tokenId) {
+  setCookie("userId", userId, 'h4');
+  setCookie("tokenId", tokenId, 'h4');
+}
+
+// logout
+quitUser = function() {
+  delCookie("userId");
+  delCookie("tokenId");
+}
+
+// setPhone
+setPhone = function(userMobileNo) {
+  setCookie("userMobileNo", userMobileNo, 'h4');
+}
+// getPhone
+getPhone = function() {
+  return getCookie('userMobileNo');
+}
+
+//格式：YYYYMMDDH24MISS  14位数字，精确到秒
+getDtTime = function() {
+  var date = new Date();
+  var year = date.getFullYear(); //获取当前年份
+  var mon = date.getMonth() + 1; //获取当前月份
+  var da = date.getDate(); //获取当前日
+  var day = date.getDay(); //获取当前星期几
+  var h = date.getHours(); //获取小时
+  var m = date.getMinutes(); //获取分钟
+  var s = date.getSeconds(); //获取秒
+  return "" + year + leftpad(mon) + leftpad(da) + leftpad(h) + leftpad(m) + leftpad(s);
+}
+
+leftpad = function(b) { //个位数补齐成2位
+  b += 100;
+  b += "";
+  return b.slice(-2);
+}
+
+//连连支付 md5加密字串
+getSignStr = function(obj) {
+  var arr = [],
+    objKeys = Object.keys(obj).sort();
+  for (var i = 0; i < objKeys.length; i++) {
+    if (obj[i] != "") {
+      arr.push(objKeys[i] + "=" + obj[objKeys[i]]);
+    }
+  }
+  return arr.sort().join("&");
+}
+
+//排序的函数
+objKeySort = function(obj) {
+  var newObj = {}, newkey = Object.keys(obj).sort();
+  for (var i = 0; i < newkey.length; i++) {
+    newObj[newkey[i]] = obj[newkey[i]];
+  }
+  return newObj;
+}
+
+// 是否微信浏览器
+isWeiXin = function() {
+  var ua = window.navigator.userAgent.toLowerCase();
+  if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// json.code 校验
+valCode = function(code) {
+  if (code == "900002") { // 登录失效
+    quitUser();
+    location.href = "/wechat/index/register.html"
+  } else if (code == "900008") { // 未实名认证
+    location.href = "/wechat/personage/realname.html"
+  }
+}
+
+getQueryString = function(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) return decodeURIComponent(r[2]);
+  return "";
+}
+
+delayOut = function(callback) {
+  $("#errMsg").stop(true, true).show().delay(1500).fadeOut('slow', function() {
+    if (callback) callback();
+  });
+}
+
+getLLKey = function(obj) {
+  var key = {
+    "201408071000001543": "201408071000001543test_20140812",
+    "201511181000601646": "201511181000601646wanjiadai_201511271730"
+  };
+  return key[String(obj)];
+}
+
+//头部通用样式
+function topRaise(name, rightName, rightUrl, type) {
+  var top = '<div class="tops relative self-fhwht" style="padding: 0 4.9%;line-height: .81rem;height: .81rem;background: #fff; position:relative;z-index:1001">' + '<p class="center self-fhwht float-left" id="topsTitle" style="font-size: .3019rem;line-height: .81rem;height: .81rem; color: #000;width: 100%">' + name + '</p>' + '<div class="show absolute" id="topsLeft" style="left: 4.9%;"><img class="show" src="http://teststatic.wjdai.com/img/H5/comuse/back_left.png" style="height: .55rem;margin-top: .12rem;" onclick="javascript:window.history.go(-1);" /></div>' + '<span class="show absolute" id="topsRight" style="color: #505452;line-height: .81rem;height: .81rem;font-size: .2717rem;right: 4.9%;top: 0;">' + rightName + '</span></div>';
+  $('#tops').append(top);
+  if (rightUrl != '') {
+    $('#topsRight').bind('click', function(event) {
+      location.href = rightUrl;
+    });
+  }
+  if (type == 'hide') {
+    $('#topsRight').hide();
+  }
+}
+// 弹出提示信息
+function informCont(text) {
+  var informHtml = '<div class="mat-content-alert autoCont" id="autoCont" style="max-width: 750px;margin: 0 auto;top: 50%;display:block"><span class="center" style="display: block;background: #444;-webkit-border-radius: .09rem;-moz-border-radius: .09rem;border-radius: .09rem;font-size: .28rem;line-height: .4rem;color: #fff;width: 60%;padding:.1rem 5%;word-wrap: break-word;">' + text + '</span></div>';
+  $('body').append(informHtml);
+  // $('#autoCont span').text(text);
+  $('#autoCont').css('margin-top', -$('#autoCont span').height() / 2 + 'px');
+  $('#autoCont').fadeIn(400).delay(1500).fadeOut('slow');
+  setTimeout(function() {
+    $("#autoCont").remove();
+  }, 1600);
+}
+
+
+//分享的页面部分
+function sharePart(urlCode) {
+
+  var shareHtml = '<div class="mat-bg-alert"  ></div><div class="mat-content-alert sharePart" ><img class="show share1" src="http://teststatic.wjdai.com/img/H5/myaccount/invite/share1.png" /><div class="relative"><div class="p">点击<div class="span"><img class="show shareSon" src="http://teststatic.wjdai.com/img/H5/myaccount/invite/share2.png"><span class="">分享到朋友圈</span></div>或<div class="span"><img class="show shareSon" src="http://teststatic.wjdai.com/img/H5/myaccount/invite/share3.png"><span class="">分享到朋友圈</span></div>分享</div></div><a href="javascript:void(0);" onclick="$(\'.mat-bg-alert ,.mat-content-alert \').fadeOut(400);" class="show">我知道了</a></div><div class="mat-content-alert downLoadPart"  ><p class="line1">请下载客户端进行分享</p><div class="clearfix"><a href="javascript:void(0);" onclick="$(\'.mat-bg-alert ,.mat-content-alert \').fadeOut(400);" class="cancell">取消</a><a href="javascript:void(0);" id="download">下载客户端</a></div></div><div class="mat-content-alert  tpdiv"><table class="full-x"> <tr><td width=""><p>哎呀！微信不让跳。</p><p>烦请抬眼，点击右上角</p><p>选择<font color="red">在浏览器（safari）打开</font></p><p>该怎么下载，还怎么下载！</p></td><td class="right" width="40%"> <img src="http://static.wjdai.com/img/weixin/register/jiantou.png" class="full-x"/></td></tr></table></div><input id="downloadURL" value="" type="hidden" />';
+
+  $('body script:first').before(shareHtml);
+  var urlCodes = 'http://' + location.host + decodeURI(urlCode);
+  console.log('urlCodes:' + urlCodes);
+  console.log(33);
+  // 分享出去的连接
+  ShareUrl = 'http://testapi.eadian.cn/app/pages/invite.html';
+  console.log('ShareUrl:' + ShareUrl);
+  // 分享的连接
+  //ShareUrl = urlCodes ;
+  // 分享的图片
+  shareUrl = 'http://teststatic.wjdai.com/img/H5/logo.png';
+
+
+  var locationHref = location.href;
+  if (getUser() != null) {
+    tokenId = getUser().tokenId;
+    userId = getUser().userId;
+    isLogin = 'Y';
+  } else {
+    //location.href = '/wechat/index/register.html?target=' + locationHref;
+
+    tokenId = '';
+    userId = '';
+  }
+
+  var info = getQueryString('info'),
+    locationHref = location.href;
+  info = '我正在使用万家贷理财，安全可靠！新用户可得150元礼包哦！还在等什么，快来加入我们！';
+  $.ajax({
+    url: "/wjdai-api/information/wechatshare/share",
+    type: 'post',
+    data: JSON.stringify({
+      shareUrl: location.href.split('#')[0],
+      tokenId: tokenId,
+      userId: userId,
+      clientType: 'wechat'
+    }),
+    dataType: 'json',
+    headers: {
+      "content-type": "application/json",
+      "cache-control": "no-cache"
+    },
+    success: function(dataStatus) {
+      if (dataStatus.code == '900002') {
+        quitUser();
+        location.href = '/wechat/index/register.html?target=' + locationHref;
+        // console.log('你是是不是啥')
+      }
+      if (dataStatus.code == '000000') {
+        console.log('ssss');
+        var data = dataStatus.data;
+        console.log(data);
+
+        console.log('appId' + dataStatus.data.appId);
+        console.log('nonceStr' + dataStatus.data.nonceStr);
+        console.log('signature' + dataStatus.data.signature);
+        console.log('timestamp' + dataStatus.data.timestamp);
+        console.log('basedomain' + dataStatus.data.basedomain);
+
+        wx.config({
+          debug: false,
+          // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: dataStatus.data.appId,
+          // 必填，公众号的唯一标识
+          timestamp: dataStatus.data.timestamp,
+          // 必填，生成签名的时间戳
+          nonceStr: dataStatus.data.nonceStr,
+          // 必填，生成签名的随机串
+          signature: dataStatus.data.signature,
+          // 必填，签名，见附录1
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'showOptionMenu'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+
+        wx.ready(function() {
+          //打开分享按钮
+          wx.showOptionMenu();
+          //分享到朋友圈
+          wx.onMenuShareTimeline({
+            title: "来自万家贷",
+            // 分享标题
+            link: urlCodes,
+            // 分享链接
+            imgUrl: shareUrl,
+            // 分享图标
+            success: function() {
+              // 用户确认分享后执行的回调函数
+              alert('分享成功');
+            },
+            cancel: function() {
+              // 用户取消分享后执行的回调函数
+            }
+          });
+          wx.error(function(res) {
+            // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+            //alert("errorMSG:" + res);
+          });
+
+
+          //分享到朋友
+          wx.onMenuShareAppMessage({
+            title: '来自万家贷',
+            // 分享标题
+            desc: info,
+            // 分享描述
+            link: urlCodes,
+            // 分享链接
+            imgUrl: shareUrl,
+            // 分享图标
+            success: function() {},
+            cancel: function() {}
+          });
+        });
+      }
+    }
+  });
+
+
+  console.log(ShareUrl);
+  // var u = navigator.userAgent;
+  var clientType = 'PC';
+  clientType = navigator.userAgent.indexOf('iPhone') > -1 ? "IOS" : "Android";
+  var downloadUrl = {
+    'PC': {
+      "default": "http://a.app.qq.com/o/simple.jsp?pkgname=com.kfb.wanjiadai"
+    },
+    'IOS': {
+      "default": "https://at.umeng.com/rW9nWb"
+    },
+    'Android': {
+      "default": "http://android.myapp.com/myapp/detail.htm?apkName=com.kfb.wanjiadai"
+    }
+  };
+  url = downloadUrl[clientType]["default"];
+  $("#downloadURL").val(url);
+
+  $('#shareBtn').click(function(event) {
+    if (navigator.userAgent.match("MicroMessenger")) {
+      $('.mat-bg-alert , .sharePart').show();
+    } else {
+      $('.mat-bg-alert , .downLoadPart').show();
+    }
+  });
+  console.log(32);
+  $('body').on('click', '#download', function(event) {
+    if (navigator.userAgent.match("MicroMessenger") && clientType == "IOS") {
+      $('.tpdiv').show();
+    } else {
+      window.location.href = url;
+    }
+  });
+
+}
+
+$.extend({
+
+  /**
+   * 异步json交互,封装未完成
+   */
+  ajaxJsonH5: function(o) {
+    o.type = o.type || "post";
+    o.dataType = o.dataType || "json";
+    $.ajax(o);
+  }
+});

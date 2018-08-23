@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+    /*实心箭头*/
+    .sx-arrow-down {
+      border-style: solid dashed dashed dashed;
+      border-width: 10px;
+      border-color: #f00 transparent transparent transparent;
+      width: 0;
+      height: 0;
+    }
+
+    .sx-arrow-up {
+      border-style: dashed dashed solid dashed;
+      border-color: transparent transparent #f00 transparent;
+      border-width: 10px;
+      width: 0;
+      height: 0;
+    }
+
+    .sx-arrow-left {
+      border-style: dashed dashed dashed solid;
+      border-color: transparent transparent transparent #f00;
+      border-width: 10px;
+      width: 0;
+      height: 0;
+    }
+
+    .sx-arrow-right {
+      border-style: dashed solid dashed dashed;
+      border-color: transparent #f00 transparent transparent;
+      border-width: 10px;
+      width: 0;
+      height: 0;
+    }
+
+    /* 空心箭头 */
+    i.kx-arrow {
+      display: block;
+      height: 16px;
+      width: 16px;
+      float: left;
+      position: relative;
+      /*border: 1px solid #000;*/
+      margin-right: 5px;
+    }
+
+    em, span {
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      position: absolute;
+    }
+
+    i.kx-arrow-up em {
+      border-width: 8px; /*边框的高度*/
+      border-style: solid dashed dashed dashed;
+      border-top-color: #999; /*边框的颜色*/
+      top: 2px; /*边框的厚度*/
+      left: 0;
+    }
+
+    i.kx-arrow-up span {
+      border-width: 8px; /*边框的高度*/
+      border-style: solid dashed dashed dashed;
+      top: 0;
+      left: 0;
+      border-top-color: #fff; /*用白色边框绝对定位盖住多余的部分*/
+    }
+
+    i.kx-arrow-left em {
+      border-width: 8px; /*边框的高度*/
+      border-style: dashed dashed dashed solid;
+      border-left-color: #999; /*边框的颜色*/
+      top: 0;
+      left: 2px; /*边框的厚度*/
+    }
+
+    i.kx-arrow-left span {
+      border-width: 8px; /*边框的高度*/
+      border-style: dashed dashed dashed solid;
+      top: 0;
+      left: 0;
+      border-left-color: #fff; /*用白色边框绝对定位盖住多余的部分*/
+    }
+
+    i.kx-arrow-right em {
+      border-width: 8px; /*边框的高度*/
+      border-style: dashed solid dashed dashed;
+      border-right-color: #999; /*边框的颜色*/
+      top: 0;
+      right: 2px; /*边框的厚度*/
+    }
+
+    i.kx-arrow-right span {
+      border-width: 8px; /*边框的高度*/
+      border-style: dashed solid dashed dashed;
+      top: 0;
+      right: 0;
+      border-right-color: #fff; /*用白色边框绝对定位盖住多余的部分*/
+    }
+
+    i.kx-arrow-down em {
+      border-width: 8px; /*边框的高度*/
+      border-style: dashed dashed solid dashed;
+      border-bottom-color: #999; /*边框的颜色*/
+      left: 0;
+      bottom: 2px; /*边框的厚度*/
+
+    }
+
+    i.kx-arrow-down span {
+      border-width: 8px; /*边框的高度*/
+      border-style: dashed dashed solid dashed;
+      left: 0;
+      bottom: 0;
+      border-bottom-color: #fff; /*用白色边框绝对定位盖住多余的部分*/
+    }
+
+    /*box-shadow妙用*/
+    .icon {
+      display: inline-block;
+      width: 31px;
+      height: 31px;
+      line-height: 31px;
+      text-align: center;
+      background: none;
+      margin: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px #ccc inset;
+      transition: box-shadow 0.25s ease 0s;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .icon:hover {
+      box-shadow: 0 0 0 16px #003366 inset;
+    }
+
+    .icon:hover {
+      color: #fff;
+    }
+
+    /*方法二实现空心箭头*/
+    .tt {
+
+    }
+
+    .tt:after {
+      content: " ";
+      display: inline-block;
+      height: 6px;
+      width: 6px;
+      border-width: 2px 2px 0 0;
+      border-color: #c8c8cd;
+      border-style: solid;
+      -webkit-transform: matrix(.71, .71, -.71, .71, 0, 0);
+      transform: matrix(.71, .71, -.71, .71, 0, 0);
+      position: relative;
+      top: -2px;
+      position: absolute;
+      top: 50%;
+      margin-top: -4px;
+      right: 2px;
+    }
+
+    /**/
+
+    .ff {
+      width: 7px;
+      height: 7px;
+      border-top: 2px solid #ffffff;
+      border-right: 2px solid #ffffff;
+      transform: rotate(45deg);
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background: #f0ad4e;;
+    }
+  </style>
+</head>
+<body>
+彻底弄懂CSS3中的Border属性  http://91yanxiu.com/html/PC/Article/msh/gzzj/2745.html <br/>
+css3创建不规则图形  http://91yanxiu.com/html/PC/DownLoad/Css3_722_559.html <br/>
+演示：http://91yanxiu.com/html/yuanma/201703291143/index2.html <br/>
+http://blog.csdn.net/kongjiea/article/details/52454256 <br/>
+
+使用纯CSS,你只需要很少的代码就可以创作出各种浏览器都兼容的三角形箭头! CSS代码 <br/>
+
+1、 mk-less教程有三角形制作
+2、三角形制作工具推荐
+
+<br/>
+======================实心三角形=============
+<div class="sx-arrow-up"></div>
+<br/>
+
+<div class="sx-arrow-down"></div>
+<br/>
+
+<div class="sx-arrow-left"></div>
+<br/>
+
+<div class="sx-arrow-right"></div>
+
+======================空心三角形=============
+<br/>
+<i class="kx-arrow kx-arrow-up">
+  <em></em>
+  <span></span>
+</i>
+
+<br/>
+<i class="kx-arrow kx-arrow-left">
+  <em></em>
+  <span></span>
+</i>
+
+<br/>
+<i class="kx-arrow kx-arrow-right">
+  <em></em>
+  <span></span>
+</i>
+
+<br/>
+<i class="kx-arrow kx-arrow-down">
+  <em></em>
+  <span></span>
+</i>
+
+
+<br/>
+======================box-shadow=============
+<br/>
+
+<div class="icon">a</div>
+<br/>
+================ <br/>
+
+<div class="box">
+
+  <div class="tt"></div>
+</div>
+
+<br/>
+
+<div class="box">
+
+  <div class="ff"></div>
+</div>
+</body>
+</html>

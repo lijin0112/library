@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+
+  <link href="http://api.wjdai.com/Skins/css/common.css" rel="stylesheet">
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/jquery.form.min.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/jquery.data.resource.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/underscore-min.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/rem.js"></script>
+
+  <style>
+    .btn{
+      display: block;
+      position: relative;
+      top: 100px;
+      margin: 20px;
+      width: 200px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 18px;
+      color: salmon;
+      background-color: skyblue;
+    }
+
+    .btn-on{
+      background-color: slateblue;
+
+    }
+
+  </style>
+</head>
+<body>
+<h3>移动端触摸按钮的效果，可明示用户有些事情正要发生，是一个比较好体验，<br/>但是移动设备中并没有鼠标指针，使用css的hover并不能满足我们的需求，还好国外有个激活css的active效果</h3>
+<div class="btn"></div>
+
+<script>
+  var btn=document.querySelector(".btn");
+  btn.ontouchstart=function(){
+    this.className="btn btn-on";
+  }
+  btn.ontouchend=function(){
+    this.className="btn";
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>图片切换，闪烁效果</title>
+  <style>
+    div span {
+      width: 55px;
+      height: 55px;
+      margin-top: 20px;
+      display: block;
+    }
+
+    div span.img1 {
+      background: url(../img/guding00.png) no-repeat;
+    }
+
+    div span.img2 {
+      background: url(../img/guding01.png) no-repeat;
+    }
+
+    div p.change {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <span><img src="../img/guding00.png" alt=""/></span>
+  <span class="img1"></span>
+
+  <p>123test</p>
+</div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script>
+  var flag;
+  $(function () {
+    flag = true;
+    setInterval(fo, 500);
+
+  });
+
+  function fo() {
+    $('img').attr('src', (flag ? '../img/guding01.png' : '../img/guding00.png'));
+    flag = !flag;
+  }
+
+
+  $(function () {
+    setInterval(fo2, 500);
+  })
+  function fo2() {
+    $('div span:eq(1)').toggleClass('img2')
+  }
+
+
+  //点击 加粗样式切换
+  $(function () {
+    $('div p').click(function () {
+      $('div p').toggleClass('change');
+    });
+  })
+  /*
+   var flag = false;
+   setInterval(function () {
+   $("#laba img").attr("src", flag ? "img/speaker3.png" : "img/speaker2.png");
+   flag = !flag;
+   }, 10);
+   */
+</script>
+</body>
+</html>

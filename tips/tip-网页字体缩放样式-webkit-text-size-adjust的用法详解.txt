@@ -1,0 +1,30 @@
+http://www.aimks.com/web-page-font-scaling-style-webkit-usage-details.html
+网页字体缩放样式-webkit-text-size-adjust的用法详解
+
+1、当样式表里font-size<12px时，中文版chrome浏览器里字体显示仍为12px，这时可以用 html{-webkit-text-size-adjust:none;}
+2、-webkit-text-size-adjust放在body上会导致页面缩放失效
+3、body会继承定义在html的样式
+4、用-webkit-text-size-adjust不要定义成可继承的或全局的
+
+苹果移动设备上会识别，用于保证文字大小。
+
+写页面的应该都知道Chrome浏览器默认情况下的字体最小为12px，如果你要设置某字体大小为10px的话，你会在Chrome发现还是12px。如果要使此生效的话，就得修改Chrome的默认配置了，一般应用下面的代码就能在全局生效了：
+
+
+html { -webkit-text-size-adjust: none; }
+但是这样设置之后会有一个问题，就是当你放大网页时，一般情况下字体也会随着变大，而设置了以上代码后，字体只会显示你当前设置的字体大小，不会随着网页放大而变大了，这样对有需要放大网页观看的用户造成了不好的用户体验，所以不建议全局应用该属性，而是在需要的情况单独使用就好了。
+
+在中文版Chrome里面，网页CSS里所有小于12px的字体设置都无效，最终将显示12px。这样弄的本意可能是好的，因为中文一旦小于12px，就变得不易阅读。
+
+但中文版Chrome也会阅读英文网站啊，中文网页里面也会有英文的小字体设置需求啊，尤其是一些文字部份的设计，不小实在不好看，影响整个排版的美观。
+
+解决方案，添加一个私有属性到html选择器:
+
+
+html{-webkit-text-size-adjust: none;}
+顾名思义, 禁用Webkit内核浏览器的文字大小调整功能。
+
+如果要打开缩放功能,则定义下面的全局样式：
+
+
+*{-webkit-text-size-adjust:auto !important;}

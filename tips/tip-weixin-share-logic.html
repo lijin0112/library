@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+</body>
+
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  $(function () {
+    var shareUrl = 'http://${MODEL_EV}static.wjdai.com/img/activity/2016duanwu.png';
+    $.ajax({
+      url: $('#baseUrl').val() + "/interface/dragonboatfestival/weixinjsaip_ticket.html",
+      type: 'post',
+      data: {
+        'locationhref': location.href.split('#')[0]
+      },
+      dataType: 'json',
+      success: function (data) {
+        wx.config({
+          debug: false,
+          // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          appId: data.apiMap.appId,
+          // 必填，公众号的唯一标识
+          timestamp: data.apiMap.timestamp,
+          // 必填，生成签名的时间戳
+          nonceStr: data.apiMap.nonceStr,
+          // 必填，生成签名的随机串
+          signature: data.apiMap.signature,
+          // 必填，签名，见附录1
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'showOptionMenu'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        });
+
+        wx.ready(function () {
+          //打开分享按钮
+          wx.showOptionMenu();
+          //分享到朋友圈
+          wx.onMenuShareTimeline({
+            title: "热辣端午，\”粽\”情狂欢！来万家金融\“吃粽子\”，人人赚得钵满金！",
+            // 分享标题
+            link: data.apiMap.basedomain + "/activity/dragonAct/App.html",
+            // 分享链接
+            imgUrl: shareUrl,
+            // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
+
+          //分享到朋友
+          wx.onMenuShareAppMessage({
+            title: '\“粽\”意浓浓香，奖品任性送!',
+            // 分享标题
+            desc: '热辣端午，\”粽\”情狂欢！来万家金融\“吃粽子\”，人人赚得钵满金！',
+            // 分享描述
+            link: data.apiMap.basedomain + "/activity/dragonAct/App.html",
+            // 分享链接
+            imgUrl: shareUrl,
+            // 分享图标
+            success: function () {
+              // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          });
+        });
+      }
+    })
+  });
+</script>
+</html>

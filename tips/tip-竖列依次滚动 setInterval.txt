@@ -1,0 +1,38 @@
+    var timer = setInterval(function() {
+      $('.winner > .wl:first').animate({
+        'height': '0',
+        'opacity': '0'
+      }, '1000', function() {
+        $(this).removeAttr('style').insertAfter('.winner > .wl:last');
+      });
+    }, 4000);
+
+
+
+
+
+
+
+三个一行的滚
+
+<div class="win-list-wp">
+            <div class="wl-title"><i></i>开宝箱获奖记录</div>
+            <div class="wlist">
+              <div class="showarea">
+
+                <div class="witem">
+                  <div>150****1763</div>
+                  <div>荣事达养生壶</div>
+                </div>
+
+              </div>
+            </div>
+            <div class="win-list-none">
+              <span>还没有中奖用户</span>
+            </div>
+          </div>
+
+
+ $(".wlist .showarea").animate({marginTop: "-1.2rem"}, 3000, function () {
+                $(".wlist .showarea").find(".witem:lt(3)").appendTo($(".wlist .showarea")), $(".wlist .showarea").css({marginTop: 0})
+              });

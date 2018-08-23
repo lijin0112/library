@@ -1,0 +1,18 @@
+
+/* 头部banner和默认背景色有微色差，渐变色过渡*/
+.linear {
+  FILTER: progid: DXImageTransform . Microsoft . Gradient(gradientType = 0, startColorStr = #681384, endColorStr = #5C117A); /*IE 6 7 8*/
+
+  background: -ms-linear-gradient(top, #681384, #5C117A); /* IE 10 */
+
+  background: -moz-linear-gradient(top, #681384, #5C117A); /*火狐*/
+
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#681384), to(#5C117A)); /*谷歌*/
+
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#681384), to(#5C117A)); /* Safari 4-5, Chrome 1-9*/
+
+  background: -webkit-linear-gradient(top, #681384, #5C117A); /*Safari5.1 Chrome 10+*/
+
+  background: -o-linear-gradient(top, #681384, #5C117A); /*Opera 11.10+*/
+
+}

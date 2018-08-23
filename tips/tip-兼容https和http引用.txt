@@ -1,0 +1,17 @@
+
+如果你的网站同时准备了https和http的资源，那么可以使用相对协议，可以帮助实现当网站引入的都是http资源，域名更换为https后的无缝切换。
+具体使用方法为：
+<img src="//domain.com/img/logo.png"/>
+
+简而言之，就是将URL的协议（http，https）去掉，只保留//及后面的内容。这样，在使用https的网站中，浏览器会通过https请求URL，否则就通过http发送请求。
+
+（附注：如果是浏览本地文件，浏览器通过file://协议发送请求，导致请求失败，因此本地测试最好是搭建一个本地服务器。）
+
+HTML5 Boilerplate 使用相对协议请求 Google CDN中的jQuery，使用方式为：
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.4.2.js"%3E%3C/script%3E'))</script>
+
+上述例子中除了引用Google CDN中文件外，还添加了一个本地jQuery链接，以便链接Google CDN失败后，使用本地副本。代码判断过程为：
+  1.首先检查 jquery 对象是否存在，如果存在，证明Google CDN运行正常；
+  2.如果不存在，则说明链接Google CDN失败，引入本地jQuery库。

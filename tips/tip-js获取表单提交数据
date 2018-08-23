@@ -1,0 +1,7 @@
+str_data=$(".login input").map(function(){
+ return ($(this).attr("name")+':'+$(this).val());
+}).get().join(",") ;
+
+
+
+"username:15609682767,password:123456,checkCode:"

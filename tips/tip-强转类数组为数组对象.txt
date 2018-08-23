@@ -1,0 +1,7 @@
+强转类数组对象为数组对象
+
+b=Array.prototype.slice.call(a)
+
+b.constructor === Array  
+
+true

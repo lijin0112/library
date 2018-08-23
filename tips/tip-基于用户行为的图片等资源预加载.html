@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+      
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, minimal-ui"/>
+
+  <link href="http://api.wjdai.com/Skins/css/common.css" rel="stylesheet">
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/jquery.form.min.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/jquery.data.resource.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/underscore-min.js"></script>
+  <script type="text/javascript" src="http://api.wjdai.com/Skins/js/rem.js"></script>
+  <style>
+    .tab-a {
+      display: inline-block;
+      padding: 5px 0;
+      margin: 0 15px;
+      border-bottom: 3px solid transparent;
+      color: #343;
+      font: menu;
+      font-size: 14px;
+    }
+
+    .tab .active {
+      border-bottom-color: #019EE4;
+      color: #019EE4;
+    }
+
+    .panel {
+      padding: 15px;
+    }
+
+    .panel img {
+      display: none;
+    }
+
+    .panel .active {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+<a href="http://www.cnblogs.com/wanggenzhen/p/5843032.html">http://www.cnblogs.com/wanggenzhen/p/5843032.html</a> <br/>
+<h3>刚入前端整合的一个手机端页面适配+预加载+获取资源加载进度等的一个小模板</h3>
+<br/>
+刚入前端不久，之前主要学的是pc端的布局，到公司之后负责的主要是移动段页面，刚开始时为了使页面适应移动端不同的屏幕大小采用的是百分比加媒体查询的方式，做完一个项目之后，感觉非常不好，虽然最后也基本使页面做到了适配。所以做完这个项目之后，我就在网上查找各种屏幕适配的方案，最终找到了一个通过js控制使页面整体缩放的方案，还有一个就是通过js实时检测屏幕大改变html根字体大小的rem布局方案。目前我在使用的是缩放的方案。整体代码基本上是整合的是大牛们分享的一些实用代码，如有什么bug欢迎提出，共同进步！
+<br/>
+<br/>
+
+<a href="http://www.zhangxinxu.com/wordpress/2016/06/image-preload-based-on-user-behavior/">http://www.zhangxinxu.com/wordpress/2016/06/image-preload-based-on-user-behavior/</a><br/>
+<h3>一、图片的懒加载和预加载</h3> <br/>
+懒加载和本文要提到的预加载实际是不同的概念。
+<br/>
+典型的懒加载，例如本博文章的图片，当用户滚动图片进入窗体的时候，才去加载；或者用户点击选项卡，原本隐藏的图片此时再去加载，这个也称之为懒加载。
+<br/>
+而预加载则是，用户还没有行为发生，资源已经加载完毕，从这一定义来讲，我们传统图片啪啪啪全部加载完毕，本质上也是预加载，好处就在于，体验好啊，没有泛白或者菊花的出现。不足也很明显，那就是资源可能白白加载了，尤其视频之类的，小明打开bilibili就是来围观广告的，结果，百兆视频巴拉拉魔仙般全加载好了，搞得好像流量不要钱的样子，也是不可取的。
+<br/>
+那有什么办法可以把懒加载的省资源省流量和预加载良好体验结合在一起呢？有一些比较好的案例，那就是基于用户行为的资源预加载。<br/>
+
+<h3>二、基于用户行为的资源预加载 - example:点击事件下的选项卡切换效果的预加载。</h3> <br/>
+此选项卡对应面板内容是包含图片信息的，由于，选项卡是点击行为触发的切换效果，因此，后面的“美女2”和“美女3”按钮对应的图片如果不点击，用户是永远都看不到的，此时这两位美女图片就没必要加载，因为，很可能，用户不会点这两个选项卡按钮。
+<br/>
+因此，选项卡2和3我们需要岁图片进行懒加载处理，也就是页面载入默认不加载的。
+<br/>
+然后，我们通常的处理是当用户去点击选项卡按钮的时候，在对应面板呈现的时候，我们再去加载图片内容。于是，就存在这样一个不好的体验——由于内容呈现瞬时，而图片呈现是异步的，就很容易出现选项卡主体内容切换过来了，结果是个空白，过了会儿图片才出现。
+<br/>
+其实，我们可以基于某些行为对此图进行不一样的预加载，来提示我们的浏览体验，怎么做呢？
+<br/>
+我们绝大数用户都是鼠标去点击选项卡的，而点击选项卡之前会有其他一些行为发生，例如：
+<br/>
+mouseover按钮的容器 → mouseover按钮 → mousedown按钮等。
+<br/>
+于是，就给了我们机会，在click行为发生之前去预加载图片，例如，我们鼠标hover按钮的时候。一般一个用户hover一个按钮再click行为技术，说有0.5秒的时长一点都不为过吧，因为光鼠标按下再抬起就上百毫秒了。从hover到click之间的这段时间，已经足够我们图片进行预加载了。而hover到click的行为是极大概率事件。于是乎，我们通过提前捕捉用户的其他行为实现了懒加载和预加载的完美结合！
+<br/>
+眼见为实，您可以狠狠地点击这里：选项卡用户hover行为下的图片预加载demo
+<br/>
+点击选项卡，十有八九图片瞬间就呈现了，就是因为你hover的时候，图片已经去加载了。大家有兴趣可以打开控制台观察资源的加载，就可以明白上面巴拉巴拉说的hover预加载是怎么回事了。
+<br/>
+http://www.zhangxinxu.com/study/201606/tab-image-preload.html <br/>
+
+<h3>三、用户行为与预加载其他</h3> <br/>
+其实HTML5中有原生的预加载属性，名为prefetch和prerender，
+<pre>&lt;link rel="prefetch" href="(url)"&gt;</pre>
+如果你有很大概率会访问href指向的资源，则可以加入上面的代码，浏览器会预加载一些资源，访问就会更迅速！
+</h3>
+<section class="code">
+  <div id="tab" class="tab">
+    <a href="javascript:" class="tab-a active">美女1</a>
+    <a href="javascript:" class="tab-a">美女2</a>
+    <a href="javascript:" class="tab-a">美女3</a>
+  </div>
+  <div id="panel" class="panel">
+    <img src="http://image.zhangxinxu.com/image/study/s/s256/mm1.jpg" class="active">
+    <img data-src="http://image.zhangxinxu.com/image/study/s/s256/mm3.jpg">
+    <img data-src="http://image.zhangxinxu.com/image/study/s/s256/mm4.jpg">
+  </div>
+</section>
+<!--<script type="text/javascript" src="keyboard.js"></script>-->
+<script type="text/javascript">
+  var elAs = $('#tab a'), elImgs = $('#panel img');
+
+  // 选项卡点击行为
+  elAs.each(function (index) {
+    $(this).data('index', index).click(function () {
+      var target = elImgs.eq($(this).data('index'));
+      // 选项卡UI
+      $(this).addClass('active').siblings('a').removeClass('active');
+      // 面板显隐
+      target.addClass('active').siblings('img').removeClass('active');
+    });
+  });
+
+  // 本demo的最重点，hover行为预加载图片
+  elAs.on({
+    mouseenter: function () {
+      var target;
+      if (!this.preloaded) {
+        target = elImgs.eq($(this).data('index'));
+        // 图片地址换成真实地址
+        target.attr('src', target.attr('data-src')).removeAttr('data-src');
+        // 标记已加载
+        this.preloaded = true;
+      }
+    }
+  });
+</script>
+</body>
+</html>

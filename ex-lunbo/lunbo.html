@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>lunbo jquery</title>
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    ol, ul {
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+<div class="banner">
+  <div class="inner">
+    <ul class="focus" style="left: 475px;">
+      <li class=""></li>
+      <li class="m"></li>
+      <li class="m active"></li>
+    </ul>
+    <!-- /.focus -->
+  </div>
+  <!-- /.inner -->
+  <ul class="pic">
+    <li class="item" style="display: none;">
+      <a href="#"
+         style="background: url(images/banner/02@1x.jpg) no-repeat center;background-image: -webkit-image-set( url(images/banner/02@1x.jpg) 1x, url(images/banner/02@2x.jpg) 2x);background: image-set( url(images/banner/02@1x.jpg) 1x, url(images/banner/02@2x.jpg) 2x);background-position: center;"> </a>
+    </li>
+    <li class="item" style="display: none;">
+      <a href="#" style="background: url(images/banner/03.jpg?v=2015122201) no-repeat center;"> </a>
+    </li>
+    <li class="item" style="display: block;">
+      <a href="#" style="background: url(images/banner/04.jpg) no-repeat center;"></a>
+    </li>
+  </ul>
+  <!-- /.pic -->
+</div>
+<!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+<script src="jquery-1.11.3.js"></script>
+<script>
+  $(function () {
+    var $banner = $('.banner');
+    var $focus = $banner.find('.focus')
+        , $w = $focus.width();
+    $focus.css({left: (1000 - $w) / 2 + 'px'});
+    /* banner slide */
+    var targetId = 0;
+    var $lis = $banner.find(".pic .item").hide();
+    var $lis_focus = $focus.find("li");
+    var length = $lis.length;
+    var time = 10000;
+    $lis.eq(targetId).show();
+
+    var slide = function () {
+      $lis.eq(targetId).fadeOut("slow");
+
+      if (targetId < length - 1) {
+        targetId++;
+      } else {
+        targetId = 0;
+      }
+      $lis.eq(targetId).fadeIn("slow");
+      $lis_focus.removeClass("active");
+      $lis_focus.eq(targetId).addClass("active");
+    };
+    var scroll = setInterval(slide, time);
+
+    $lis_focus.mouseenter(function () {
+      clearInterval(scroll);
+      targetId = $(this).index();
+      // console.info("targetid:"+targetId);
+      $lis.fadeOut("fast");
+      $lis.eq(targetId).fadeIn("fast");
+      $lis_focus.removeClass("active");
+      $lis_focus.eq(targetId).addClass("active");
+    }).mouseleave(function () {
+      scroll = setInterval(slide, time);
+    });
+  })
+</script>
+<script type="text/javascript">
+
+  // jquery 轮播？
+  // $("").stop().animate({"left": 0}, 500);
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="Li">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style type="text/css">
+    #container {
+      width: 245px;
+      height: 303px;
+      border: none;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #list {
+      width: 2695px;
+      height: 303px;
+      position: absolute;
+      z-index: 1;
+    }
+
+    #buttons {
+      position: absolute;
+      height: 10px;
+      width: 125px;
+      z-index: 40;
+      bottom: 10px;
+      left: 75px;
+    }
+
+    #buttons span {
+      cursor: pointer;
+      float: left;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #fff;
+      margin-right: 5px;
+    }
+
+    .arrow {
+      cursor: pointer;
+      display: none;
+      line-height: 28px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      width: 12px;
+      height: 28px;
+      position: absolute;
+      z-index: 40;
+      bottom: 7px;
+      color: #fff;
+    }
+
+    #prev {
+      left: 20px;
+    }
+
+    #next {
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="fenleiBox_R">
+  <div id="container">
+    <div id="list" style="left: -245px;">
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="1"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="1"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="2"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="3"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="4"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="5"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="6"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="7"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="8"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="9"></a>
+      <a href="javascript:;"><img src="images/fenlei02.png" alt="9"></a>
+    </div>
+    <div id="buttons">
+      <span index="1" class="on"></span>
+      <span index="2" class=""></span>
+      <span index="3" class=""></span>
+      <span index="4" class=""></span>
+      <span index="5" class=""></span>
+      <span index="6" class=""></span>
+      <span index="7" class=""></span>
+      <span index="8" class=""></span>
+      <span index="9" class=""></span>
+    </div>
+    <a href="javascript:;" id="prev" class="arrow" style="color: #fff;">&lt;</a>
+    <a href="javascript:;" id="next" class="arrow" style="color: #fff;">&gt;</a>
+  </div>
+  <script src="jquery-1.11.3.js"></script>
+  <script type="text/javascript">
+
+    $(function () {
+      var container = $('#container');
+      var list = $('#list');
+      var buttons = $('#buttons span');
+      var prev = $('#prev');
+      var next = $('#next');
+      var index = 1;
+      var len = 9;
+      var interval = 3000;
+      var timer;
+
+
+      function animate(offset) {
+        var left = parseInt(list.css('left')) + offset;
+        if (offset > 0) {
+          offset = '+=' + offset;
+        }
+        else {
+          offset = '-=' + Math.abs(offset);
+        }
+        list.animate({'left': offset}, 300, function () {
+          if (left > -100) {
+            list.css('left', -245 * len);
+          }
+          if (left < (-245 * len)) {
+            list.css('left', -245);
+          }
+        });
+      }
+
+      function showButton() {
+        buttons.eq(index - 1).addClass('on').siblings().removeClass('on');
+      }
+
+      function play() {
+        timer = setTimeout(function () {
+          next.trigger('click');
+          play();
+        }, interval);
+      }
+
+      function stop() {
+        clearTimeout(timer);
+      }
+
+      next.bind('click', function () {
+        if (list.is(':animated')) {
+          return;
+        }
+        if (index == 9) {
+          index = 1;
+        }
+        else {
+          index += 1;
+        }
+        animate(-245);
+        showButton();
+      });
+
+      prev.bind('click', function () {
+        if (list.is(':animated')) {
+          return;
+        }
+        if (index == 1) {
+          index = 9;
+        }
+        else {
+          index -= 1;
+        }
+        animate(245);
+        showButton();
+      });
+
+      buttons.each(function () {
+        $(this).bind('click', function () {
+          if (list.is(':animated') || $(this).attr('class') == 'on') {
+            return;
+          }
+          var myIndex = parseInt($(this).attr('index'));
+          var offset = -245 * (myIndex - index);
+
+          animate(offset);
+          index = myIndex;
+          showButton();
+        })
+      });
+
+      container.hover(stop, play);
+
+      play();
+
+    });
+  </script>
+</div>
+</body>
+</html>

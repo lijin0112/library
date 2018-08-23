@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="Li">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="http://www.zhihu.com/question/21296044">
+  <title>input标签不支持 :after/:before 伪类选择器</title>
+  <style type="text/css">
+    #cc {
+      position: absolute;
+      left: 44px;
+    }
+
+    #cc:checked {
+      position: absolute;
+      top: 90px;
+    }
+
+    #cc:checked:after {
+      position: absolute;
+      top: 10px;
+      content: 'abc';
+    }
+
+    #cc:checked:before {
+      position: absolute;
+      top: 10px;
+      content: 'cc-before';
+    }
+
+    div:after {
+      content: 'cc';
+    }
+
+    #kk p:before {
+      content: "12345";
+    }
+  </style>
+</head>
+<body>
+<p>
+  http://www.zhihu.com/question/21296044
+  <br>input标签不支持 :after/:before 伪类选择器
+  <br>要通过before、after加额外样式时，就得先套个div。
+  <br>(chrome可用，但是ff不可)
+</p>
+
+<div class="">
+
+  <input id='cc' name='c' value='c' type='checkbox'/>
+</div>
+<hr>
+
+<div id="kk">
+  <p style="background-color:#f00;">abcde</p>
+</div>
+</body>
+</html>

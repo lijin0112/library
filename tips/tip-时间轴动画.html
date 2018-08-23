@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>时间轴动画：当滚动条移动到一个距离时 在对应距离上的时间抽进行动画效果</title>
+  <style>
+    body{ background-color:  #77e1ff;}
+    .content { margin-bottom: -18px;}
+    .content .banner{ height:459px; background: url(https://cgtzfiles.b0.upaiyun.com/style3/images/timeline3/bk1.jpg) center #ffde35;}
+    .content .banner .layout{ position: relative;}
+    .content .banner p{ position: absolute; top:227px; left: 379px; width:525px; text-align: center; font-size: 22px; color:#8d0909; font-weight: bold;}
+    .content .banner span { width: 100%; line-height: 48px;}
+    .content .banner em{ margin: 0 5px; font-size: 42px; color:#ffde35;}
+    .content .timeLine .timeLine_header{ position: relative; height:318px; background:url(https://cgtzfiles.b0.upaiyun.com/style3/images/timeline3/bk2.jpg) center;}
+    .content .timeLine .timeLine_header p{ position: absolute; top:267px; left: 46.5%; font-size: 20px; color:#fe5850; font-weight: bold;}
+    .circle{background: url(https://cgtzfiles.b0.upaiyun.com/style3/images/timeline3/bg.png) no-repeat;}
+    .timeLine_content{ position: relative; z-index: 1000; background: url(https://cgtzfiles.b0.upaiyun.com/style3/images/timeline3/bk3.jpg) center top no-repeat; overflow: hidden;}
+    .timeLine_content .line{ height: 120px; background: url(https://cgtzfiles.b0.upaiyun.com/style3/images/timeline3/bg.jpg) center 0 repeat-y;}
+    .timeLine_content .line .line_left{ position: relative; top:80px; left: 80%; display: inline; float: left; filter:alpha(opacity=0); opacity: 0;}
+    .timeLine_content .line .line_right{ position: relative; top:80px; left: -80%; float: right; display: inline; filter:alpha(opacity=0); opacity: 0}
+    .timeLine_content .line .circle{  margin-top:20px; width: 31px; height: 31px; background-position: -30px 0;}
+    .timeLine_content .line .cGreen{ background-position: -66px 0;}
+    .timeLine_content .line .cBlue{ background-position: -101px 0;}
+    .timeLine_content .line .cYellow{ background-position: -136px 0;}
+    .timeLine_content .r2{ margin-top: 32px; width:50px; height: 5px; background-color:#ccf3fe;}
+    .timeLine_content .line p{ padding:10px 30px 10px 15px; background-color: #ccf3fe; border-radius: 3px; font-size: 14px; color:#3a0000; }
+    .timeLine_content .line p em{ display: block;  font-weight: bold; color:#ff2100;}
+    .timeLine_content .line p .tGreen{ color:#0daf53;}
+    .timeLine_content .line p .tYellow{ color: #f4a51c;}
+    .timeLine_content .line p .tBlue{ color: #2d7ebd;}
+    .timeLine_content .line_left .circle{ float: left; display: inline;}
+    .timeLine_content .line_left .r2{ float: left; display: inline; }
+    .timeLine_content .line_left p{ margin-left: 70px;}
+    .timeLine_content .line_right .circle{ float: right; display: inline;}
+    .timeLine_content .line_right .r2{ float: right; display: inline; }
+    .timeLine_content .line_right p{ float: right; display: inline;}
+    .timeline_foot { position: relative; height: 200px;}
+    .timeline_foot .aLink{ position: absolute; top: -79px; left: 0; height: 279px; width: 100%; background: url(https://cgtzfiles.b0.upaiyun.com/style3/images/timeline3/bk4.jpg) center no-repeat;  text-align: center;}
+    .timeline_foot .aLink a{ display: inline-block; margin-top: 130px; width: 265px; height: 65px; line-height: 65px; background-color: #fb1d3c; border-radius: 3px; color: #f8d328; text-decoration: none; font-size: 30px; box-shadow: 0 -30px 3px #f5425c inset;}
+
+  </style>
+</head>
+<body>
+<div class="timeLine_content">
+  <div class="layout">
+    <div class="line clearfix">
+      <div class="line_left" >
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2016 年 6月 18 日</em>
+          荣获“中宏网杯”<br>最受客户信赖互联网金融平台
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="">2016 年 6月 6 日</em>
+          获广州基金旗下股权投资基金<br>10亿元人民币B轮融资
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left" >
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2016 年 5月 28 日</em>
+          荣获“2016浙江十佳互联网<br>金融创新产品奖“
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2016 年 5月 19 日</em>
+          荣获“消费金融创新领导力奖”
+        </p>
+      </div>
+    </div>
+    <!--2016-06-20增加-->
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2016 年 5月 3 日</em>
+          草根投资累计投资额突破300亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right ">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2016 年 4月 16 日</em>
+          草根投资注册用户数突破500万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2016 年 1月 23 日</em>
+          草根投资与中信银行达成战略合作
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2016 年 1月 11 日</em>
+          通过公安部国家级信息系统安全等级保护第三级认证
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2016 年 1月 10 日</em>
+          荣登“2016胡润新金融50强”
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right cYellow">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2015 年 12月 30 日</em>
+          草根投资乔迁梦想小镇
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2015 年 12月 19 日</em>
+          草根投资累计投资额突破200亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2015 年 12月 2 日</em>
+          草根投资强势入榜2015第十届中国<br>最具投资价值企业50强“新芽榜”
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2015 年 11月 13 日</em>
+          草根投资荣获2015中国普惠金融榜<br>“新金融服务奖”
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2015 年 10月 21 日</em>
+          草根投资累计投资额突破150亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2015 年 10月 05 日</em>
+          草根投资注册用户数突破300万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2015 年 8 月 19 日</em>
+          草根投资单日投资额突破3亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="">2015 年 8 月 18 日</em>
+          草根投资累计投资额突破 100 亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2015 年 7 月 21 日</em>
+          草根投资累计投资额突破 80 亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2015 年 7 月 10 日</em>
+          草根投资单日投资额破 1 亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2015 年 6 月 25 日</em>
+          草根投资注册用户数突破200万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2015 年 6 月 19 日</em>
+          草根投资荣获浙商大会<br>2015最具投资价值互联网金融公司
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2015 年 6 月 18 日</em>
+          草根投资累计投资额突破60亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2015 年 5 月 26 日</em>
+          草根投资累计投资额突破50亿
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2015 年 4 月 22 日</em>
+          草根投资注册用户数突破150万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2015 年 4 月 9 日</em>
+          草根投资荣获浙江供应链协会副会长单位
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2015 年 2 月 26 日</em>
+          草根投资注册用户数突破 100 万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2015 年 1 月 29 日</em>
+          草根投资获顶级风投“顺为资本”A轮千万美金投资
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2015 年 1 月 15 日</em>
+          草根投资累计投资额突破 10 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2015 年 1 月 14 日</em>
+          草根投资注册用户数突破 50 万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2015 年 1 月 6 日</em>
+          草根投资注册用户数突破 40 万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2015 年 1 月 4 日</em>
+          草根投资累计投资额突破 9 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2014 年 12 月 27 日</em>
+          草根投资注册用户数突破 30 万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2014 年 12 月 18 日</em>
+          草根投资注册用户数突破 20 万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2014 年 12 月 9 日</em>
+          草根投资累计投资额突破 7 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2014 年 11 月 22 日</em>
+          草根投资累计投资额突破 6 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2014 年 11 月 3 日</em>
+          草根投资累计投资额突破 5 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle cGreen"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tGreen">2014 年 10 月 13 日</em>
+          草根投资累计投资额突破 4 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cBlue"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tBlue">2014 年 10 月 10 日</em>
+          草根投资注册用户数突破 10 万人
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_left">
+        <span class="circle"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em>2014 年 9 月 17 日</em>
+          草根投资累计投资额突破 3 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix">
+      <div class="line_right">
+        <span class="circle cYellow"></span>
+        <span class="r2"></span>
+        <p class="line_text">
+          <em class="tYellow">2014 年 8 月 12 日</em>
+          草根投资累计投资额突破 2 亿元
+        </p>
+      </div>
+    </div>
+    <div class="line clearfix"></div>
+  </div>
+</div>
+</body>
+<script src="https://cgtzfiles.b0.upaiyun.com/style3/js/jquery.js"></script>
+<script>
+  //时间抽动画
+  /*
+   当滚动条移动到一个距离时 在对应距离上的时间抽进行动画效果
+   */
+  //初始化
+  //滚动屏幕事件
+  //https://www.cgtz.com/timeline.html
+
+  var timeLine = function () {
+
+    var currTop = 0;
+    var domScroll = 0;
+    var totalTop = 0;
+    var wHeight = $(window).height();
+
+    var $lineD = $(".line_left, .line_right");
+    var lineLen = $lineD.length;
+    var lineArray = [];
+    for (var index = 0; index < lineLen; index++) {
+      var $tempDom = $lineD.eq(index);
+      var temp = new LineObj($tempDom);
+      lineArray.push(temp);
+    }
+
+    /*
+     需要移动的元素对象
+     $lineDom:元素对象（jquery对象）
+     lineTop：元素对象距离页面顶部的高度
+     lineTHeight: 元素对象距离页面顶部+元素对象高度
+     lineCss: 元素对象的class名称
+     */
+    function LineObj(lineDom) {
+      this.$lineDom = lineDom;
+      this.lineTop = this.$lineDom.offset().top;
+      this.lineTHeight = this.lineTop + 80;
+      this.lineCss = this.$lineDom.attr("class");
+    };
+    //显示对象的动画效果
+    LineObj.prototype.moving = function (moveTime) {
+      if (this.lineCss == 'line_left') {
+        this.$lineDom.animate({left: '49.19%', opacity: '1'}, 300);
+      } else {
+        this.$lineDom.animate({left: '-48.19%', opacity: '1'}, 300);
+      }
+    }
+    /*
+     //隐藏对象的动画效果
+     LineObj.prototype.hiddening = function() {
+     if(this.lineCss == 'line_left') {
+     this.$lineDom.animate({left:'100%',opacity:'0'}, 100);
+     }else{
+     this.$lineDom.animate({left:'-100%',opacity:'0'}, 100);
+     }
+     }
+     */
+    //在指定条件下执行显示动画效果
+    var showMoving = function () {
+      domScroll = $(document).scrollTop();
+      totalTop = domScroll + wHeight;
+
+      for (index in lineArray) {
+        if (lineArray[index].lineTHeight < totalTop) {
+          lineArray[index].moving();
+        }
+      }
+
+    };
+
+    /*
+     //在指定条件下执行隐藏动画效果
+     var hiddenMoving = function() {
+     domScroll = $(document).scrollTop();
+     totalTop = domScroll + wHeight;
+
+     var arrLen = lineArray.length;
+
+     for(var index = arrLen - 1; index >= 0; index--) {
+     if(lineArray[index].lineTop > totalTop) {
+     lineArray[index].hiddening();
+     }else{
+     return;
+     }
+     }
+     };
+     */
+
+    //页面一加载就判断下是否需要执行显示
+    showMoving();
+    //向下滚动时执行动画效果
+    $(window).scroll(function () {
+
+      if (lineArray[lineArray.length - 1].$lineDom.css("opacity") == "1") {
+        return;
+      }
+      domScroll = $(document).scrollTop();
+
+      if (domScroll > currTop) {
+        showMoving();
+      }
+
+      currTop = domScroll;
+
+    });
+  };
+
+
+  window.onload = function () {
+    timeLine()
+  };
+
+
+  //$(".line_left").animate({left:'49.19%',opacity:'1'},1000);
+  //$(".line_right").animate({left:'-48.19%',opacity:'1'},1000);
+</script>
+</html>

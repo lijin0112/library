@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="renderer" content="webkit">
+    <meta name="robots" content="index,follow" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="万家贷">
+    <meta http-equiv='Page-Enter' content='blendTrans(Duration=0.5)' />
+    <meta http-equiv='Page-Exit' content='blendTrans(Duration=0.5)'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1" />
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="/Skins/css/common.css">
+    <script type="text/javascript" src="/Skins/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/Skins/js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="/Skins/js/jquery.data.resource.js"></script>
+    <script type="text/javascript" src="/Skins/js/jquery.md5.js"></script>
+    <script src="/Skins/js/H5/underscore-min.js"></script>
+    <script src="/Skins/js/H5/tools.js"></script>
+    <script src="/Skins/js/H5/errmsg640.js"></script>
+    <script src="/Skins/js/app-api.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/vue-resource/1.5.0/vue-resource.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // deicePixelRatio ：设备像素
+            var scale = 1 / devicePixelRatio;
+            //debounce 为节流函数，自己实现。或者引入underscoure即可。
+            var reSize = _.debounce(function() {
+                var deviceWidth = document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth;
+                //按照640像素下字体为100px的标准来，得到一个字体缩放比例值 6.4
+                document.documentElement.style.fontSize = (deviceWidth / 6.4) + 'px';
+            }, 50);
+            window.onresize = reSize;
+            reSize();
+        })();
+    </script>
+    <style>
+        * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+        *:before,
+        *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+        
+        .t-l{ text-align: left; }
+        .t-c{ text-align: center; }
+        .t-r{ text-align: right; }
+        .fred { color: red; }
+
+        html { height: 100%; width: 100%; font-size: 100px; }
+        body { font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, Heiti, "黑体", sans-serif; background: #EFEEF4; }
+        .all { max-width: 640px; overflow: hidden; width: 100%; margin: 0 auto; }
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <span>{{biaomsg}}</span>
+        <!-- <span>{{biaomsg.arpDesc}}</span>
+        <span>{{biaomsg.borrowId}}</span>
+        <span>{{biaomsg.borrowMin}}</span>
+        <span>{{biaomsg.borrowType}}</span>
+        <span>{{biaomsg.brwType}}</span>
+        <span>{{biaomsg.investMoney}}</span>
+        <span>{{biaomsg.isAegis}}</span>
+        <span>{{biaomsg.progress}}</span>
+        <span>{{biaomsg.promoteLevel}}</span>
+        <span>{{biaomsg.surplusMoney}}</span>
+        <span>{{biaomsg.1000000}}</span>
+        <span>{{biaomsg.timeLimit}}</span>
+        <span>{{biaomsg.userNum}}</span> -->
+        <button v-on:click="nameSearch()">查询</button>
+    </div>
+    <script>
+        var userId = "",
+            tokenId = "";
+        //用户是否登录
+        if (getUser() != null) {
+            userId = getUser().userId;
+            tokenId = getUser().tokenId;
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                biaomsg : { type: object }
+            },
+            methods: {
+                nameSearch: function () {
+                    var _self = this;
+                    _self.$http.post('/yb-wjdai-api/investment/getRecommend',
+                        {
+                            clientType: "wechat",
+                            "userId": userId, 
+                            "tokenId": tokenId
+                        },
+                        {
+                            headers: { "content-type": "application/json","cache-control": "no-cache"}
+                        }).then( response => {
+                            var json = response.body;
+                            _self.biaomsg = json.data;
+                            console.log(json);
+                        }, response => {
+                            console.log("接口不通")
+                        });
+
+                    // $.ajax({
+                    //     url: "/yb-wjdai-api/investment/getRecommend",
+                    //     type: "post",
+                    //     data: JSON.stringify({ clientType: "wechat", "userId": userId, "tokenId": tokenId }),
+                    //     headers: { "content-type": "application/json","cache-control": "no-cache"},
+                    //     success:function(json) {
+                    //        var data = json.data;
+                    //        console.log(data);
+                    //     }
+                    // });
+                }
+            }
+        })
+    </script>
+</body>
+</html>

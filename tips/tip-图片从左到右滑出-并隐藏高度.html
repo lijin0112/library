@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .main {
+      height: 5000px;
+      background: #883;
+    }
+
+    .top-bar {
+      height: 20px;
+      background: pink;
+    }
+
+    .top-monkey {
+      display: none;
+      height: 60px;
+      z-index: 99999999;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-monkey">
+    <img src="../img/test-img.gif" alt="">
+  </div>
+</div>
+<div class="main"></div>
+<!--<script src="jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+  $(function () {
+    $('.top-bar').css({height: '80px'});
+    // move top-monkey
+    $('.top-monkey').css({
+      'margin-left': 0,
+      'display': 'block'
+    }).animate({'margin-left': '100%'}, 6000, 'linear', function () {
+      $(this).css({display: 'none'});
+      $('.top-bar').css({height: '20px'});
+    })
+  })
+</script>
+</body>
+</html>

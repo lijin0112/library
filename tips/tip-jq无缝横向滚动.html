@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+
+  <link rel="shortcut icon" href="https://api.wjdai.com/Skins/images/ico.ico">
+  <link href="https://api.wjdai.com/Skins/css/common.css" rel="stylesheet">
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery.form.min.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery.data.resource.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/underscore-min.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/rem.js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="https://api.wjdai.com/Skins/css/swiper.min.css"/>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/swiper.min.js"></script>
+  <style type="text/css">
+    li {
+      list-style: none;
+    }
+
+    .content {
+      width: 1020px;
+      height: 112px;
+      overflow: hidden;
+      border: #4e83c2 solid 1px;
+      margin: 50px auto;
+    }
+
+    .content ul {
+      width: 1020px;
+      height: 100px;
+    }
+
+    .content ul li {
+      float: left;
+      width: 100px;
+      height: 100px;
+      border: #ccc solid 1px;
+      display: block;
+      margin: 5px;
+    }
+
+    #container /*这个是最外面的容器，最关键的一点是将overflow:hidden隐藏起来。*/
+    {
+      width: 600px;
+      height: 80px;
+      overflow: hidden;
+    }
+
+    #longwidth {
+      height: 80px;
+      width: 1000%; /*要足够的大，需要能够把div1和div2的内容都能够装下，不然因为float：left装不下，就会到第二行*/
+    }
+
+    .kuang {
+      float: left;
+      height: 80px;
+    }
+  </style>
+</head>
+<body>
+<div class="content">
+  <ul>
+    <li>恭喜 <span>136****8989</span> 用户完成合成可获得 <span>500元现金</span> &nbsp;&nbsp;</li>
+    <li>恭喜 <span>136****5522</span> 用户完成合成可获得 <span>500元现金</span> &nbsp;&nbsp;</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+    <li>11</li>
+    <li>12</li>
+    <li>13</li>
+    <li>14</li>
+    <li>15</li>
+    <li>16</li>
+    <li>17</li>
+    <li>18</li>
+    <li>19</li>
+    <li>20</li>
+    <li>21</li>
+    <li>22</li>
+    <li>23</li>
+    <li>24</li>
+  </ul>
+</div>
+
+<div id="container">
+  <div id="longwidth">
+    <div id="div1" class="kuang">恭喜 <span>136****8989</span> 用户完成合成可获得 <span>500元现金</span> &nbsp;&nbsp;    </div>
+    <div class="kuang">-------------------------------------------------</div>
+    <div id="div2" class="kuang">恭喜 <span>136****8989</span> 用户完成合成可获得 <span>500元现金</span> &nbsp;&nbsp;</div>
+  </div>
+</div>
+<script>
+  function scroll(){
+    $(".content ul").animate({"margin-left":"-110px"},function(){
+      //这个是让整个ul先向前滑动个li ,如果要一次性滑动5个~那么就是550px.
+      //想向上滚动就改成 $(".content ul").animate({"margin-top":"-105px"}
+      //想向下滚动就改成 $(".content ul").animate({"margin-top":"105px"}
+      //想向右滚动就改成 $(".content ul").animate({"margin-left":"110px"}
+      $(".content ul li:eq(0)").appendTo($(".content ul"))
+      $(".content ul").css({"margin-left":0})
+      //对应这的这边
+      //想向上滚动就改成 $(".content ul").animate({"margin-top":0}
+      //想向下滚动就改成 $(".content ul").animate({"margin-top":0}
+      //想向右滚动就改成 $(".content ul").animate({"margin-left":0}
+    })
+  }
+  setInterval(scroll,1000)
+  //这上面的是1000是滚动的速度，可以自己调整
+  setInterval(scroll, 1000)
+</script>
+<script type="text/javascript">var vid
+$(function () {
+  var mar = function () {
+    if ($("#container").scrollLeft() > $(".kuang:first-child").width()) { //当滚动条隐藏的长度大于div1的宽度
+      $(".kuang:first-child").appendTo($("#longwidth"));
+      $("#container").scrollLeft(0);
+    }
+    else {
+      $("#container").scrollLeft($("#container").scrollLeft() + 5);   //每次滚动条往右移动1px；
+    }
+
+  };
+  vid = setInterval(mar, 200);
+  $("#container").mouseenter(function () {
+    clearInterval(vid);
+  }).mouseleave(function () {
+    vid = setInterval(mar, 200);
+  });
+});
+</script>
+</body>
+</html>

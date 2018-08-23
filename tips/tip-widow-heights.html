@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>js获取height和width总结</title>
+</head>
+<body>
+<ul>
+  <li> 网页可见区域宽： document.body.clientWidth </li>
+  <li> 网页可见区域高： document.body.clientHeight </li>
+  <li> 网页可见区域宽： document.body.offsetWidth (包括边线的宽)</li>
+  <li> 网页可见区域高： document.body.offsetHeight (包括边线的高) </li>
+  <li> 网页正文全文宽： document.body.scrollWidth </li>
+  <li> 网页正文全文高： document.body.scrollHeight </li>
+  <li> 网页被卷去的高： document.body.scrollTop </li>
+  <li> 网页被卷去的左： document.body.scrollLeft </li>
+  <li> 网页正文部分上： window.screenTop </li>
+  <li> 网页正文部分左： window.screenLeft </li>
+  <li> 屏幕分辨率的高： window.screen.height</li>
+  <li> 屏幕分辨率的宽： window.screen.width </li>
+  <li> 屏幕可用工作区高度： window.screen.availHeight</li>
+  <li> 屏幕可用工作区宽度： window.screen.availWidth </li>
+</ul>
+</body>
+<script>
+
+  $(document).ready(function()
+  {
+    alert("浏览器当前窗口可视区域高度:"+$(window).height()); //浏览器当前窗口可视区域高度
+    alert("浏览器当前窗口文档的高度:"+$(document).height()); //浏览器当前窗口文档的高度
+    alert("浏览器当前窗口文档body的高度:"+$(document.body).height());//浏览器当前窗口文档body的高度
+    alert("浏览器当前窗口文档body的总高度 包括border padding margin:"+$(document.body).outerHeight(true));//浏览器当前窗口文档body的总高度 包括border padding margin
+    alert("浏览器当前窗口可视区域宽度:"+($(window).width())); //浏览器当前窗口可视区域宽度
+    alert("浏览器当前窗口文档对象宽度:"+$(document).width());//浏览器当前窗口文档对象宽度
+    alert("浏览器当前窗口文档body的高度:"+$(document.body).width());//浏览器当前窗口文档body的高度
+    alert("浏览器当前窗口文档body的总宽度 包括border padding margin:"+$(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin
+    alert("显示器分辨率，只能用JavaScript代码获取高度:"+screen.height);//显示器分辨率，只能用JavaScript代码获取
+    alert("显示器分辨率，只能用JavaScript代码获取宽度:"+screen.width);
+  }) ;
+
+  // TIP:     top,         (    可视区域高      - 弹框高度        )       /2 + 网页被卷去的高
+  $('.alert-box').css('top',($(window).height() - $(".alert-box").height())/2 +document.body.scrollTop+ "px");
+</script>
+</html>

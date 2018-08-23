@@ -1,0 +1,65 @@
+
+    .box1 .treasure-chest .case.case3 {
+      animation-name: box-moving;
+      -moz-animation-name: box-moving;
+      -webkit-animation-name: box-moving;
+      -o-animation-name: box-moving;
+      animation-delay: 0.4s;
+      -moz-animation-delay: 0.4s;
+      -webkit-animation-delay: 0.4s;
+      -o-animation-delay: 0.4s;
+    }
+
+    @keyframes box-moving {
+      0% {
+        top: 0;
+      }
+      50% {
+        top: -18px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+
+    @-moz-keyframes box-moving /* Firefox */
+    {
+      0% {
+        top: 0;
+      }
+      50% {
+        top: -18px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+
+    @-webkit-keyframes box-moving /* Safari ºÍ Chrome */
+    {
+      0% {
+        top: 0;
+      }
+      50% {
+        top: -18px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+
+    @-o-keyframes box-moving /* Opera */
+    {
+      0% {
+        top: 0;
+      }
+      50% {
+        top: -18px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+
+
+    <div class="treasure-chest"><img src="${STATIC_RESOURCES_URL}/img/activity/77/hezi.png" alt="" class="case case3"/></div>

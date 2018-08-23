@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>无标题文档</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+<div class="sideBar">
+  <div id="gudingA">
+    <span style="display: none;" class="txt"><img src="images/guding01.png" alt=""/></span>
+    <span class="ic-arrow-white ic"></span>
+  </div>
+  <div id="gudingB">
+    <span style="display: none;" class="txt">服务热线</span>
+    <span class="ic-fuwu-white ic"></span>
+
+    <div style="display: none;" class="gudingB_l desc">
+      <div>服务热线&nbsp;&nbsp;4000-723-770</div>
+    </div>
+  </div>
+  <div id="gudingC">
+    <span style="display: none;" class="txt">官方微信</span>
+    <span class="ic-weixin-white ic"></span>
+
+    <div style="display: none;" class="gudingC_l desc">
+      <div><img src="./images/qrcode_for_gh_b21a67753f7c_258.jpg"/>
+
+        <p>微信扫一扫</p>
+        <span>关注我们了解更多信息</span>
+      </div>
+    </div>
+  </div>
+  <div id="gudingD">
+    <span style="display: none;" class="txt">意见反馈</span>
+    <span class="ic-yijian-white ic"></span>
+
+    <div class="gudingD_l desc" style="display: none;">
+      <div>
+        <p>客服QQ </p>
+        <span>点击&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进行反馈</span>
+        <a href=""><img src="./images/qqbt.png"/></a>
+        <b>工作日周一到周日 9:00 — 21:00</b>
+      </div>
+    </div>
+  </div>
+  <div id="gudingE">
+    <span style="display: none;" class="txt">我要投稿</span>
+    <span class="ic-tougao-white ic"></span>
+
+    <div class="gudingE_l desc" style="display: none;">
+      <div>
+        <span>投稿邮箱&nbsp;&nbsp;cnanime@yeah.net</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  //  $(function () {
+  //    $("#gudingB").mousemove(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $($(this).children("span")[0]).css("display", "block");
+  //      $($(this).children(".gudingB_l")[0]).css("display", "block");
+  //    })
+  //    $("#gudingB").mouseout(function () {
+  //      $(this).css({"background": "url(./images/guding02.png)"});
+  //      $($(this).children("span")[0]).css("display", "none");
+  //      $($(this).children(".gudingB_l")[0]).css("display", "none");
+  //    })
+
+  //    $("#gudingB").hover(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $(this).find('span:first').show();
+  //      $(this).find('.gudingB_l:first').show().animate({right: '55px'});
+  //    }, function () {
+  //      $(this).css({"background": "url(./images/guding02.png)"});
+  //      $(this).find('span:first').hide();
+  //      $(this).find('.gudingB_l:first').animate({right: '20px'}).hide();
+  //    });
+
+  //    $("#gudingC").mousemove(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $($(this).children("span")[0]).css("display", "block");
+  //      $($(this).children(".gudingC_l")[0]).css("display", "block");
+  //    })
+  //    $("#gudingC").mouseout(function () {
+  //      $(this).css({"background": "url(./images/guding04.png)"});
+  //      $($(this).children("span")[0]).css("display", "none");
+  //      $($(this).children(".gudingC_l")[0]).css("display", "none");
+  //    })
+  //    $("#gudingC").hover(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $(this).find('span:first').show();
+  //      $(this).find('.gudingC_l:first').show().animate({right: '55px'});
+  //    }, function () {
+  //      $(this).css({"background": "url(./images/guding04.png)"});
+  //      $(this).find('span:first').hide();
+  //      $(this).find('.gudingC_l:first').animate({right: '20px'}).hide();
+  //    });
+
+  //    $("#gudingD").mousemove(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $($(this).children("span")[0]).css("display", "block");
+  //      $($(this).children(".gudingD_l")[0]).css("display", "block");
+  //    })
+  //    $("#gudingD").mouseout(function () {
+  //      $(this).css({"background": "url(./images/guding06.png)"});
+  //      $($(this).children("span")[0]).css("display", "none");
+  //      $($(this).children(".gudingD_l")[0]).css("display", "none");
+  //    })
+
+  //    $("#gudingD").hover(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $(this).find('span:first').show();
+  //      $(this).find('.gudingD_l:first').show().animate({right: '55px'});
+  //    }, function () {
+  //      $(this).css({"background": "url(./images/guding06.png)"});
+  //      $(this).find('span:first').hide();
+  //      $(this).find('.gudingD_l:first').animate({right: '20px'}).hide();
+  //    });
+
+
+  //    $("#gudingE").mousemove(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $($(this).children("span")[0]).css("display", "block");
+  //      $($(this).children(".gudingE_l")[0]).css("display", "block");
+  //    })
+  //    $("#gudingE").mouseout(function () {
+  //      $(this).css({"background": "url(./images/guding08.png)"});
+  //      $($(this).children("span")[0]).css("display", "none");
+  //      $($(this).children(".gudingE_l")[0]).css("display", "none");
+  //    })
+
+  //    $("#gudingE").hover(function () {
+  //      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+  //      $(this).find('span:first').show();
+  //      $(this).find('.gudingE_l:first').show().animate({right: '55px'});
+  //    }, function () {
+  //      $(this).css({"background": "url(./images/guding08.png)"});
+  //      $(this).find('span:first').hide();
+  //      $(this).find('.gudingE_l:first').animate({right: '20px'}).hide();
+  //    });
+
+  //  })
+
+
+  $(function () {
+//    $("#gudingC").hover(function () {
+//      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+//      $(this).find('span:first').show();
+//      $(this).find('.gudingC_l:first').show().animate({right: '55px'});
+//    }, function () {
+//      $(this).css({"background": "url(./images/guding04.png)"});
+//      $(this).find('span:first').hide();
+//      $(this).find('.gudingC_l:first').animate({right: '20px'}).hide();
+//    });
+    $(".sideBar>div").hover(function () {
+      $(this).css({"background-color": "#f16a3b", "background-image": "none"});
+      $(this).find('.ic').hide();
+      $(this).find('.txt').show();
+//      $(this).find('span:first').show();
+      $(this).find('.desc').show().animate({right: '55px'});
+    }, function () {
+      $(this).find('.txt').hide();
+      $(this).find('.ic').show();
+//      $(this).find('span:first').hide();
+      $(this).find('.desc').animate({right: '20px'}).hide();
+    });
+  })
+</script>
+</body>
+</html>

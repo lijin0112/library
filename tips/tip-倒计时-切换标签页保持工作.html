@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<!--
+倒计时的js， 在浏览器切换页面后不动了，再切换回去的时候才重新倒计时。
+以下解决这个问题
+-->
+距开投仅剩：<span class="txttimeshow" id="txttimeshow"></span>
+<span id="txttime" class="txttime hide">84600</span>
+<script src="http://teststatic.wjdai.com/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+  $(function(){
+    fill2=function(a){
+      var s = ""+a;
+      return s.length<2?"0"+a:s;
+    };
+
+    var _tn = 0, _ts = 0, t_t=0;
+
+    txttimeshow = function(mt){
+      var ms = parseInt(mt%1000/10);
+      mt=parseInt(mt/1000);
+      var s = mt%60;
+      mt=parseInt(mt/=60);
+      var m = mt%60;
+      mt=parseInt(mt/=60);
+      var h = mt%24;
+      d=parseInt(mt/24);
+      if(d<1){
+        $(".txttimeshow").html('<span style="color: rgb(25, 25, 55); " class="txtime">'
+          +fill2(h)+':'+fill2(m)+':'+fill2(s)+':'+fill2(ms)+'</span>');
+      }else{
+        $(".txttimeshow").html('<span style="color: red;" class="txtime">'
+          +d+'天'+fill2(h)+'小时'+fill2(m)+'分</span>');
+      }
+    };
+
+    var v_t = parseInt($(".txttime").text()+"000");
+    _ts = new Date();
+    txttimeshow(v_t);
+    $(".txttime").text(v_t);
+
+    setInterval(function(){
+      var t = parseInt($(".txttime").text()), _tn = new Date();
+      t=t-_tn.getTime()+_ts.getTime();
+      t=t<0?0:t;
+      if(t<=10){
+        $('#borrowRemindShow').hide();
+        $('#borrowRemindSettedShow').hide();
+        $('#activityIsClosedBegin').hide();
+        $('#show').show();
+        $('#_count_invest_time').hide();
+      }else if(t<210*1000){
+        $('#borrowRemindShow').hide();
+        $('#borrowRemindSettedShow').hide();
+        $('#activityIsClosedBegin').show();
+        $('#show').hide();
+      }
+      txttimeshow(t);
+    },10);
+  });
+</script>
+</body>
+</html>

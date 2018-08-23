@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+	<style>
+.pay_list_c1 {
+width: 24px;
+height: 18px;
+float: left;
+padding-top: 3px;
+cursor: pointer;
+text-align: center;
+margin-right: 10px;
+background-image: url(http://teststatic.wjdai.com/img/mycount/autoInvest/rb2.png);
+background-repeat: no-repeat;
+background-position: -24px 0;
+}
+.radioclass {
+opacity: 0;
+cursor: pointer;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+filter: alpha(opacity=0);
+}
+.on {
+background-position: 0 0;
+}
+
+
+input[type="radio"] {
+  margin: 3px 3px 0px 5px;
+  display: none;
+}
+
+label {
+  padding-left: 25px;
+  cursor: pointer;
+  background:
+    url(http://teststatic.wjdai.com/img/mycount/autoInvest/rb1.png)
+    no-repeat left;
+  margin-right: 20px;
+}
+
+label.checked {
+  background:
+    url(http://teststatic.wjdai.com/img/mycount/autoInvest/rb2.png)
+    no-repeat left;
+  background-position: left;
+}
+	</style>
+ </head>
+ <body>
+  <span class="pay_list_c1 on">
+<input type="radio" checked="checked" name="paylist" value="1" class="radioclass">
+</span>
+
+
+  <input type="radio" id="hb" checked="checked" name="firstusing" value="0">
+  <label name="hb" class="checked" for="hb">红包</label>
+  <input type="radio" id="jxq" name="firstusing" value="1">
+  <label name="jxq" for="jxq">加息券</label>
+ </body>
+ <script src="http://teststatic.wjdai.com/js/jquery-1.10.2.min.js"></script>
+ <script>
+ 
+  $('label').click(function(){ //优先使用优惠
+    var radioId = $(this).attr('name');
+    $('label').removeAttr('class') && $(this).attr('class', 'checked');
+    $('input[type="radio"]').removeAttr('checked') && $('#' + radioId).attr('checked', 'checked');
+  });
+ </script>
+</html>
