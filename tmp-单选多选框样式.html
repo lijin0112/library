@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="Li">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>自定义 checkbox/radio 选中框样式</title>
+  <style>
+    input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<input type="radio" name="area-chose" id="small" value="small" data-role="none" checked="checked"/>
+<label for="small">
+  <div>
+    <i class="icon iconfont  checked">&#xe604;</i>
+
+    <div class="radio"></div>
+  </div>
+  小于15平方厘米
+</label>
+<input type="radio" name="area-chose" id="large" value="large" data-role="none"/>
+<label for="large">
+  <div>
+    <i class="icon iconfont">&#xe604;</i>
+
+    <div class="radio"></div>
+  </div>
+  大于15平方厘米
+</label>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+  //单选框切换
+  $("#need label").on("click", function () {
+    var value = $(this).attr("for");
+    $("i").removeClass("checked") && $(this).find("i").addClass("checked");
+    $("input[name='area-chose']").removeAttr("checked") && $("#" + value).attr("checked", "checked");
+  });
+
+</script>
+</body>
+</html>
