@@ -1,0 +1,35 @@
+@base: #f938ab;
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  box-shadow: @style @c;
+  -webkit-box-shadow: @style @c;
+  -moz-box-shadow: @style @c;
+}
+
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+
+.box {
+  color: saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div {
+    .box-shadow(0 0 5px, 30%)
+  }
+}
+
+// 通过递归实现循环
+.generate-columns(7);
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  　　.logo span:nth-child(@{i}) {
+    transform: scale(85.9, 1) rotatey(95.9 - @i * 10);
+    //width: (@i * 100% / @n);
+  }
+  .generate-columns(@n, (@i + 1));
+}
+
+@counter: 7;
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1)); // 递归调用自身
+  width: (10px * @counter); // 每次调用时产生的样式代码
+}

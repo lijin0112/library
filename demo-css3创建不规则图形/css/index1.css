@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+/*
+Name: YAN秀个人博客
+URI:  http://www.91yanxiu.com/
+Description: 做网站请认准YAN秀博客(91yanxiu.com)
+Author: 艳秀
+Author URI: http://www.91yanxiu.com/
+Author QQ: 863430562
+Author TEL: 13767133971
+
+样式。如要转载或复制，请注明出处
+*/
+
+.square{ width: 100px; height: 100px; background: #fff;}
+.square-round-one{ width: 100px; height: 100px; background: #fff; -webkit-border-top-left-radius: 50%; border-top-left-radius: 50%;}
+.square-round-two{ width: 100px; height: 100px; background:#fff; -webkit-border-radius: 50% 0 50% 0;border-radius: 50% 0 50% 0;}
+.square-round-three{ width: 100px; height: 100px; background:#fff; -webkit-border-radius: 50% 0 50% 50%;border-radius: 50% 0 50% 50%;}
+.square-round-half{ width: 100px; height: 100px; background: #fff; -webkit-border-radius: 0 50% 50% 0;border-radius: 0 50% 50% 0;}
+.circle{ width: 100px; height: 100px; background: #fff; -webkit-border-radius: 50%; border-radius:50%;}
+.diamond{ width: 100px; height: 100px; background:#fff; -webkit-transform: rotate(45deg); transform: rotate(45deg); -webkit-border-radius: 5%;border-radius: 5%;}
+.diamond-cut{border-color:transparent transparent #fff transparent; border-width:0 25px 25px 25px; border-style: solid; position: relative;}
+.diamond-cut::after{content: "";border-color:#fff transparent transparent transparent;border-style: solid;border-width:75px 50px 0 50px ;position: absolute; top: 25px; left: -25px;}
+.rhombus{ border-color:transparent transparent #fff  transparent; border-style: solid; border-width:50px; border-bottom-width:70px; border-top-width: 0; position: relative; top:-30px;}
+.rhombus::after{ content: ""; border-color:#fff transparent transparent transparent; border-style: solid; border-width:50px; border-top-width:70px; border-bottom-width:0; position: absolute;top:70px; left:-50px;}
+.trapezoid{ width: 100px; margin-left:-35px ; border-bottom: 70px solid #fff; border-left: 35px solid transparent; border-right: 35px solid transparent;}
+.pentagon{ width: 70px; position:relative; top:40px; left:0px;border-top: 50px solid #fff; border-left: 18px solid transparent; border-right:18px solid transparent;}
+.pentagon::after{ content: ""; border-color: transparent transparent #fff; border-style: solid;  border-width: 0 55px 50px;  position: absolute; top:-100px; left:-20px;}
+.hexagon{ width: 100px; height: 50px; background: #fff; position: relative; margin-top: 25px;}
+.hexagon::before{  content: ""; border-color: transparent transparent #fff; border-style: solid; border-width: 0 50px 35px; position: absolute; top:-35px;  }
+.hexagon::after{ content: ""; border-color: #fff transparent transparent; border-style: solid; border-width:35px 50px 0; position: absolute; top:50px;} 
+.octagon{ width: 100px; height: 50px; background: #fff; position: relative; margin-top: 25px;}		
+.octagon::before{content: ""; height:0px; width:50px; position:absolute; margin-top: -25px; border-bottom: 25px solid #fff;border-left:25px solid #1c1c1c; border-right:25px solid #1c1c1c; }	
+.octagon::after{ content:""; height: 0; width: 50px; position: absolute; margin-top: 50px; border-top: 25px solid #fff; border-left: 25px solid #1c1c1c; border-right: 25px solid #1c1c1c;}
+.rectangle{ width: 100px; height: 50px; margin-top: 20px; background:#fff;}
+.parallelogram-left{ width: 100px; height: 50px; margin-top: 20px; background:#fff; -webkit-transform: skew(20deg); transform: skew(20deg);}
+.parallelogram-right{ width: 100px; height: 50px; margin-top: 20px; background: #fff; -webkit-transform: skew(-20deg); transform: skew(-20deg);}
+.heart{ width: 100px; height: 100px; position: relative; margin-left: -10px;}
+.heart::before,.heart::after{ content: ""; width: 60px; height: 100px; background:#ff6666; position: absolute; top:0; left:60px; border-radius: 50px 50px 0 0;-webkit-transform: rotate(-45deg); transform: rotate(-45deg); -webkit-transform-origin: 0 100%; transform-origin: 0 100%;}
+.heart::after{ position:absolute; left:20px; top:-40px;-webkit-transform: rotate(45deg); transform: rotate(45deg); -webkit-transform-origin: 0 100%; transform-origin: 0 100%; }
+.triangle{ width: 0; border-color: transparent transparent #fff; border-style: solid; border-width: 0 50px 100px; }
+.triangle-down{ width: 0; border-color: #fff transparent transparent; border-style: solid; border-width: 100px 50px 0;}
+.triangle-left{ width: 0; border-color: transparent #fff transparent transparent ; border-style: solid; border-width: 50px 100px 50px 0;}
+.triangle-right{ width: 0; border-color: transparent transparent transparent #fff; border-style: solid; border-width: 50px 0 50px 100px;}
+.triangle-left-top{ width: 0; border-color: #fff transparent transparent #fff; border-style: solid; border-width: 50px; }
+.triangle-right-top{ width: 0; border-color:#fff #fff transparent transparent; border-style: solid; border-width:50px;}
+.triangle-left-bottom{ border-color: transparent transparent #fff #fff; border-style: solid; border-width: 50px;}
+.triangle-right-bottom{ border-color: transparent #fff #fff transparent; border-style: solid; border-width: 50px;}
+.arrow-up{ width: 0; border-color: transparent transparent #fff; border-style: solid; border-width: 0 45px 50px; position: relative; margin-top: -5px; margin-left: 10px;}
+.arrow-up::after{ content: ""; width: 35px; height: 70px; background: #fff; position: absolute; top: 30px; left: -18px;}
+.arrow-down{ width: 0; border-color: #fff transparent transparent; border-style: solid; border-width: 50px; position: relative; top:50px;}
+.arrow-down::after{ content: ""; width: 35px; height: 70px; background: #fff; position: absolute; bottom:25px; left:-18px;}
+.arrow-left{ width: 0; border-color: transparent #fff transparent transparent; border-style: solid; border-width: 50px; position: relative;right:60px;} 
+.arrow-left::after{ content: ""; width: 75px; height:35px; background: #fff; position: absolute; top: -17px; left: 25px;}
+.arrow-right{ width: 0; border-color: transparent transparent transparent #fff; border-style: solid; border-width: 50px; position: relative; left: 60px;}
+.arrow-right::after{ content: ""; width: 75px; height: 35px; background:#fff; position: absolute; top: -17px; right:25px ;}
+.circle-spin-half{ width: 60px; height: 60px; background: transparent; border-color: transparent transparent #fff #fff; border-style: solid; border-width: 20px; border-radius: 50%; -webkit-animation:circle-spin-half 1.2s linear infinite; animation:circle-spin-half 1.2s linear infinite;}
+@-webkit-keyframes circle-spin-half{
+	0%{-webkit-transform: rotate(0deg);} 
+	100%{-webkit-transform: rotate(360deg);}
+}
+@keyframes circle-spin-half{
+	0%{transform: rotate(0deg);} 
+	100%{transform: rotate(360deg);}
+}
+.oval{ width: 100px; height:50px; border-radius: 50%; background:#fff; margin-top: 20px;}
+.circle-half-top{  width:100px; height:50px; background:#fff; border-radius: 100px 100px 0 0;}
+.circle-half-bottom{ width: 100px; height: 50px; background: #fff; border-radius: 0 0 100px 100px; margin-top: 50px;}
+.circle-half-left{ width: 50px; height: 100px; background: #fff; border-radius: 100px 0 0 100px;}
+.circle-half-right{ width: 50px; height: 100px; background: #fff; border-radius: 0 100px 100px 0; margin-left: 50px;}
+.circle-left-top{ width: 100px; height: 100px; background:#fff; border-top-left-radius:100%;}
+.circle-right-top{ width: 100px; height: 100px; background: #fff; border-top-right-radius: 100%;}
+.circle-left-bottom{ width: 100px; height: 100px; background: #fff; border-bottom-left-radius: 100%;}
+.circle-right-bottom{ width: 100px; height: 100px; background: #fff; border-bottom-right-radius: 100%;}
+.circle-quarter-left-top{  border-color: #fff transparent transparent transparent; border-style: solid; border-width: 100px; border-radius: 100%; margin-left:-50px;}
+.circle-quarter-right-top{ border-color: transparent #fff transparent transparent; border-style: solid; border-width: 100px;  border-radius: 100%; margin-left: -100px; margin-top: -50px;}
+.circle-quarter-bottom{ border-color: transparent transparent #fff; border-style: solid; border-width:0 100px 100px; border-radius: 100%; margin-left: -50px;}
+.circle-quarter-left{ border-color:transparent transparent transparent #fff; border-style: solid; border-width: 80px 0 80px 100px; border-radius: 100%; margin-top: -35px;}
+.circle-wedge-top{border-color: transparent #fff #fff; border-style: solid; border-width: 50px; border-radius: 100%;}
+.circle-wedge-right{ border-color: #fff transparent #fff #fff; border-style: solid; border-width: 50px; border-radius: 100%;}
+.circle-wedge-bottom{ border-color: #fff #fff transparent #fff; border-style: solid; border-width: 50px; border-radius: 100%;}
+.circle-wedge-left{ border-color: #fff #fff #fff transparent; border-style: solid; border-width: 50px; border-radius: 100%;}
+.flower{ width: 100px; height: 100px; background: #fff; border-radius:20%;}
+.flower::before{ content: ""; width: 100px; height: 100px; background: #fff; border-radius: 20%; position: absolute; -webkit-transform: rotate(45deg); transform: rotate(45deg);}
+/*用定位是把添加的元素转化成块级元素，也可以使用display：block;*/
+.star-six{ width: 0; border-color: transparent transparent #fff; border-style: solid; border-width:0 50px 80px; position: relative;}
+.star-six::after{ content: ""; border-color:#fff transparent transparent; border-style: solid; border-width: 80px 50px 0; position: absolute; left: -50px; top: 25px;}
+.star-eight{border-color: #fff transparent #fff transparent; border-style: solid; border-width: 20px; margin-top: 30px; position: relative;}
+.star-eight::after{ content: ""; border-color:transparent #fff transparent #fff;border-style: solid; border-width: 20px; position: absolute; height: 60px; top:-50px; left: 10px; }
+.star-twelve{ width: 100px; height: 100px; background: #fff; position: relative;}
+.star-twelve::before,.star-twelve::after{ content:"";width: 100px; height: 100px; background: #fff; position: absolute; -webkit-transform: rotate(30deg); transform: rotate(30deg);}
+.star-twelve::after{ -webkit-transform: rotate(-30deg);transform: rotate(-30deg);}
+.cross{ width: 35px; height: 100px; background: #fff; position: relative; margin-left: 30px; -webkit-transform: rotate(45deg); transform: rotate(45deg); }
+.cross::after{ content: ""; width: 35px; height: 100px; background: #fff; position: absolute; -webkit-transform: rotate(-90deg); transform: rotate(-90deg);}
+.cross-round{background: #ffffff;width: 33px;height: 100px;position: relative;margin-left: 33px;border-radius: 20px;-webkit-transform: rotate(45deg);transform: rotate(45deg);}
+.cross-round:before {background: #ffffff;content: "";width: 100px;height: 33px;position: absolute;top: 33px;left: -33px;border-radius: 20px;}
+/*两个cross cross-round 两个方式不同，宽高是相反的*/
+.plus{ width: 33px; height: 100px; background: #fff; position: relative; left: 33px;}
+.plus::after{ content: ""; width: 100px; height: 33px; background: #fff; position: absolute; top: 33px; left: -33px;}
+.plus-round{ width: 33px; height: 100px; background: #fff; border-radius: 20px; margin-left: 33px; position: relative;}
+.plus-round::after{ content: ""; width: 100px; height: 33px; background: #fff; border-radius: 20px; position: absolute; left: -33px; top:33px;}
+.search{ width: 35px; height: 35px; border-radius: 50%;border:8px solid #fff; position:relative; margin-left: 20px; margin-top: 20px;}
+.search::after{ width:10px; height:30px; content: ""; background: #fff; position: absolute;top:25px; left: 40px; -webkit-transform: rotate(-45deg); transform: rotate(-45deg);}
+.map-pin{ width: 30px; height:30px; border:15px solid #fff; border-radius: 50%; margin-left:20px; margin-top: 10px; position: relative;}
+.map-pin::after{ content: "";border-color:#fff transparent transparent; border-style: solid; border-width:35px 25px 0; position: absolute; top:32px; left: -10px;}
+.callout{ width: 100px; height:50px;background: #fff; border-radius: 10px; position: relative; margin-top:20px;}
+.callout::after{ content: ""; border-color: transparent #fff transparent transparent; border-style: solid; border-width:10px 15px 10px 0; position: absolute; left:-15px; top:15px;}
+.yinyang{ width: 96px; height: 48px; border: 2px solid #fff; border-radius: 50%; background: #000; border-width: 2px 2px 50px 2px; position: relative;-webkit-animation: circle-spin-half 1.2s linear infinite; animation: circle-spin-half 1.2s linear infinite;}
+.yinyang::before{ content: ""; position: absolute; width: 12px; height: 12px; background: #000;  border-radius: 50%; top:50%;left:0; border: 18px solid #fff;}
+.yinyang::after{ content: ""; position: absolute; width: 12px; height: 12px; background: #fff; border-radius: 50%;border:18px solid #000; left:50%; top: 50%; }
+.iphone{ width:40px; height: 60px; border-width: 15px 5px; border-color:#fff; border-style: solid; border-radius: 5px; position: relative; margin-left: 20px; margin-top:10px;}
+.iphone::before{ content: ""; position: absolute; width: 15px; height: 5px; background: #000; top:-10px; left:13px;}
+.iphone::after{ content: ""; position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #000; bottom:-13px;left: 14px;}
+.bookmark{width: 0; height: 70px; border-left: 25px solid #fff; border-right: 25px solid #fff; border-bottom: 25px solid transparent; margin-left: 25px;}
+.battery{ width:50px; height: 30px; background: #fff; position: relative; margin-top: 20px;}
+.battery::after{ content: ""; position: absolute; top:-15px; left:-15px; width: 80px; height: 50px; border: 5px solid #fff; border-radius: 5px;}
+.battery::before{ content: ""; position: absolute; width: 10px; height: 15px; border: 5px solid #fff; border-radius: 5px; right:-40px; top:5px;}
+.eye{ width: 70px; height: 70px; position: relative; background: #fff; border-radius: 50% 0 50% 0; -webkit-transform: rotate(45deg); transform: rotate(45deg);}
+.eye::after{ content: ""; position: absolute; width: 20px; height: 20px; background: #fff; border-radius: 50%; border:10px solid #000; top:15px; left: 15px;}

@@ -1,0 +1,33 @@
+.logo {
+  perspective: 1000px;
+  perspective-origin: 50% 0;
+  font-size: 8em;
+  display: inline-flex;
+
+  span {
+    font-family: impact;
+    display: block;
+
+    @counter:7;
+    .loop(@counter) when (@counter > 0) {
+      .loop((@counter - 1));    // 递归调用自身
+      width: (10px * @counter); // 每次调用时产生的样式代码
+    }
+
+    $letters: 7;
+  @for $i from 1 through $letters {
+    $offset: $i - ceil($letters / 2);
+    $trans: if($offset > 0, -89.5deg, 89.5deg);
+
+    &:nth-child(#{$i}) {
+      // trans/de-form the letters         transform-origin: 50% + 50%/$offset 200%;
+      font-size: if($offset == 0,
+      0.85em,
+        0.9em + 0.015*pow(abs($offset),2));
+      transform:
+      if($offset == 0, scale(1, 1), scale(95.9 - abs($offset) * 10, 1))
+      if($offset == 0, translatey(0%), rotatey($trans));
+    }
+  }
+  }
+}

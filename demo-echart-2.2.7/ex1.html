@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height:400px;width:60%;margin: auto;"></div>
+<div style="width:100%;height: 100%; background: #494E61;">
+    <div id="main2" style="height:400px;width:60%;"></div>
+</div>
+<div style="width:60%;margin: auto;height: 100%; background: #494E61;">
+    <div id="main3" style="height:400px;width:60%;"></div>
+</div>
+<!-- ECharts单文件引入 -->
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script type="text/javascript">
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+
+    // 使用
+    require(
+        [
+            'echarts',
+            'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+            'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main'));
+            var myChart2 = ec.init(document.getElementById('main2'));
+            var myChart3 = ec.init(document.getElementById('main3'));
+
+            var option = {
+                tooltip: {
+                    show: true
+                },
+                legend: {
+                    data: ['累计成交额']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ["截止到2017年5月", "截止到2017年6月", "截止到2017年7月"]
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        "name": "销量",
+                        "type": "bar",
+                        "data": [878835277, 924487277, 976374277]
+                    }
+                ]
+            };
+
+            var option2 = {
+                legend: {
+                    orient: 'vertical',
+                    x: '80%',
+                    y: '45%',
+                    data: [{name: '90后', icon: "bar"},
+                        {name: '80后', icon: "bar"},
+                        {name: '70后', icon: "bar"},
+                        {name: '60后', icon: "bar"},
+                        {name: '其他', icon: "bar"}],
+                    textStyle: {color: 'grey'}
+                },
+                /*tooltip : {
+                 trigger: 'item',
+                 formatter: "{b}"
+                 }, */
+                color: ['#FBBB51', '#C132A4', '#FC6A6B', '#5DA0E4', '#00DCE4'],
+                series: [
+                    {
+                        name: '',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['40%', '50%'],
+                        data: [
+                            {value: 2266, name: '90后'},
+                            {value: 3068, name: '80后'},
+                            {value: 2152, name: '70后'},
+                            {value: 1655, name: '60后'},
+                            {value: 859, name: '其他'}
+                        ],
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,
+                                    position: 'inner',
+                                    // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                                    formatter: "{d}%",
+                                    distance: 0.65
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                    position: 'inner',
+                                    formatter: "{d}%",
+                                    distance: 0.65
+                                    // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                                },
+                                labelLine: {show: false}
+                            }
+                        }
+                    }
+                ]
+
+            };
+
+
+            var option3 = {
+                /*tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {
+                        type : 'none'
+                    }
+                },*/
+                xAxis: [
+                    {
+                        type: 'value',
+                        boundaryGap: [0, 0.1],
+                        axisLine: false,
+                        axisTick: false,
+                        axisLabel: false,
+                        splitLine: false,
+                        splitArea: false
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: [0.3, 0.3],
+                        data: ['其余地区', '四川', '河北', '河南', '湖南', '福建', '湖北', '浙江', '江苏', '安徽'],
+                        axisLine: false,
+                        axisTick: false,
+                        splitLine: false,
+                        splitArea: false,
+                        axisLabel: {
+                            textStyle: {color: "#fff"}
+                        }
+                    }
+                ],
+                grid: {borderWidth: 0},
+                color: ['#FE686C'],
+                series: [
+                    {
+                        name: '2011年',
+                        type: 'bar',
+                        barWidth: 15,
+                        itemStyle: {normal: {label: {show: true, position: 'right',formatter: "{c}%", textStyle: {color: "#fff"}}}},
+                        data: [27.31, 3.79, 4.13, 4.50, 4.65, 4.72, 5.29, 7.51, 10.94, 27.16]
+                    }
+                ]
+            };
+
+            // 为echarts对象加载数据
+            myChart.setOption(option);
+            myChart2.setOption(option2);
+            myChart3.setOption(option3);
+        }
+    );
+
+
+    option = {
+        legend: {
+            orient: 'vertical',
+            x: 'right',
+            y: 'bottom',
+            data: ['90后', '80后', '70后', '60后', '其他'],
+            textStyle: {color: 'grey'},
+
+        },
+        color: [
+            '#FBBB51',
+            '#C132A4',
+            '#FC6A6B',
+            '#5DA0E4',
+            '#00DCE4'],
+        series: [
+            {
+                name: 'xxx',
+                type: 'pie',
+                radius: '55%',
+                center: ['40%', '50%'],
+                data: [
+                    {value: 2266, name: '22.66%'},
+                    {value: 3068, name: '30.68%'},
+                    {value: 2152, name: '21.52%'},
+                    {value: 1655, name: '16.55%'},
+                    {value: 859, name: '8.59%'}
+                ],
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            position: 'inner'
+                            // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                        },
+                        labelLine: {
+                            show: false,
+                            distance: 1,
+                        }
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            position: 'inner'
+                            // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                        },
+                        labelLine: {
+                            show: false,
+                            distance: 1,
+                        }
+                    }
+                }
+            }
+        ],
+
+    };
+</script>
+</body>

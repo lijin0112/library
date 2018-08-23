@@ -1,0 +1,31 @@
+.box {
+  color: #fe33ac;
+  border-color: #fdcdea;
+}
+.box div {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.logo span:nth-child(1) {
+  transform: scale(85.9, 1) rotatey(85.9);
+}
+.logo span:nth-child(2) {
+  transform: scale(85.9, 1) rotatey(75.9);
+}
+.logo span:nth-child(3) {
+  transform: scale(85.9, 1) rotatey(65.9);
+}
+.logo span:nth-child(4) {
+  transform: scale(85.9, 1) rotatey(55.9);
+}
+.logo span:nth-child(5) {
+  transform: scale(85.9, 1) rotatey(45.9);
+}
+.logo span:nth-child(6) {
+  transform: scale(85.9, 1) rotatey(35.9);
+}
+.logo span:nth-child(7) {
+  transform: scale(85.9, 1) rotatey(25.9);
+}
+/*# sourceMappingURL=test.css.map */

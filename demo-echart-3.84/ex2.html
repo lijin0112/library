@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>ECharts</title>
+  <script></script>
+</head>
+
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="display:none;height:400px;width:60%;margin: auto;"></div>
+<div style="display:none;width:100%;height: 100%; background: #494E61;">
+  <div id="main2" style="height:400px;width:60%;"></div>
+</div>
+<div style="display:none;width:60%;margin: auto;height: 100%; background: #494E61;">
+  <div id="main3" style="height:400px;width:60%;"></div>
+</div>
+<div id="map-wrap" style="height: 500px;background: #494E61;">
+  <!-- 这里以后是地图 -->
+  <div id="main4" style="height:450px;width:600px"></div>
+</div>
+<!-- 引入 echarts.js -->
+<!--<script src="echarts.js"></script>-->
+<!--<script src="echarts.min_x.js"></script>-->
+<script src="https://www.yilonghc.cn/statics/front/3.5/aboutus/js/echarts.min.js"></script>
+<!--<script src="https://www.yilonghc.cn/statics/front/3.5/aboutus/js/china.js"></script>-->
+<script src="china.js"></script>
+<script type="text/javascript">
+
+  // 基于准备好的dom，初始化echarts图表
+</script>
+<script>
+  //地图
+  var myChart4 = echarts.init(document.getElementById('main4'));
+  var option4 = {
+    // backgroundColor: '#404a59',
+    title: {
+      text: '地域占比',
+      //subtext: '注：按出借人数统计',
+      // sublink: 'http://www.pm25.in',
+      left: 'center',
+      top: '70px',
+      textStyle: {
+        color: '#fff'
+      }
+    },
+    tooltip: {
+      trigger: 'item',
+      show: true
+    },
+    backgroundColor: '#fff',  		// 图表背景色
+    itemStyle: {					// 定义样式
+      normal: {					// 普通状态下的样式
+        areaColor: '#323c48',
+        borderColor: '#111'
+      },
+      emphasis: {					// 高亮状态下的样式
+        areaColor: '#2a333d'
+      }
+    },
+    series: [
+
+      {
+        name: '中国',
+        type: 'map',
+        mapType: 'china',
+        selectedMode: 'multiple',
+        symbolSize: 10,
+        color: '#f4e925',
+        itemStyle: {
+          normal: {
+            areaColor: 'rgba(89,97,138,0.3)',
+            borderColor: '#111',
+            color: '#f4e925',
+          },
+          emphasis: {
+            areaColor: 'rgba(22,22,138,0.3)',
+            color: '#f4e925',
+          }
+        },
+        label: {
+          normal: {
+            show: false
+
+          },
+          emphasis: {
+            show: false
+          },
+        },
+
+        data: [
+
+          {name: '北京', selected: true, itemStyle: {normal: {areaColor: '#c3b521'}, emphasis: {areaColor: '#c3b521'}}}, {
+            name: '河北',
+            selected: true,
+            itemStyle: {normal: {areaColor: '#ce301b'}, emphasis: {areaColor: '#ce301b'}}
+          }, {name: '辽宁', selected: true, itemStyle: {normal: {areaColor: '#2c80c0'}, emphasis: {areaColor: '#2c80c0'}}}, {
+            name: '山东',
+            selected: true,
+            itemStyle: {normal: {areaColor: '#777'}, emphasis: {areaColor: '#777'}}
+          }, {name: '江苏', selected: true, itemStyle: {normal: {areaColor: '#777'}, emphasis: {areaColor: '#777'}}}, {
+            name: '其它',
+            selected: true,
+            itemStyle: {normal: {areaColor: '#777'}, emphasis: {areaColor: '#777'}}
+          },]
+      }
+    ]
+  };
+
+  myChart4.setOption(option4);
+</script>
+</body>

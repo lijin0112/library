@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="full-screen" content="yes">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport">
+  <title></title>
+  <link rel="stylesheet" href="a/css/reset.css">
+  <link rel="stylesheet" href="http://static.wjdai.com/css/common.css">
+  <style>
+    body {
+      font-size: 100%;
+    }
+
+    .svg-defs {
+      position: absolute;
+    }
+
+    .svg-tests {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 320px;
+      height: 300px;
+      margin-top: 2%;
+    }
+
+    .rect-1,
+    .rect-2 {
+      font: bold 5em/1 Georgia;
+      fill: url(#p-stripes);
+      /*fill: url(#v-gradient);*/
+    }
+
+    .svg-text {
+      font: bold 2.6em/1 Georgia;
+    }
+
+    .text-1, .text-2 {
+      font-size: 18px;
+    }
+
+    .text-2 {
+      fill: url(#p-stripes2);
+    }
+
+    .text-1 {
+      fill: url(#p-stripes);
+    }
+
+  </style>
+
+  <style>
+    .app {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+    }
+
+    .app.p2-bg {
+      background-image: url(5.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      /*background-position: left center;*/
+    }
+
+    .p2-img {
+      font-size: 0;
+      position: absolute;
+    }
+
+    .p2-img-belt {
+      top: 34%;
+      right: 0;
+    }
+
+    .p2-img-top-person {
+      width: 10%;
+      top: 25%;
+      right: 53%;
+      display: none;
+    }
+
+    .p2-img-qm {
+      width: 10%;
+      top: 25%;
+      right: 53%;
+    }
+
+    .p2-img-groundfloor-person {
+      width: 60%;
+      top: 60%;
+      right: 20%;
+    }
+
+    .p2-img-firstfloor1, .p2-img-firstfloor2 {
+      width: 25%;
+      top: 40%;
+      right: 2%;
+    }
+
+    .p2-img-firstfloor2 {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+<div class="all full-x">
+    <svg class="svg-defs">
+      <g>
+      </g>
+    </svg>
+
+    <svg class="svg-tests">
+
+      <defs>
+        <path id="MyPath1"
+              d="M 0 200              A100,110 0 0,1              320,200"
+              transform="scale(.6)"/>
+
+        <path id="MyPath2" fill="none" stroke="#133"
+              d="M 0 200              A100,110 0 0,1              320,200"
+              transform="scale(.9)"></path>
+
+        <pattern id="p-stripes" patternUnits="userSpaceOnUse"
+                 width="200" height="200"
+                 viewbox="0 0 200 200">
+          <rect width="200" height="200" fill="#344260"/>
+        </pattern>
+
+        <pattern id="p-stripes2" patternUnits="userSpaceOnUse"
+                 width="200" height="200"
+                 viewbox="0 0 200 200">
+          <rect width="200" height="200" fill="#344260"/>
+        </pattern>
+      </defs>
+
+      <text class="svg-text text-1" transform="translate(40 46)">
+        <textPath xlink:href="#MyPath1">2015年11月22日加入万家贷这个大家庭
+          <animate id="time1" attributeName="startOffset" values="100%;100%;100%;100%;1%" begin="0" dur="5s"
+                   fill="freeze"></animate>
+        </textPath>
+      </text>
+
+    </svg>
+
+  </div>
+
+
+</div>
+</body>
+<script src="../js/jquery-1.11.3.js"></script>
+<script>
+  $(function () {
+//    if ( $("#time1")[0]) {
+//      setTimeout(animate, 2200);
+//    }
+  })
+  function animate(){
+    $("#time1")[0].beginElement();
+  }
+</script>
+</html>

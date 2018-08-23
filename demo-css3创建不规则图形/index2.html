@@ -1,0 +1,594 @@
+<!--页面布局。如要转载或复制，请注明出处。详情请咨询QQ:863430562-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用CSS3制作各种形状的图形</title>
+<meta name="Keywords" content="个人博客,YAN秀的个人博客,艳秀的个人博客,艳秀博客，网站模板,前端知识,网站特效,YAN秀,艳秀" />
+<meta name="Description" content="YAN秀个人博客,是一个正在web前端设计之路努力前行的个人网站,提供网站模板,网站特效,前端知识等免费资源下载,前端知识归纳总结,jq、js特效详解的原创网站。" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+<link href="css/index2.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script src="http://cdn.bootcss.com/html5shiv/3.7/html5shiv.min.js"></script>
+<script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+
+<div class="container">
+	<h1>如何在CSS创建不同的形状</h1>
+	<p>下面我介绍你可以用CSS的几何图形。希望这个小资源将帮助网页设计师和开发人员来创建CSS形状对他们的项目。</p>
+	
+    <section>
+    	<h2>Circle</h2>
+       	<div id="circle"></div>
+        <div class="code">
+        	<pre>
+    #circle {
+        width: 120px;
+        height: 120px;
+        background: #7fee1d;
+        -webkit-border-radius: 60px;
+        -moz-border-radius: 60px;
+        border-radius: 60px;
+    }				
+		 	</pre>
+         </div>
+	</section>
+
+    <section>
+    	<h2>Square</h2>
+		<div id="square"></div>
+		<div class="code">
+        	<pre>
+	#square { 
+        width: 120px;
+        height: 120px;
+    	background: #f447ff; 
+    }				
+			</pre>
+        </div>
+    </section>
+
+    <section>
+    	<h2>Rectangle</h2>
+        <div id="rectangle"></div>
+        <div class="code">
+        	<pre>
+    #rectangle { 
+        width: 220px;
+        height: 120px;
+        background: #4da1f7; 
+    }  
+			</pre>
+        </div>
+   	</section>
+    
+    <section>
+    	<h2>Oval</h2>
+        <div id="oval"></div>
+        <div class="code">
+        	<pre>
+    #oval {
+        width: 200px;
+        height: 100px;
+        background: #e9337c;
+        -webkit-border-radius: 100px / 50px;
+        -moz-border-radius: 100px / 50px;
+        border-radius: 100px / 50px;
+    }     
+			</pre>
+        </div>
+   	</section>
+
+	<section>
+    	<h2>Triangle</h2>
+        <div id="triangle"></div>
+        <div class="code">
+        	<pre>
+    #triangle{
+       width: 0; 
+       height: 0;  
+       border-bottom: 140px solid #fcf921; 
+       border-left: 70px solid transparent; 
+       border-right: 70px solid transparent; 
+    }   
+			</pre>
+        </div>
+	</section>
+
+	<section>
+        <h2>Triangle Down</h2>
+        <div id="triangle_down"></div>
+		<div class="code">
+            <pre>
+    #triangle_down {
+        width: 0;
+        height: 0;
+        border-top: 140px solid #20a3bf;
+        border-left: 70px solid transparent;
+        border-right: 70px solid transparent;
+    }              
+			</pre>
+    	</div>
+    </section>
+
+    <section>
+        <h2>Triangle Left</h2>
+        <div id="triangle_left"></div>
+		<div class="code">
+            <pre>
+    #triangle_left {
+        width: 0;
+        height: 0;
+        border-top: 70px solid transparent;
+        border-right: 140px solid #6bbf20;
+        border-bottom: 70px solid transparent;
+    }                   
+			</pre>
+		</div>
+    </section>
+
+	<section>
+        <h2>Triangle Right</h2>
+		<div id="triangle_right"></div>
+		<div class="code">
+            <pre>               
+    #triangle_right{
+        width: 0;
+        height: 0;
+        border-top: 70px solid transparent;
+        border-left: 140px solid #ff5a00;
+        border-bottom: 70px solid transparent;
+    }                  
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2>Diamond</h2>
+        <div id="diamond"></div>
+		<div class="code">
+            <pre>
+    #diamond {
+        width: 120px;
+        height: 120px;
+        background: #1eff00;
+    /* Rotate */
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    /* Rotate Origin */
+        -webkit-transform-origin: 0 100%;
+        -moz-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+        -o-transform-origin: 0 100%;
+        transform-origin: 0 100%;
+        margin: 60px 0 10px 310px;
+    }
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2>Trapezium</h2>
+		<div id="trapezium"></div>
+        <div class="code">
+            <pre>
+    #trapezium {
+        height: 0;
+        width: 120px;
+        border-bottom: 120px solid #ec3504;
+        border-left: 60px solid transparent;
+        border-right: 60px solid transparent;
+    }
+			</pre>
+        </div>
+    </section>
+
+	<section>
+        <h2>Parallelogram</h2>
+        <div id="parallelogram"></div>
+		<div class="code">
+            <pre>
+    #parallelogram {
+        width: 160px;
+        height: 100px;
+        background: #8734f7;
+        -webkit-transform: skew(30deg);
+        -moz-transform: skew(30deg);
+        -o-transform: skew(30deg);
+        transform: skew(30deg);
+    }
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2>Star</h2>
+        <div class="box-position" style="margin: 60px auto;">
+        	<div id="star"></div>
+        </div>
+		<div class="code">
+            <pre>
+    #star {
+        width: 0;
+        height: 0;
+        margin: 50px 0;
+        color: #fc2e5a;
+        position: relative;
+        display: block;
+        border-right: 100px solid transparent;
+        border-bottom: 70px solid #fc2e5a;
+        border-left: 100px solid transparent;
+        -moz-transform: rotate(35deg);
+        -webkit-transform: rotate(35deg);
+        -ms-transform: rotate(35deg);
+        -o-transform: rotate(35deg);
+    }
+    
+    #star:before {
+        height: 0;
+        width: 0;
+        position: absolute;
+        display: block;
+        top: -45px;
+        left: -65px;
+        border-bottom: 80px solid #fc2e5a;
+        border-left: 30px solid transparent;
+        border-right: 30px solid transparent;
+        content: '';
+        -webkit-transform: rotate(-35deg);
+        -moz-transform: rotate(-35deg);
+        -ms-transform: rotate(-35deg);
+        -o-transform: rotate(-35deg);
+    }
+    
+    #star:after {
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        display: block;
+        top: 3px;
+        left: -105px;
+        color: #fc2e5a;
+        border-right: 100px solid transparent;
+        border-bottom: 70px solid #fc2e5a;
+        border-left: 100px solid transparent;
+        -webkit-transform: rotate(-70deg);
+        -moz-transform: rotate(-70deg);
+        -ms-transform: rotate(-70deg);
+        -o-transform: rotate(-70deg);
+    }
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2>Star (6 Points)</h2>
+        <div class="box-position">
+        	<div id="star_six_points"></div>
+        </div>
+		<div class="code" style="margin-top: 160px;">
+            <pre>
+    #star_six_points {
+        width: 0;
+        height: 0;
+        display: block;
+        position: absolute;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid #de34f7;
+        margin: 10px auto;
+    }
+    
+    #star_six_points:after {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 100px solid #de34f7;
+        margin: 30px 0 0 -50px;
+    }
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2>Pentagon</h2>
+        <div class="box-position" style="margin-top: 45px;">
+        	<div id="pentagon"></div>
+        </div>
+		<div class="code">
+            <pre>
+    #pentagon {
+        width: 54px;
+        position: relative;
+        border-width: 50px 18px 0;
+        border-style: solid;
+        border-color: #277bab transparent;
+    }
+    
+    #pentagon:before {
+        content: "";
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: -85px;
+        left: -18px;
+        border-width: 0 45px 35px;
+        border-style: solid;
+        border-color: transparent transparent #277bab;
+    }                 
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2 style="margin-bottom: 35px;">Hexagon</h2>
+        <div class="box-position">
+        	<div id="hexagon"></div>
+        </div>
+		<div class="code" id="margin-hexagon">
+            <pre>
+    #hexagon {
+        width: 100px;
+        height: 55px;
+        background: #fc5e5e;
+        position: relative;
+        margin: 10px auto;
+    }
+    
+    #hexagon:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: -25px;
+        left: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 25px solid #fc5e5e;
+    }
+    
+    #hexagon:after {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: -25px;
+        left: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 25px solid #fc5e5e;
+    }
+
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2>Octagon</h2>
+        <div class="box-position">
+        	<div id="octagon"></div>
+        </div>
+		<div class="code">
+            <pre>
+    #octagon {
+        width: 100px;
+        height: 100px;
+        background: #ac60ec;
+        position: relative;
+    }
+    
+    #octagon:before {
+        content: "";
+        width: 42px;
+        height: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-bottom: 29px solid #ac60ec;
+        border-left: 29px solid #f4f4f4;
+        border-right: 29px solid #f4f4f4;
+    }
+    
+    #octagon:after {
+        content: "";
+        width: 42px;
+        height: 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-top: 29px solid #ac60ec;
+        border-left: 29px solid #f4f4f4;
+        border-right: 29px solid #f4f4f4;
+    }         
+			</pre>
+    	</div>
+    </section>
+
+	<section>
+        <h2>Heart</h2>
+        <div class="box-position">
+        	<div id="heart"></div>
+        </div>
+		<div class="code" id="margin-heart">
+            <pre>
+    #heart {
+        position: relative;
+    }
+    
+    #heart:before,#heart:after {
+        content: "";
+        width: 70px;
+        height: 115px;
+        position: absolute;
+        background: #ff0000;
+        left: 70px;
+        top: 0;
+        -webkit-border-radius: 50px 50px 0 0;
+        -moz-border-radius: 50px 50px 0 0;
+        border-radius: 50px 50px 0 0;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-transform-origin: 0 100%;
+        -moz-transform-origin: 0 100%;
+        -ms-transform-origin: 0 100%;
+        -o-transform-origin: 0 100%;
+        transform-origin: 0 100%;
+    }
+    
+    #heart:after {
+        left: 0;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transform-origin: 100% 100%;
+        -moz-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+        -o-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+    }
+			</pre>
+		</div>
+	</section>
+
+	<section>
+    	<h2>Egg</h2>
+        <div id="egg"></div>
+        <div class="code" style="padding: 10px 120px 0 20px;">
+        	<pre>
+    #egg {
+        width: 136px;
+        height: 190px;
+        background: #ffc000;
+        display: block;
+        -webkit-border-radius: 63px 63px 63px 63px / 108px 108px 72px 72px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    }
+			</pre>
+        </div>
+	</section>
+
+	<section>
+    	<h2>Infinity</h2>
+        <div id="infinity"></div>
+        <div class="code">
+            <pre>
+    #infinity {
+        width: 220px;
+        height: 100px;
+        position: relative;
+    }
+    
+    #infinity:before,#infinity:after {
+        content: "";
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 20px solid #06c999;
+        -moz-border-radius: 50px 50px 0;
+        border-radius: 50px 50px 0 50px;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+    
+    #infinity:after {
+        left: auto;
+        right: 0;
+        -moz-border-radius: 50px 50px 50px 0;
+        border-radius: 50px 50px 50px 0;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }    
+			</pre>
+    	</div>
+	</section>
+
+	<section>
+    	<h2>Comment Bubble</h2>
+        <div id="comment_bubble"></div>
+        <div class="code">
+            <pre>
+    #comment_bubble {
+       width: 140px;
+       height: 100px;
+       background: #088cb7;
+       position: relative;
+       -moz-border-radius:    12px;
+       -webkit-border-radius: 12px;
+       border-radius:         12px;
+    
+    }
+    #comment_bubble:before {
+       content:"";
+       width: 0;
+       height: 0;
+       right: 100%;
+       top: 38px;
+        position: absolute;
+       border-top: 13px solid transparent;
+       border-right: 26px solid #088cb7;
+       border-bottom: 13px solid transparent;
+    }		
+			</pre>
+    	</div>
+	</section>
+
+	<section>
+    	<h2>Pacman</h2>
+        <div id="pacman"></div>
+        <div class="code">
+            <pre>
+    #pacman {
+        width: 0;
+        height: 0;
+        border-right: 70px solid transparent;
+        border-top: 70px solid #ffde00;
+        border-left: 70px solid #ffde00;
+        border-bottom: 70px solid #ffde00;
+        border-top-left-radius: 70px;
+        border-top-right-radius: 70px;
+        border-bottom-left-radius: 70px;
+        border-bottom-right-radius: 70px;
+    }            
+			</pre>
+    	</div>
+	</section>
+        
+</div>
+
+
+
+
+<div class="yanxiu-fixed">
+	<div class="yanxiu-menu">
+		<a href="index.html" target="_blank">查看更多演示</a>
+        <a href="index2.html" class="current" target="_blank">查看更多演示</a>
+        <a href="http://91yanxiu.com/html/PC/DownLoad/list_722.html" target="_blank">查看更多演示</a>
+    </div>
+</div>
+
+</body>
+</html>

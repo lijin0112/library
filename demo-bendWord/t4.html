@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>HTML5/CSS3颜色渐变文字 可指定文字路径在线演示</title>
+
+  <link rel="stylesheet" href="a/css/reset.css">
+
+  <!--<link rel="stylesheet" href="a/css/style.css" media="screen" type="text/css"/>-->
+
+  <style>
+    .svg-defs {
+      position: absolute;
+    }
+
+    .texts {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: 460px;
+      height: 300px;
+    }
+
+    .rect-1,
+    .rect-2 {
+      font: bold 5em/1 Georgia;
+      fill: url(#p-stripes);
+      /*fill: url(#v-gradient);*/
+    }
+
+    text {
+      font: bold 2.6em/1 Georgia;
+    }
+
+    .text-1, .text-2 {
+      font-size: 1.4em;
+    }
+
+    .text-2 {
+      fill: url(#p-stripes2);
+    }
+
+    .text-1 {
+      fill: url(#p-stripes);
+    }
+  </style>
+</head>
+
+<body>
+<svg class="svg-defs">
+  <g>
+    <defs>
+      <path id="MyPath1"
+            d="M 100 300
+             A100,110 0 0,1 500,300"
+            transform="scale(.6)"/>
+
+      <path id="MyPath2" fill="none" stroke="#133" d="M 100 300
+              A100,110 0 0,1 500,300" transform="scale(.9)"></path>
+
+      <pattern id="p-stripes" patternUnits="userSpaceOnUse"
+               width="200" height="200"
+               viewbox="0 0 200 200">
+        <rect width="200" height="200" fill="#344260"/>
+      </pattern>
+
+      <pattern id="p-stripes2" patternUnits="userSpaceOnUse"
+               width="200" height="200"
+               viewbox="0 0 200 200">
+        <rect width="200" height="200" fill="#344260"/>
+      </pattern>
+    </defs>
+  </g>
+</svg>
+
+<svg class="texts">
+  <text class="text-1" transform="translate(95 85)">
+    <textPath xlink:href="#MyPath1">2015年11月22日加入万家贷这个大家庭
+      <animate id="time1" attributeName="startOffset" from="100%" to="0" begin="0s" dur="5s" fill="freeze"></animate>
+    </textPath>
+  </text>
+
+
+  <text class="text-2" transform="">
+    <textPath xlink:href="#MyPath2">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      是
+
+      <animate attributeName="opacity" from="0" to="0" begin="0" dur="1s" repeatCount="indefinite"></animate>
+      <animate id="time2" attributeName="opacity" from="0" to="1" begin="time1.end" dur="1s" calcMode="discrete" fill="freeze"></animate>
+      <!--<animate id="time2" attributeName="startOffset" from="20" to="30%" begin="time1.end" dur="5s" keyTimes="0;1" calcMode="spline" keySplines="0.1 0.2 .22 1" fill="freeze" ></animate>-->
+    </textPath>
+    <textPath xlink:href="#MyPath2">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;
+      万家贷
+      <animate attributeName="opacity" from="0" to="0" begin="0" dur="1s" repeatCount="indefinite"></animate>
+      <animate id="time3" attributeName="opacity" from="0" to="1" begin="time2.end" dur="1s" calcMode="discrete" fill="freeze"></animate>
+      <!--<animate id="time2" attributeName="startOffset" from="20" to="30%" begin="time1.end" dur="5s" keyTimes="0;1" calcMode="spline" keySplines="0.1 0.2 .22 1" fill="freeze" ></animate>-->
+    </textPath>
+    <textPath xlink:href="#MyPath2">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      第
+      <animate attributeName="opacity" from="0" to="0" begin="0" dur="1s" repeatCount="indefinite"></animate>
+      <animate id="time4" attributeName="opacity" from="0" to="1" begin="time3.end" dur="1s" calcMode="discrete" fill="freeze"></animate>
+      <!--<animate attributeName="startOffset" from="20" to="30%" begin="time2.end" dur="5s" keyTimes="0;1" calcMode="spline" keySplines="0.1 0.2 .22 1" fill="freeze" ></animate>-->
+    </textPath>
+    <textPath xlink:href="#MyPath2" style="font-size: 30px;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      2000
+      <animate attributeName="opacity" from="0" to="0" begin="0" dur="1s" repeatCount="indefinite"></animate>
+      <animate id="time5" attributeName="opacity" from="0" to="1" begin="time3.end" dur="1s" calcMode="discrete" fill="freeze"></animate>
+      <!--<animate attributeName="startOffset" from="20" to="30%" begin="time2.end" dur="5s" keyTimes="0;1" calcMode="spline" keySplines="0.1 0.2 .22 1" fill="freeze" ></animate>-->
+    </textPath>
+    <textPath xlink:href="#MyPath2">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      个用户
+      <animate attributeName="opacity" from="0" to="0" begin="0" dur="1s" repeatCount="indefinite"></animate>
+      <animate id="time6" attributeName="opacity" from="0" to="1" begin="time5.end" dur="1s" calcMode="discrete" fill="freeze"></animate>
+      <!--<animate attributeName="startOffset" from="20" to="30%" begin="time2.end" dur="5s" keyTimes="0;1" calcMode="spline" keySplines="0.1 0.2 .22 1" fill="freeze" ></animate>-->
+    </textPath>
+  </text>
+</svg>
+
+
+</body>
+<script src="../js/jquery-1.11.3.js"></script>
+</html>
