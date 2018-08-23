@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8" />
+  <meta name="renderer" content="webkit">
+  <meta name="robots" content="none"/>
+  <meta name="format-detection" content="telphone=no, email=no">
+  <meta name="apple-mobile-web-app-title" content="万家贷">
+  <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport" id="viewport">
+  <title>万家贷</title>
+  <link rel="stylesheet" type="text/css" href="http://static.wjdai.com/css/common.css">
+  <script type="text/javascript" src="http://static.wjdai.com/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="http://static.wjdai.com/js/jquery.form.min.js"></script>
+  <script type="text/javascript" src="http://static.wjdai.com/js/jquery.data.resource.js"></script>
+  <script src="http://teststatic.wjdai.com/js/weixin/rotate/jQueryRotate.2.2.js"></script>
+  <script src="http://teststatic.wjdai.com/js/weixin/rotate/jquery.easing.min.js"></script>
+  <script type="text/javascript">
+    var detectBrowser = function(name) {
+      return (navigator.userAgent.toLowerCase().indexOf(name) > -1);
+    };
+    var width = parseInt(window.screen.width);
+    var scale = width/750;
+    var userScalable = 'no';
+    if(detectBrowser("qq/")) userScalable = 'yes';
+    document.getElementById('viewport').setAttribute('content', 'target-densitydpi=device-dpi,width=750,user-scalable='+userScalable+',initial-scale=' + scale);
+  </script>
+  <style>
+
+    .all {
+      width: 750px;
+      height: 2400px;
+      margin: 0 auto;
+      background: #332d53;
+      overflow: hidden;
+    }
+
+    /* 抽奖 */
+    .ly-bg {
+      position: relative;
+      width: 750px;
+      height: 777px;
+      margin: 0 auto;
+      background: url(http://teststatic.wjdai.com/img/activity/july/app/30bg-lights.gif);
+    }
+
+    .ly-plate {
+      position: relative;
+      width: 591px;
+      height: 591px;
+      top: 75px;
+      margin: 0 auto;
+    }
+
+    .ly-plate .rotate-bg {
+      width: 591px;
+      height: 591px;
+      background: url(http://teststatic.wjdai.com/img/activity/july/app/30plate.png);
+      position: absolute;
+      top: 0;
+      left: 0
+    }
+
+    .ly-plate div.lottery-star {
+      width: 135px;
+      height: 197px;
+      position: absolute;
+      top: 170px;
+      left: 228px;
+      /*text-indent:-999em;
+          overflow:hidden;
+          background:url(rotate-static.png);
+          -webkit-transform:rotate(0deg);*/
+      outline: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .ly-plate div.lottery-star #lotteryBtn {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      *left: -107px
+    }
+
+    .ly-plate div.lottery-star-bg {
+      width: 155px;
+      height: 155px;
+      position: absolute;
+      top: 218px;
+      left: 218px;
+      outline: none;
+      cursor: pointer;
+      z-index: 800;
+    }
+
+
+
+    /* 活动3样式*/
+    .act3 .top-banner {
+      position: relative;
+    }
+
+    .act3 .top-banner .liwu {
+      width: 488px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -244px;
+    }
+
+    /*
+        .act3 .top-banner span.liwu.js-not-login {
+          padding-left: 120px;
+          display: none;
+        }
+    */
+    .act3 .top-banner span.liwu {
+      color: #fff;
+      font-size: 36px;
+      line-height: 88px;
+      padding-left: 134px;
+    }
+
+    .act3 .top-banner span.liwu span {
+      color: #fff100;
+      font-size: 48px;
+    }
+
+    .act3 .rules {
+      padding: 0 32px;
+      color: #7257ff;
+      font-size: 24px;
+      line-height: 36px;
+      margin-top: 50px;
+    }
+
+    .act3 .rules .r-title {
+      font-size: 30px;
+    }
+
+    .act3 .rules .r-content {
+      padding-top: 34px;
+    }
+
+    .act3 .btn {
+      display: block;
+      margin: 0 auto;
+      margin-top: 25px;
+      color: #fff;
+      font-size: 36px;
+      text-align: center;
+      width: 507px;
+      height: 82px;
+      line-height: 82px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .act3 .tz-btn {
+      background-color: #fe4236;
+      -webkit-box-shadow: 0 12px 19px 2px rgba(145, 15, 15, .3);
+      -moz-box-shadow: 0 12px 19px 2px rgba(145, 15, 15, .3);
+      box-shadow: 0 12px 19px 2px rgba(145, 15, 15, .3);
+      border: solid 2px #fe4236;
+    }
+
+    .act3 .check-btn {
+      background-color: #fe8636;
+      -webkit-box-shadow: 0 12px 19px 2px rgba(146, 77, 21, .3);
+      -moz-box-shadow: 0 12px 19px 2px rgba(146, 77, 21, .3);
+      box-shadow: 0 12px 19px 2px rgba(146, 77, 21, .3);
+      border: solid 2px #fe8636;
+    }
+
+    .mat-content-alert {
+    }
+
+    .mat-content-alert.alert {
+      font-size: 24px;
+      border-radius: 10px;
+      width: 551px;
+      height: 410px;
+      top: 20%;
+      left: 50%;
+      margin-left: -275px;
+      background: url(http://teststatic.wjdai.com/img/activity/july/app/30alert-box.png);
+      text-align: center;
+      color: #4c4c4c;
+    }
+
+    .mat-content-alert.alert .sure {
+      width: 200px;
+      height: 64px;
+      line-height: 64px;
+      font-size: 30px;
+      color: #fff;
+      background-color: #fe9900;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      margin-left: -100px;
+    }
+
+    .mat-content-alert.alert .line0 {
+      font-size: 48px;
+      margin-top: 8px;
+      color: #fff;
+    }
+
+    .mat-content-alert.alert .line1 {
+      font-size: 36px;
+      margin-top: 78px;
+      margin-bottom: 31px;
+    }
+
+    .mat-content-alert.alert .line2 {
+      font-size: 24px;
+    }
+
+    .mat-content-alert.alert .line2.s2 {
+      width: 364px;
+      text-align: left;
+      margin: auto;
+    }
+
+    .mat-content-alert.alert .notice {
+      color: #f22230;
+    }
+  </style>
+</head>
+<body>
+<div class="all act3">
+  <div class="top-banner">
+    <img class="full-x" src="http://teststatic.wjdai.com/img/activity/july/app/30top-img.png" alt=""/>
+    <img class="liwu" src="http://teststatic.wjdai.com/img/activity/july/app/30liwu.png" alt=""/>
+    <span class="liwu">你共有<span class="js-left-chance">3</span>次机会</span>
+    <!--<span class="liwu js-not-login">你还没登录，请先登录</span>-->
+  </div>
+  <div class="ly-bg">
+    <div class="ly-plate">
+      <div class="rotate-bg"></div>
+      <div class="lottery-star"><img src="http://teststatic.wjdai.com/img/activity/july/app/30start-btn.png" id="lotteryBtn"></div>
+      <div class="lottery-star-bg"><img src="http://teststatic.wjdai.com/img/activity/july/app/30huangse.png"></div>
+    </div>
+  </div>
+  <div class="btns">
+    <a href="javascript:void(0)" class="btn tz-btn">我要投资</a>
+    <a href="myward.html" class="btn check-btn">查看中奖记录</a>
+  </div>
+  <div class="rules">
+    <div class="r-title">活动规则</div>
+    <div class="r-content">
+      活动期间单笔1个月及以上期限项目，<br/>
+      投资金额超过5000元即可获得转盘游戏次数一次，<br/>
+      每人每天有五次机会。
+    </div>
+    <div class="r-content">
+      1、红包使用有效期为领取之日起30天内有效；<br/>
+      2、活动期间所有获得实物奖品的用户，活动结束后我们将与您取得联系并在活动结束后7个工作日内将奖品寄送给您。<br/>
+      3、本活动的解释权归万家金融所有，如有疑问请联系在线客服或者拨打客服热线：400-698-0607。<br/>
+    </div>
+  </div>
+</div>
+<div class="mat-bg-alert"></div>
+<div class="mat-content-alert alert">
+  <div class="line0">恭喜</div>
+  <div class="line1">恭喜您抽中了<span class="notice"></span></div>
+  <div class="line2">您可通过万家贷个人账户查看</div>
+  <div class="btn sure">我知道了</div>
+</div>
+</body>
+<script>
+
+  $(function () {
+    //底部导航样式
+    $('.href_tb tr td a').mouseover(function () {
+      $(this).css('color', 'red');
+      $(this).css('background-size', '90%');
+    });
+    $('.href_tb tr td a').mouseout(function () {
+      $(this).css('color', '#666');
+      $(this).css('background-size', '80%');
+    });
+
+    $('.mat-bg-alert, .mat-content-alert .sure').bind('click', function () {
+      // 点击遮罩层 或确定键，关闭浮框
+      $('.mat-bg-alert').hide();
+      $('.mat-content-alert').hide();
+      $('body').removeAttr('style');
+    });
+
+    var popupAlert = function (prizeId, text) {
+      $(".alert .notice").text(text);
+
+      if (prizeId > 3) {
+        $(".alert .line2").html("我们将在活动结束后7个工作日内<br/>联系您并寄出奖品");
+        $(".alert .line2").addClass('s2');
+      } else {
+        $(".alert .line2").text("您可通过万家贷个人账户查看");
+        $(".alert .line2").removeClass('s2');
+      }
+      $('.mat-bg-alert').show();
+      $('.alert').show();
+    };
+
+    /* 抽奖逻辑 */
+    var timeOut = function () {  //超时函数
+      $(".rotate-bg").rotate({
+        angle: 0,
+        duration: 10000,
+        animateTo: 2160, //这里是设置请求超时后返回的角度，所以应该还是回到最原始的位置，2160是因为我要让它转6圈，就是360*6得来的
+        callback: function () {
+          alert('网络超时');
+        }
+      });
+    };
+    var rotateFunc = function (awards, angle, text) {  //awards:奖项，angle:奖项对应的角度
+      $('.rotate-bg').stopRotate();
+      $(".rotate-bg").rotate({
+        angle: 0,
+        duration: 5000,
+        animateTo: angle + 1440, //angle是图片上各奖项对应的角度，1440是我要让指针旋转4圈。所以最后的结束的角度就是这样子^^
+        callback: function () {
+          popupAlert(awards, text);
+          initBaseInfo();
+          clickFlag = true;
+        }
+      });
+    };
+
+    function initBaseInfo() {
+      if ($("#userId").val() == "") { //未登录
+        clickFlag = false;
+//      location.href = '/index';
+      } else {// 已登录
+        //chance();
+        clickFlag = true;
+      }
+      clickFlag = true;
+    }
+
+    function chance() {
+      // 预留接口
+      $.ajaxJson({
+        url: $('#baseUrl').vals() + "/interface/20160601/luckyDrawNumber.html",
+        async: false,
+        success: function (data) {
+          if (data.status == "1") { //未登录
+            clickFlag = false;
+            location.href = '/index';
+          } else if (data.status == "0") { // 已登录;
+            $(".js-left-chance").html(data.prize);
+            if (data.prize == "0") {// 没有抽奖机会
+              clickFlag = false;
+              $("#lotteryBtn").attr("src", "http://teststatic.wjdai.com/img/activity/july/app/30start-btn2.png");
+            } else {// 有抽奖机会
+              clickFlag = true;
+              $("#lotteryBtn").attr("src", "http://teststatic.wjdai.com/img/activity/july/app/30start-btn.png");
+              $("#lotteryBtn").bind("click", startGame);
+            }
+          }
+        }
+      });
+    }
+
+    function choujiangStart(prizeId) {
+      console.log(prizeId);
+      if (prizeId < 0 || prizeId >= prizes.length) {
+        timeOut();
+        return false;
+      }
+
+      if (!clickFlag) {
+        console.log("没有抽奖机会 or 抽奖中");
+        return false;
+      } else {
+        clickFlag = false;
+        rotateFunc(prizeId, prizes[prizeId][0], prizes[prizeId][1]);
+        return true;
+      }
+    }
+
+    function startGame() {
+      $('#lotteryBtn').unbind('click');
+      /*
+       // 预留接口
+       $.ajaxJson({
+       url: $('#baseUrl').vals() + "/interface/20160601/luckyDraw.html",
+       success: function (data) {
+       if (data.status == "2" ) {// 3:今日机会已用完
+       $('#lotteryBtn').unbind('click');
+       } else if (data.status == "0") {//0:未登陆
+       $('#lotteryBtn').unbind('click');
+       } else if (data.status == "1") {//1:抽中奖品
+
+       choujiangStart(data.rewardId);
+       } else {// 异常
+       console.log(data.message);
+       }
+       }
+       });
+       */
+      choujiangStart(Math.floor(Math.random() * 4) + 1); // 随机中奖
+
+      setTimeout(function () {
+        $("#lotteryBtn").bind("click", startGame);
+      }, 5000);
+    }
+
+
+    // prizes[[angle,prizes],[xxx],xxx]
+    var prizes = [[], [22, "10元红包"], [293, "30元红包"], [203, "50元红包"], [338, "迷你小风扇"]
+      , [68, "iphone6s"], [113, "自拍杆"], [158, "TV"], [248, "煮蛋器"]];
+
+    // true则还有抽奖机会，false 则没有抽奖机会
+    var clickFlag = true;
+
+    initBaseInfo();
+    $("#lotteryBtn").bind("click", startGame);
+  });
+</script>
+</html>

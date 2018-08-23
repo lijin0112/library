@@ -1,0 +1,2677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="format-detection" content="telephone=no, email=no">
+  <meta name="robots" content="none"/>
+  <meta name="apple-mobile-web-app-title" content="万家贷">
+  <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport" id="viewport">
+  <title></title>
+  <link rel="shortcut icon" href="https://api.wjdai.com/Skins/images/ico.ico">
+  <link href="https://api.wjdai.com/Skins/css/common.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://api.wjdai.com/Skins/css/swiper.min.css"/>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery.form.min.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery.data.resource.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/underscore-min.js"></script>
+
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/swiper.min.js" charset="utf-8"></script>
+  <script>
+    (function () {
+      // deicePixelRatio ：设备像素
+      var scale = 1 / devicePixelRatio;
+      //设置meta 压缩界面 模拟设备的高分辨率
+      //document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+      //debounce 为节流函数，自己实现。或者引入underscoure即可。
+      var reSize = _.debounce(function () {
+        //        var deviceWidth = document.documentElement.clientWidth > 1300 ? 1300 : document.documentElement.clientWidth;
+        var deviceWidth = document.documentElement.clientWidth > 750 ? 750 : document.documentElement.clientWidth;
+        //按照640像素下字体为100px的标准来，得到一个字体缩放比例值 6.4
+        document.documentElement.style.fontSize = (deviceWidth / 7.5) + 'px';
+
+//        mySwiper1.onResize();
+//        mySwiper2.onResize();
+      }, 50);
+
+      window.onresize = reSize;
+
+      reSize();
+    })();
+  </script>
+  <style>
+    button,
+    html input[type=button],
+    input[type=reset],
+    input[type=submit] {
+      -webkit-appearance: button;
+      cursor: pointer
+    }
+
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    *:before, *:after {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .all {
+      margin: 0 auto;
+      background: #020307 url(img/main.jpg) no-repeat center top;
+      color: #999;
+      background-size: 7.5rem auto;
+      padding-bottom: 1rem;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+
+    .section.forth .swiper-slide .content {
+      background: #241e13;
+      height: 6.8rem;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .swiper-slide .content .block {
+      background-color: #3a3121;
+      width: 4.6rem;
+      height: 6rem;
+      margin-left: -1.12rem;
+    }
+
+    .swiper-container2 .swiper-pagination-bullet {
+      width: .14rem;
+      height: .14rem;
+      background: #725b31;
+    }
+
+    .swiper-container2 .swiper-pagination-bullet-active {
+      background: #eb8e05;
+    }
+
+    .head-wp {
+      width: 7.5rem;
+      height: 5rem;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .tri-bg1 {
+      position: absolute;
+      top: -0.5rem;
+      left: 0;
+      width: 7.5rem;
+      height: 6.06rem;
+      background: url(img/tri1.png) no-repeat;
+      background-size: 7.5rem auto;
+    }
+
+    .tri-bg2 {
+      position: absolute;
+      top: -1rem;
+      left: 0;
+      width: 7.5rem;
+      height: 3.2rem;
+      background: url(img/tri2.png) no-repeat;
+      background-size: 7.5rem auto;
+    }
+
+    .titl {
+      position: absolute;
+      top: 1rem;
+      left: 0.85rem;
+      height: 2.63rem;
+      width: 5.81rem;
+      background-image: url(img/title.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .sub-titl {
+      position: absolute;
+      top: 3.8rem;
+      left: 50%;
+      width: 100%;
+      margin-left: -2.27rem;
+
+      text-align: center;
+      font-size: .3rem;
+      color: #fff;
+
+      width: 4.54rem;
+      height: .75rem;
+      line-height: .75rem;
+      /*-webkit-border-radius: .25rem .26rem;
+      -moz-border-radius: .25rem .26rem;
+      border-radius: .25rem .26rem;
+      background-color: #1d1308;
+      -webkit-box-shadow: .04rem .07rem .1rem rgba(0, 0, 0, .55);
+      -moz-box-shadow: .04rem .07rem .1rem rgba(0, 0, 0, .55);
+      box-shadow: .04rem .07rem .1rem rgba(0, 0, 0, .55);*/
+    }
+
+    .sub-titl > img {
+      width: 4.54rem;
+    }
+
+    .sub-titl span.trGold {
+      background-image: linear-gradient(to right, #c9975a 5%, #e8b988 17%, #c9975a 33%, #fad09d 55%, #b28351 77%, #ffd7b0 99%);
+      color: transparent;
+      text-shadow: 0 .03rem #a17947;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+
+    .section-head {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .box-wp {
+      position: relative;
+      width: 6.9rem;
+      min-height: 3.9rem;
+      background: #241e13;
+      margin: auto;
+      padding-bottom: .5rem;
+    }
+
+    .boxInnerGlow {
+      width: 6.9rem;
+      height: 2.97rem;
+      position: absolute;
+      top: 0;
+      z-index: 1001;
+      background: url(img/boxInnerGlow.png) no-repeat;
+      background-position: top;
+      background-size: 6.9rem auto;
+    }
+
+    .box-tit {
+      text-align: center;
+      padding: .4rem 0 .2rem;
+      width: 5rem;
+      margin: auto;
+    }
+
+    .section.forth .box-tit {
+      font-size: .3rem;
+      color: #ffe579;
+      font-weight: bold;
+    }
+
+    .info-txt {
+      font-size: .24rem;
+      color: #a36929;
+      width: 6rem;
+      margin: auto;
+    }
+
+    .box {
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+      height: 3.25rem;
+    }
+
+    .box-subwp {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .btz {
+      padding-top: .2rem;
+      font-size: .24rem;
+      color: #fdd11c;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .btz .line {
+      display: inline-block;
+      width: 2px;
+      height: .2rem;
+      background: #fdd11c;
+    }
+
+    #chanceforopenbox {
+      color: #f01313;
+    }
+
+    .box-gold {
+      width: 2.84rem;
+      height: 2.42rem;
+      background-image: url('img/box0.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin: .24rem auto 0rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .box-bottom {
+      width: 2.84rem;
+      height: 1.15rem;
+      background-image: url(img/boxbottom.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin: auto;
+      position: relative;
+      top: -.8rem;
+      z-index: 5;
+    }
+
+    .boxlight {
+      width: 3.16rem;
+      height: 2.52rem;
+      background-image: url(img/boxlight.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: .3rem;
+      left: 50%;
+      z-index: 7;
+      margin-left: -1.57rem;
+    }
+
+    .boxopenlight {
+      width: 3.16rem;
+      height: 2.52rem;
+      background-image: url(img/boxopenlight.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: .3rem;
+      left: 50%;
+      z-index: 7;
+      margin-left: -1.57rem;
+    }
+
+    /* 图片有问题， 测试样式*/
+    .boxopenlight {
+      background-image: url(img/boxlight.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-left: -1.42rem;
+      width: 2.84rem;
+      height: 2.42rem;
+      top: .1rem;
+    }
+
+    .box-open {
+      display: none;
+    }
+
+    .box-gold-open {
+      width: 2.84rem;
+      height: 2.42rem;
+      margin: .24rem auto 0;
+      position: relative;
+      background-image: url(img/box-gold-open.png);
+      background-repeat: no-repeat;
+      background-size: 2.84rem auto;
+      z-index: 10;
+    }
+
+    .box-gold-front, .box-gold-front-top {
+      width: 2.84rem;
+      height: 2.42rem;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-image: url("img/box-gold-front.png");
+      background-repeat: no-repeat;
+      background-size: 2.84rem auto;
+    }
+
+    .box-gold-front-top {
+      top: -1px;
+    }
+
+    .priz-wp .img-wp {
+      position: absolute;
+      top: -.14rem;
+      left: .62rem;
+      width: 1.6rem;
+      height: 1.3rem;
+      text-align: center;
+    }
+
+    .priz-wp i {
+    }
+
+    .priz-wp .img-wp img {
+      display: block;
+      margin: 6px auto 0;
+      max-width: 1.6rem;
+      max-height: 1.3rem;
+    }
+
+    .priz-wp .coin1-gold {
+      position: absolute;
+      top: .48rem;
+      left: 2.28rem;
+      height: .52rem;
+      width: .53rem;
+
+      height: .42rem;
+      width: .43rem;
+      background-image: url('img/coin1.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .priz-wp .coin2-gold {
+      position: absolute;
+      top: .9rem;
+      left: 0;
+      height: .48rem;
+      width: .61rem;
+
+      height: .38rem;
+      width: .51rem;
+
+      background-image: url('img/coin2.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .priz-wp .coin3-gold {
+      position: absolute;
+      top: 1.30rem;
+      left: 1.98rem;
+      height: .57rem;
+      width: .51rem;
+
+      height: .47rem;
+      width: .41rem;
+
+      background-image: url('img/coin3.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .priz-wp .pieces1 {
+      position: absolute;
+      top: .1rem;
+      left: 2.4rem;
+      height: .17rem;
+      width: .22rem;
+      background-image: url('img/pieces1.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .priz-wp .pieces2 {
+      position: absolute;
+      top: .5rem;
+      left: .88rem;
+      height: .22rem;
+      width: .17rem;
+      background-image: url('img/pieces2.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .priz-wp .pieces3 {
+      position: absolute;
+      top: 1.04rem;
+      left: .8rem;
+      height: .18rem;
+      width: .13rem;
+      background-image: url('img/pieces3.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .priz-wp .pieces4 {
+      position: absolute;
+      top: 1.34rem;
+      left: 2.75rem;
+      height: .17rem;
+      width: .21rem;
+      background-image: url('img/pieces4.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* animation */
+    .titl {
+      animation: slideInDown 0.8s 0.5s both;
+    }
+
+    .sub-titl {
+      animation: slideInDown 1s 1.2s both;
+    }
+
+    .tri-bg1 {
+      animation: zoomIn 1s 0.6s both;
+    }
+
+    .tri-bg2 {
+      animation: zoomIn 1s 0.8s both;
+    }
+
+    .img-wp {
+      animation: slideInUp 0.8s both;
+    }
+
+    .pieces1 {
+      animation: pieces-ani1 1s ease-in-out both;
+    }
+
+    .pieces2 {
+      animation: pieces-ani2 1s ease-in-out both;
+    }
+
+    .pieces3 {
+      animation: pieces-ani3 1s ease-in-out both;
+    }
+
+    .pieces4 {
+      animation: pieces-ani4 1s ease-in-out both;
+    }
+
+    .coin1-gold {
+      animation: coin-ani1 1s ease-in-out both;
+    }
+
+    .coin2-gold {
+      animation: coin-ani2 1s ease-in-out both;
+    }
+
+    .coin3-gold {
+      animation: coin-ani3 1s ease-in-out both;
+    }
+
+    .box-gold-front-top {
+      animation: hide 1s both;
+    }
+
+    @keyframes slideInUp {
+      0% {
+        transform: translate3d(0, 1.1rem, 0);
+        opacity: 0;
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes coin-ani1 {
+      0% {
+        opacity: 0;
+        transform: translate3d(-1rem, 1rem, 0);
+      }
+      10% {
+        transform: translate3d(-.4rem, -.3rem, 0);
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(-.3rem, 1.8rem, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes coin-ani2 {
+      0% {
+        opacity: 0;
+        transform: translate3d(1rem, 1rem, 0);
+      }
+      10% {
+        transform: translate3d(.8rem, -.5rem, 0);
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(0, 1.5rem, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes coin-ani3 {
+      0% {
+        opacity: 0;
+        transform: translate3d(-.8rem, 1rem, 0);
+      }
+      10% {
+        transform: translate3d(-.1rem, -1rem, 0);
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(-.3rem, 1.8rem, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pieces-ani1 {
+      0% {
+        opacity: 1;
+        transform: translate3d(-.5rem, 1.2rem, 0);
+      }
+      40% {
+        opacity: 1;
+        transform: translate3d(-.4rem, 0, 0);
+      }
+      100% {
+        transform: translate3d(0, 2rem, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pieces-ani2 {
+      0% {
+        opacity: 1;
+        transform: translate3d(.78rem, .78rem, 0);
+      }
+      40% {
+        opacity: 1;
+        transform: translate3d(.68rem, -.78rem, 0);
+      }
+      100% {
+        transform: translate3d(-.2rem, 2rem, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pieces-ani3 {
+      0% {
+        opacity: 1;
+        transform: translate3d(.78rem, .78rem, 0);
+      }
+      40% {
+        opacity: 1;
+        transform: translate3d(.58rem, -.1rem, 0);
+      }
+      100% {
+        transform: translate3d(.3rem, 2rem, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pieces-ani4 {
+      0% {
+        opacity: 1;
+        transform: translate3d(-.5rem, .78rem, 0);
+      }
+      40% {
+        opacity: 1;
+        transform: translate3d(-.1rem, -.6rem, 0);
+      }
+      100% {
+        transform: translate3d(-.3rem, 2rem, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes hide {
+      0% {
+        z-index: 20;
+      }
+      60%, 100% {
+        z-index: 0;
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        transform: translate3d(0, -100%, 0);
+        opacity: 0;
+      }
+      to {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .win-list-wp {
+      clear: both;
+      overflow: hidden;
+      position: relative;
+      width: 6.9rem;
+      min-height: 1.9rem;
+      background: #241e13;
+      margin: .1rem auto;
+      padding: .34rem .3rem .45rem;
+      color: #f8d875;
+      font-size: .24rem;
+      line-height: .44rem;
+    }
+
+    .win-list-wp .wl-title {
+      color: #fdd11c;
+      font-size: .3rem;
+      font-weight: bold;
+      text-align: center;
+      background: #65500d;
+      line-height: .72rem;
+    }
+
+    .win-list-wp .wl-title > i {
+      display: inline-block;
+      width: .38rem;
+      height: .33rem;
+      background-image: url(img/speaker.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: relative;
+      vertical-align: text-bottom;
+      margin-right: .3rem;
+    }
+
+    .win-list-wp .wlist {
+      background: #3a3121;
+      overflow: hidden;
+      display: none;
+    }
+
+    .wlist .witem {
+      float: left;
+      width: 33%;
+      text-align: center;
+      height: 1.2rem;
+      padding-top: .12rem;
+    }
+
+    .win-list-wp .win-list-none {
+      background: #3a3121;
+      overflow: hidden;
+      color: #f8d875;
+      font-size: .24rem;
+      height: 2.39rem;
+      line-height: 2.39rem;
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: .1rem;
+    }
+
+    .section.first {
+      margin-bottom: .6rem;
+    }
+
+    .section.first img.prizesshow {
+      display: block;
+      width: 6.53rem;
+      height: 9.29rem;
+      margin: auto;
+    }
+
+    .section.second .info-txt {
+      line-height: .39rem;
+    }
+
+    .robbtn {
+      width: 4rem;
+      height: .8rem;
+      border-radius: .4rem;
+      background-color: #f01313;
+      border: solid 1px #ff3939;
+      color: #ffe579;
+      font-size: .4rem;
+      text-align: center;
+      line-height: .78rem;
+      margin: .8rem auto 0;
+    }
+
+    .section.forth .sc-title {
+      height: .82rem;
+      background: #eb8e05;
+      color: #fff;
+      font-size: .22rem;
+      line-height: .36rem;
+      text-align: center;
+      padding-top: .05rem;
+    }
+
+    .section.forth .sc-title b {
+      font-size: .28rem;
+    }
+
+    .section.forth .sc-list {
+      min-height: 3.8rem;
+      color: #fdd11c;
+      font-size: .28rem;
+      padding: .1rem;
+    }
+
+    .section.forth .sc-list .uname {
+      font-size: .24rem;
+      color: #fbe7c8;
+    }
+
+    .section.forth .sc-list .sc-num {
+      display: inline-block;
+      width: .42rem;
+      height: .41rem;
+    }
+
+    .section.forth .sc-list li {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: .1rem .5rem;
+      height: 1rem;
+    }
+
+    .section.forth .sc-countdown {
+      font-size: .42rem;
+      color: #fdd11c;
+      text-align: center;
+    }
+
+    .section.forth .sc-countdown-img {
+      padding: .75rem 0 .2rem;
+      width: 2.29rem;
+    }
+
+    .section.forth .sc-countdown-day {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .section.forth .box-wp {
+      padding-bottom: .25rem;
+    }
+
+    .act-info {
+      width: 6.9rem;
+      margin: .42rem auto 0;
+      text-align: justify;
+      padding-bottom: .4rem;
+    }
+
+    .act-info .title {
+      width: 6.87rem;
+      height: .29rem;
+      text-align: center;
+      margin: .94rem auto .4rem;
+    }
+
+    .act-info .item {
+      color: #debf64;
+      font-size: .24rem;
+      line-height: .34rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .act-info .item a {
+      color: #debf64;
+    }
+
+    .botfix {
+      position: fixed;
+      bottom: 0;
+      display: flex;
+      justify-content: space-around;
+      z-index: 1200;
+      font-size: .24rem;
+      color: #eaaf4b;
+    }
+
+    .botfix > span.btf {
+      display: inline-block;
+      width: 3.75rem;
+      height: 1rem;
+      background: #3a3121;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .botfix > span.active {
+      background: #5f4311;
+      color: #ffd42e;
+    }
+
+    .botfix > span.btf img {
+      width: .52rem;
+      height: .49rem;
+    }
+
+    .myprizes {
+      /*position: fixed;
+      bottom: 40%;
+      right: 8%;*/
+      position: absolute;
+      top: 7.7rem;
+      left: 5.8rem;
+      width: 1.08rem;
+      height: 1.08rem;
+      z-index: 1200;
+    }
+
+    .myprizes .mpc {
+      position: absolute;
+      width: .51rem;
+      z-index: 1201;
+      left: .285rem;
+      top: .28rem;
+    }
+
+    .myprizes .mpround {
+      animation: circle 5s infinite linear;
+      -moz-animation: circle 5s infinite linear; /* Firefox */
+      -webkit-animation: circle 5s infinite linear; /* Safari 和 Chrome */
+      -o-animation: circle 5s infinite linear; /* Opera */
+    }
+
+    @keyframes circle {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @-moz-keyframes circle /* Firefox */
+    {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes circle /* Safari 和 Chrome */
+    {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @-o-keyframes circle /* Opera */
+    {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /*排名 列表*/
+    .s3listInner {
+      overflow: hidden;
+      /*background: #3a3121;*/
+      width: 6.2rem;
+      margin: auto;
+    }
+
+    .act1 .order {
+
+    }
+
+    .order .refreshBtn {
+      width: .38rem;
+      height: .34rem;
+      margin-left: .14rem;
+    }
+
+    .order > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .order.ltitle {
+      width: 5.63rem;
+      height: 1rem;
+      margin: auto;
+      text-align: center;
+      font-size: .24rem;
+      line-height: .36rem;
+      background: url(img/b3lt.png) no-repeat center;
+      background-size: cover;
+      padding-top: .12rem;
+    }
+
+    .order.ltitle > div {
+      display: block;
+    }
+
+    .order.ltitle span {
+      font-size: .26rem;
+      font-weight: bold;
+    }
+
+    .order.lsubtitle {
+      padding: 0 .54rem 0 .3rem;
+      height: .7rem;
+      font-size: .28rem;
+      color: #ffe579;
+      background: #3a3121;
+    }
+
+    .order.list {
+      height: 6rem;
+      font-size: .24rem;
+      background: #56462a;
+      color: #fbe7c8;
+      position: relative;
+    }
+
+    .order.list > div {
+      height: .6rem;
+      /* border-bottom: 1px dashed #6f6d85;*/
+      justify-content: space-around;
+    }
+
+    .order.list > div:nth-child(even) {
+      background: #725b31;
+    }
+
+    /* .order > div.firstRow {
+       color: #f20424;
+       font-weight: bold;
+     }
+
+     .order > div.secondRow {
+       color: #f35f25;
+       font-weight: bold;
+     }
+
+     .order > div.thirdRow {
+       color: #ffcd46;
+       font-weight: bold;
+     }*/
+
+    .order.list > div > span.num {
+      display: inline-block;
+      width: .26rem;
+      height: .25rem;
+      line-height: .25rem;
+      margin-left: .2rem;
+      text-align: center;
+    }
+
+    .order.list > div > span.uname {
+      display: inline-block;
+      width: 2.2rem;
+      text-align: center;
+      padding-left: .6rem;
+    }
+
+    .order.list > div > span.uinvest {
+      display: inline-block;
+      width: 2.6rem;
+      text-align: left;
+      padding-left: .3rem;
+      text-align: center;
+    }
+
+    .order .num.first {
+      background: url(img/1.png) no-repeat center;
+      background-size: contain;
+    }
+
+    .order .num.second {
+      background: url(img/2.png) no-repeat center;
+      background-size: contain;
+    }
+
+    .order .num.third {
+      background: url(img/3.png) no-repeat center;
+      background-size: contain;
+    }
+
+    .order .num.forth {
+      background: url(img/4.png) no-repeat center;
+      background-size: contain;
+    }
+
+    .order .num.fifth {
+      background: url(img/5.png) no-repeat center;
+      background-size: contain;
+    }
+
+    .order.switchPage {
+      padding: 0 .3rem;
+      height: .91rem;
+      line-height: .91rem;
+      color: #ffe579;
+      font-size: .3rem;
+    }
+
+    .order.switchPage > div {
+      justify-content: space-between;
+    }
+
+    .order.switchPage > div > span {
+      line-height: .56rem;
+      text-align: center;
+      margin: 0 4%;
+    }
+
+    .order .leftBtn, .order .rightBtn {
+      display: inline-block;
+      width: .18rem;
+      height: .42rem;
+      background: url(img/leftbtn.png) no-repeat center;
+      background-size: contain;
+    }
+
+    .order .rightBtn {
+      background: url(img/rightbtn.png) no-repeat center;
+      background-size: contain;
+    }
+
+    .order.myrankblock {
+      font-size: .24rem;
+      color: #ffe579;
+      padding-top: .24rem;
+    }
+
+    .order.myrankblock > div {
+      align-items: flex-start;
+      /*justify-content: space-around;*/
+    }
+
+    .order.myrankblock .myRankGroup {
+      display: none;
+    }
+
+    .order1 {
+      display: block;
+    }
+
+    .order2, .order3, .order4 {
+      display: none;
+    }
+
+    span.emptyList {
+      text-align: center;
+      font-size: .36rem;
+      line-height: .6rem;
+      color: #ffe579;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    span.emptyList .eltime {
+      color: #f01313;
+    }
+
+    .emptyList .btn {
+      font-weight: normal;
+      margin-top: .6rem;
+      width: 4rem;
+      height: .8rem;
+      line-height: .8rem;
+      border-radius: .4rem;
+      background-color: #f01313;
+      border: solid 1px #ff3939;
+      color: #ffe579;
+    }
+
+    /*countDownBlock 倒计时*/
+    .djs-wrap .title {
+      margin-bottom: 0;
+      font-size: .2rem;
+    }
+
+    .djs-wrap .djs-timer {
+      margin: .11rem 0 0;
+      text-align: center;
+      font-size: .28rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .djs-wrap .djs-timer span {
+      letter-spacing: .1rem;
+      padding-left: .05rem;
+      margin-right: .05rem;
+      margin-left: .05rem;
+      text-align: center;
+      display: inline-block;
+      width: .55rem;
+      height: .38rem;
+      line-height: .36rem;
+      color: #ffffff;
+      background: url(img/djs_num_bg.png) no-repeat;
+      background-size: 100% auto;
+    }
+
+    /*弹框*/
+
+    .alert {
+      display: none;
+      overflow: hidden;
+      /*background-color: #ffffff;*/
+      color: #333333;
+      font-size: .24rem;
+      line-height: .34rem;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 1001;
+      border-radius: .1rem;
+      -webkit-border-radius: .1rem;
+    }
+
+    .alert .close-btn {
+      position: absolute;
+      bottom: .1rem;
+      left: 50%;
+      width: .7rem;
+      height: .7rem;
+      background: url(img/guanbi.png) no-repeat;
+      background-size: cover;
+      margin-left: -.4rem;
+    }
+
+    .alert-bg {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: rgba(0, 0, 0, .8);
+    }
+
+    .alert img {
+      display: block;
+    }
+
+    .alert-gologin, .alert-actEnd, .alert-nochance {
+      width: 5rem;
+      min-height: 4.4rem;
+      margin-top: -4rem;
+      margin-left: -2.5rem;
+      padding-bottom: 1.4rem;
+    }
+
+    .alert .content {
+      height: 4.4rem;
+      text-align: center;
+      box-shadow: 0 .03rem .24rem #d58c44;
+
+      background: #fff;
+      border-radius: .1rem;
+      -webkit-border-radius: .1rem;
+      padding-bottom: .24rem;
+    }
+
+    .alert input.btn.denglu {
+      font-size: .3rem;
+      width: 2.2rem;
+      height: .65rem;
+      line-height: .65rem;
+      text-align: center;
+      color: #fff;
+      background-color: #eb8e05;
+      font-weight: normal;
+      margin: .4rem auto;
+      border-radius: .3rem;
+      border: 0;
+    }
+
+    .alert .qg-pic {
+      display: inline-block;
+      height: 1.7rem;
+      margin: .34rem 0 .26rem;
+    }
+
+    .alert-actEnd .content {
+      height: 1.2rem;
+      width: 3rem;
+      text-align: center;
+      box-shadow: 0 .03rem .24rem #d58c44;
+
+      background: #fff;
+      border-radius: .1rem;
+      -webkit-border-radius: .1rem;
+
+      margin: 2rem auto;
+      padding-top: .4rem;
+    }
+
+    .alert-nochance .nowtz-btn {
+      font-size: .3rem;
+      width: 2.2rem;
+      height: .65rem;
+      line-height: .65rem;
+      text-align: center;
+      color: #fff;
+      background-color: #eb8e05;
+      font-weight: normal;
+      margin: .4rem auto;
+      border-radius: .3rem;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+<input type="hidden" id="tag" value=""/>
+<input type="hidden" id="userId" value=""/>
+<input type="hidden" id="tokenId" value=""/>
+<input type="hidden" id="clientType" value=""/>
+<input type="hidden" id="clientVersion" value=""/>
+
+<div class="all">
+  <div class="head-wp">
+    <i class="tri-bg1"></i>
+    <i class="tri-bg2"></i>
+
+    <h2 class="titl hide-txt"></h2>
+
+    <p class="sub-titl"><!--<span class="trGold">2017.09.28—10.25</span>--> <img src="img/titledate.png" alt=""/></p>
+
+  </div>
+  <div class="myprizes">
+    <img src="img/myprizes.png" alt="" class="full-x mpc">
+    <img src="img/round.png" alt="" class="full-x mpround">
+  </div>
+  <div class="swiper-container swiper-container1">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide swiper-no-swiping">
+        <div class="content">
+          <div class="section-head">
+            <div class="box-wp">
+              <div class="boxInnerGlow"></div>
+              <p class="box-tit"><img class="full-x" src="img/box-tit1.png" alt=""/></p>
+
+              <p class="info-txt">活动期间每人每天赠送一次开宝箱机会（仅当天有效，不可累积），累计年化投资金额每满1000元可再次获得开宝箱机会，以此类推！</p>
+
+              <div class="box box1" data-boxid="1">
+                <div class="box-closed box-gold">
+                </div>
+                <div class="box-closed boxlight"></div>
+                <!-- 打开后 -->
+                <div class="box-open box-openj">
+                  <div class="boxopenlight"></div>
+                  <div class="box-gold-open">
+                    <i class="box-gold-front"></i>
+                    <i class="box-gold-front-top"></i>
+
+                    <div class="priz-wp">
+                      <div class="img-wp"><img src="img/prize/1.png" alt="" class="img_j"></div>
+                      <i class="coin1-gold"></i>
+                      <i class="coin2-gold"></i>
+                      <i class="coin3-gold"></i>
+                      <i class="pieces1"></i>
+                      <i class="pieces2"></i>
+                      <i class="pieces3"></i>
+                      <i class="pieces4"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="box-bottom"></div>
+              </div>
+              <div class="box-subwp">
+                <div class="box box2" data-boxid="2">
+                  <div class="box-closed box-gold">
+                  </div>
+                  <div class="box-closed boxlight"></div>
+                  <!-- 打开后 -->
+                  <div class="box-open box-openj">
+                    <div class="boxopenlight"></div>
+                    <div class="box-gold-open">
+                      <i class="box-gold-front"></i>
+                      <i class="box-gold-front-top"></i>
+
+                      <div class="priz-wp">
+                        <div class="img-wp"><img src="img/prize/2.png" alt="" class="img_j"></div>
+                        <i class="coin1-gold"></i>
+                        <i class="coin2-gold"></i>
+                        <i class="coin3-gold"></i>
+                        <i class="pieces1"></i>
+                        <i class="pieces2"></i>
+                        <i class="pieces3"></i>
+                        <i class="pieces4"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-bottom"></div>
+                </div>
+                <div class="box box3" data-boxid="3">
+                  <div class="box-closed box-gold">
+                  </div>
+                  <div class="box-closed boxlight"></div>
+                  <!-- 打开后 -->
+                  <div class="box-open box-openj">
+                    <div class="boxopenlight"></div>
+                    <div class="box-gold-open">
+                      <i class="box-gold-front"></i>
+                      <i class="box-gold-front-top"></i>
+
+                      <div class="priz-wp">
+                        <div class="img-wp"><img src="img/prize/3.png" alt="" class="img_j"></div>
+                        <i class="coin1-gold"></i>
+                        <i class="coin2-gold"></i>
+                        <i class="coin3-gold"></i>
+                        <i class="pieces1"></i>
+                        <i class="pieces2"></i>
+                        <i class="pieces3"></i>
+                        <i class="pieces4"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="box-bottom"></div>
+                </div>
+              </div>
+
+              <div class="btz">
+                <div><span>我的累计年化投资金额：</span><span><span id="mtz"><span class="goLoginBtn">未登录</span></span></span></div>
+                <div class="line"></div>
+                <div><i></i>开宝箱机会 <span id="chanceforopenbox">0</span> 次</div>
+              </div>
+            </div>
+          </div>
+          <div class="win-list-wp">
+            <div class="wl-title"><i></i>开宝箱获奖记录</div>
+            <div class="wlist">
+              <div class="witem">
+                <div>150****1763</div>
+                <div>荣事达养生壶</div>
+              </div>
+            </div>
+            <div class="win-list-none">
+              <span>还没有中奖用户</span>
+            </div>
+          </div>
+
+          <!--宝藏藏宝图-->
+          <div class="section first">
+            <div class="box-wp">
+              <p class="box-tit"><img class="full-x" src="img/box-tit2.png" alt=""></p>
+
+              <p><img src="img/prizes.png" alt="" class="full-x prizesshow"/></p>
+            </div>
+          </div>
+
+          <div class="section fifth">
+            <ul class="act-info i3">
+              <li class="item title"><img src="img/actrule.png" alt="" class="full-x"/></li>
+              <li class="item"><span>1、</span><span>活动时间：2017年9月28日至2017年10月25日；</span></li>
+              <li class="item"><span>2、</span><span>新手标不参加本次活动；</span></li>
+              <li class="item"><span>3、</span><span>活动期间每人每天赠送一次开宝箱机会（仅当天有效，不可累积 ），累计年化投资金额每满1000元可再次获得开宝箱机会，以此类推！</span></li>
+              <li class="item"><span>4、</span><span>活动期间根据每周用户年化投资额进行排名，前5名获得对应奖励。若累计年化投资金额相同，则按投资顺序进行排名。</span></li>
+              <li class="item"><span>5、</span><span>红包奖励即时发送至万家贷用户账户，现金奖金及实物奖品待活动结束统计完成后7个工作日内派发给中奖用户；</span></li>
+              <li class="item"><span>6、</span><span>对于恶意刷奖者（冒用他人手机号、身份证、一人多账户套取奖品等），一经发现，将取消获奖资格，若已发放的奖品，将收回处理；</span></li>
+              <li class="item"><span>7、</span><span>本活动的解释权归万家金融所有，如有疑问请联系在线客服或者拨打客服热线：<a href="tel:400-0607-520" class="tel">400-0607-520</a>。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="content">
+          <!--每周土豪冲级榜-->
+          <div class="section second">
+            <div class="box-wp">
+              <div class="boxInnerGlow"></div>
+              <p class="box-tit"><img class="full-x" src="img/box-tit3.png" alt=""></p>
+
+              <p class="info-txt">活动期间根据每周用户年化投资额进行排名，前5名获得对应奖励。若累计投资金额相同，则按投资顺序进行排名。活动分为四周：</p>
+
+              <p class="info-txt">第一周（9月28日0时—10月4日24时）</p>
+
+              <p class="info-txt">第二周（10月5日0时—10月11日24时）</p>
+
+              <p class="info-txt">第三周（10月12日0时—10月18日24时）</p>
+
+              <p class="info-txt">第四周（10月19日0时—10月25日24时）</p>
+
+              <p><img src="img/cashback.png" alt="" class="full-x"/></p>
+
+              <p>
+
+              <div class="robbtn nowtz-btn">速来抢钱</div>
+              </p>
+            </div>
+          </div>
+
+          <!--4周 排名 列表-->
+          <div class="section third">
+            <div class="box-wp">
+              <div class="s3listInner">
+                <div class="order order1 switchPage" data-orderid="1">
+                  <div>
+                    <span class="leftBtn"></span>
+                    <span class="orderTitle">第一周排名</span>
+                    <span class="rightBtn"></span>
+                  </div>
+                </div>
+                <div class="order order1 lsubtitle">
+                  <div>
+                    <span>排名</span>
+                    <span>用户名</span>
+                    <span>年化投资总额</span>
+                  </div>
+                </div>
+                <div class="order order1 list">
+                  <div class="firstRow">
+                    <span class="num first"></span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">222000.00</span>
+                  </div>
+                  <div class="secondRow">
+                    <span class="num second"></span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">12000.00</span>
+                  </div>
+                  <div class="thirdRow">
+                    <span class="num third"></span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">2000.00</span>
+                  </div>
+                  <div class="forthRow">
+                    <span class="num forth"></span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">200.00</span>
+                  </div>
+                  <div class="fifthRow">
+                    <span class="num fifth"></span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">200.00</span>
+                  </div>
+                  <div class="">
+                    <span class="num">6</span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">200.00</span>
+                  </div>
+                  <div class="">
+                    <span class="num">7</span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">200.00</span>
+                  </div>
+                  <div class="">
+                    <span class="num">8</span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">200.00</span>
+                  </div>
+                  <div class="">
+                    <span class="num">9</span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">200.00</span>
+                  </div>
+                  <div class="">
+                    <span class="num">10</span>
+                    <span class="uname">123****1459</span>
+                    <span class="uinvest">200.00</span>
+                  </div>
+                </div>
+
+                <div class="order order2 switchPage" data-orderid="2">
+                  <div>
+                    <span class="leftBtn"></span>
+                    <span class="orderTitle">第二周排名</span>
+                    <span class="rightBtn"></span>
+                  </div>
+                </div>
+                <div class="order order2 lsubtitle">
+                  <div>
+                    <span>排名</span>
+                    <span>用户名</span>
+                    <span>年化投资总额</span>
+                  </div>
+                </div>
+                <div class="order order2 list">
+                </div>
+
+                <div class="order order3 switchPage" data-orderid="3">
+                  <div>
+                    <span class="leftBtn"></span>
+                    <span class="orderTitle">第三周排名</span>
+                    <span class="rightBtn"></span>
+                  </div>
+                </div>
+                <div class="order order3 lsubtitle">
+                  <div>
+                    <span>排名</span>
+                    <span>用户名</span>
+                    <span>年化投资总额</span>
+                  </div>
+                </div>
+                <div class="order order3 list">
+                </div>
+
+                <div class="order order4 switchPage" data-orderid="4">
+                  <div>
+                    <span class="leftBtn"></span>
+                    <span class="orderTitle">第四周排名</span>
+                    <span class="rightBtn"></span>
+                  </div>
+                </div>
+                <div class="order order4 lsubtitle">
+                  <div>
+                    <span>排名</span>
+                    <span>用户名</span>
+                    <span>年化投资总额</span>
+                  </div>
+                </div>
+                <div class="order order4 list">
+                </div>
+
+
+                <div class="order order1 myrankblock">
+                  <div>
+                    <div class="myRankGroup mr1">我的当前排名：<span class="myRank"><span class="goLoginBtn">您还未登录</span></span></div>
+                    <div class="myRankGroup mr2">我的当前排名：<span class="myRank"><span class="goLoginBtn">您还未登录</span></span></div>
+                    <div class="myRankGroup mr3">我的当前排名：<span class="myRank"><span class="goLoginBtn">您还未登录</span></span></div>
+                    <div class="myRankGroup mr4">我的当前排名：<span class="myRank"><span class="goLoginBtn">您还未登录</span></span></div>
+                    <!--倒计时-->
+                    <div class="djs-wrap countDownBlock" id="countDownBlock">
+                      <div class="title">距离本周活动结束还剩</div>
+                      <div class="txttimeshow " id="txttimeshow">
+                        <div class="djs-timer">
+                          <span id="t_h"></span>:
+                          <span id="t_m"></span>:
+                          <span id="t_s"></span>
+                        </div>
+                      </div>
+                      <span id="txttime" class="txttime hide">130</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--4周 获奖名单-->
+          <div class="section forth">
+            <div class="box-wp">
+              <p class="box-tit">获奖名单</p>
+              <!-- Swiper -->
+              <div class="swiper-container swiper-container2">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="content">
+                      <div class="block block1">
+                        <div class="sc-title">
+                          <div><b>第一周</b></div>
+                          <div>（9月28日0时—10月4日24时）</div>
+                        </div>
+                        <div class="sc-list">
+                          <ul>
+                            <li><span><img src="img/1.png" alt="" class="sc-num"/></span> <span><div class="uname uname1">153****1234</div><div class="uprize">1000元现金</div></span>
+                            </li>
+                            <li><span><img src="img/2.png" alt="" class="sc-num"/></span> <span><div class="uname uname2">153****1234</div><div class="uprize">800元现金</div></span>
+                            </li>
+                            <li><span><img src="img/3.png" alt="" class="sc-num"/></span> <span><div class="uname uname3">153****1234</div><div class="uprize">600元现金</div></span>
+                            </li>
+                            <li><span><img src="img/4.png" alt="" class="sc-num"/></span> <span><div class="uname uname4">153****1234</div><div class="uprize">400元现金</div></span>
+                            </li>
+                            <li><span><img src="img/5.png" alt="" class="sc-num"/></span> <span><div class="uname uname5">153****1234</div><div class="uprize">200元现金</div></span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="sc-countdown hide">
+                          <div><img src="img/sc-countdown-img.png" alt="" class="sc-countdown-img"/></div>
+                          <div><span class="sc-countdown-day">7</span>天</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="content">
+                      <div class="block block2">
+                        <div class="sc-title">
+                          <div><b>第二周</b></div>
+                          <div>（10月5日0时--10月11日24时）</div>
+                        </div>
+                        <div class="sc-list hide">
+                          <ul>
+                            <li><span><img src="img/1.png" alt="" class="sc-num"/></span> <span><div class="uname uname1">153****1234</div><div class="uprize">1000元现金</div></span>
+                            </li>
+                            <li><span><img src="img/2.png" alt="" class="sc-num"/></span> <span><div class="uname uname2">153****1234</div><div class="uprize">800元现金</div></span>
+                            </li>
+                            <li><span><img src="img/3.png" alt="" class="sc-num"/></span> <span><div class="uname uname3">153****1234</div><div class="uprize">600元现金</div></span>
+                            </li>
+                            <li><span><img src="img/4.png" alt="" class="sc-num"/></span> <span><div class="uname uname4">153****1234</div><div class="uprize">400元现金</div></span>
+                            </li>
+                            <li><span><img src="img/5.png" alt="" class="sc-num"/></span> <span><div class="uname uname5">153****1234</div><div class="uprize">200元现金</div></span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="sc-countdown">
+                          <div><img src="img/sc-countdown-img.png" alt="" class="sc-countdown-img"/></div>
+                          <div><span class="sc-countdown-day">7</span>天</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="content">
+                      <div class="block block3">
+                        <div class="sc-title">
+                          <div><b>第三周</b></div>
+                          <div>（10月12日0时--10月18日24时）</div>
+                        </div>
+                        <div class="sc-list hide">
+                          <ul>
+                            <li><span><img src="img/1.png" alt="" class="sc-num"/></span> <span><div class="uname uname1">153****1234</div><div class="uprize">1000元现金</div></span>
+                            </li>
+                            <li><span><img src="img/2.png" alt="" class="sc-num"/></span> <span><div class="uname uname2">153****1234</div><div class="uprize">800元现金</div></span>
+                            </li>
+                            <li><span><img src="img/3.png" alt="" class="sc-num"/></span> <span><div class="uname uname3">153****1234</div><div class="uprize">600元现金</div></span>
+                            </li>
+                            <li><span><img src="img/4.png" alt="" class="sc-num"/></span> <span><div class="uname uname4">153****1234</div><div class="uprize">400元现金</div></span>
+                            </li>
+                            <li><span><img src="img/5.png" alt="" class="sc-num"/></span> <span><div class="uname uname5">153****1234</div><div class="uprize">200元现金</div></span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="sc-countdown">
+                          <div><img src="img/sc-countdown-img.png" alt="" class="sc-countdown-img"/></div>
+                          <div><span class="sc-countdown-day">7</span>天</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="content">
+                      <div class="block block4">
+                        <div class="sc-title">
+                          <div><b>第四周</b></div>
+                          <div>（10月19日0时--10月25日24时）</div>
+                        </div>
+                        <div class="sc-list hide">
+                          <ul>
+                            <li><span><img src="img/1.png" alt="" class="sc-num"/></span> <span><div class="uname uname1">153****1234</div><div class="uprize">1000元现金</div></span>
+                            </li>
+                            <li><span><img src="img/2.png" alt="" class="sc-num"/></span> <span><div class="uname uname2">153****1234</div><div class="uprize">800元现金</div></span>
+                            </li>
+                            <li><span><img src="img/3.png" alt="" class="sc-num"/></span> <span><div class="uname uname3">153****1234</div><div class="uprize">600元现金</div></span>
+                            </li>
+                            <li><span><img src="img/4.png" alt="" class="sc-num"/></span> <span><div class="uname uname4">153****1234</div><div class="uprize">400元现金</div></span>
+                            </li>
+                            <li><span><img src="img/5.png" alt="" class="sc-num"/></span> <span><div class="uname uname5">153****1234</div><div class="uprize">200元现金</div></span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="sc-countdown">
+                          <div><img src="img/sc-countdown-img.png" alt="" class="sc-countdown-img"/></div>
+                          <div><span class="sc-countdown-day">7</span>天</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination2"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section fifth">
+            <ul class="act-info i3">
+              <li class="item title"><img src="img/actrule.png" alt="" class="full-x"/></li>
+              <li class="item"><span>1、</span><span>活动时间：2017年9月28日至2017年10月25日；</span></li>
+              <li class="item"><span>2、</span><span>新手标不参加本次活动；</span></li>
+              <li class="item"><span>3、</span><span>活动期间每人每天赠送一次开宝箱机会（仅当天有效，不可累积 ），累计年化投资金额每满1000元可再次获得开宝箱机会，以此类推！</span></li>
+              <li class="item"><span>4、</span><span>活动期间根据每周用户年化投资额进行排名，前5名获得对应奖励。若累计年化投资金额相同，则按投资顺序进行排名。</span></li>
+              <li class="item"><span>5、</span><span>红包奖励即时发送至万家贷用户账户，现金奖金及实物奖品待活动结束统计完成后7个工作日内派发给中奖用户；</span></li>
+              <li class="item"><span>6、</span><span>对于恶意刷奖者（冒用他人手机号、身份证、一人多账户套取奖品等），一经发现，将取消获奖资格，若已发放的奖品，将收回处理；</span></li>
+              <li class="item"><span>7、</span><span>本活动的解释权归万家金融所有，如有疑问请联系在线客服或者拨打客服热线：<a href="tel:400-0607-520" class="tel">400-0607-520</a>。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination swiper-pagination1 hide"></div>
+  </div>
+
+  <div class="botfix">
+    <span class="btf bf1 active"><span><img src="img/botfix1.png" alt=""/></span><span>开宝箱</span></span>
+    <span class="btf bf2"><span><img src="img/botfix2.png" alt=""/></span><span>冲级榜</span></span>
+  </div>
+
+</div>
+
+<div class="alert alert-gologin">
+  <span class="close-btn"></span>
+
+  <div class="content">
+    <img class="qg-pic" src="img/pet2.png"/>
+
+    <div class="info">您还未登录，请先登录</div>
+
+    <input type="button" class="btn denglu" value="立即登录"/>
+  </div>
+</div>
+
+
+<div class="alert alert-actEnd">
+  <div class="content">
+    <div class="info">活动已结束</div>
+  </div>
+</div>
+
+<!--很抱歉，您已没有开启宝箱机会，快去投资吧;提示窗-->
+<div class="alert alert-nochance">
+  <span class="close-btn"></span>
+
+  <div class="content">
+    <img class="qg-pic" src="img/pet2.png"/>
+
+    <div class="info">很抱歉，您已没有开启宝箱机会</div>
+    <div class="info">快去投资吧</div>
+    <input type="button" class="nowtz-btn" value="立即投资"/>
+  </div>
+</div>
+</body>
+<script>
+  //Initialize Swiper
+  var mySwiper2, mySwiper1;
+  $(function () {
+    mySwiper1 = new Swiper('.swiper-container1', {
+      autoHeight: true,
+      noSwiping: true,
+      pagination: '.swiper-pagination1',
+      observer: true,//修改swiper自己或子元素时，自动初始化swiper
+      observeParents: true,//修改swiper的父元素时，自动初始化swiper
+    });
+
+    mySwiper2 = new Swiper('.swiper-container2', {
+      effect: 'coverflow',
+      slidesPerView: 3,
+      centeredSlides: true,
+      pagination: '.swiper-pagination2',
+      loop: true,
+      observer: true,//修改swiper自己或子元素时，自动初始化swiper
+      observeParents: true,//修改swiper的父元素时，自动初始化swiper
+      coverflow: {
+        rotate: 20,
+        stretch: 10,
+        depth: 60,
+        modifier: 2,
+        slideShadows: false
+      }
+    });
+
+    mySwiper1.lockSwipes();
+    $('.bf1').click(function () {
+      $(".myprizes").show();
+      $(".botfix > span").removeClass("active");
+      $(this).addClass("active");
+      mySwiper1.unlockSwipes();
+      mySwiper1.slideTo(0, 1000, false);
+      scrollTo(0, 0);
+      mySwiper1.lockSwipes();
+    });
+    $('.bf2').click(function () {
+      $(".myprizes").hide();
+      $(".botfix > span").removeClass("active");
+      $(this).addClass("active");
+      mySwiper1.unlockSwipes();
+      mySwiper1.slideTo(1, 1000, false);
+      scrollTo(0, 0);
+      mySwiper1.lockSwipes();
+    });
+
+  });
+</script>
+<script>
+  // 提示信息
+  function fadeInOut(msg) {
+    var fadeInHtml = '<div style="position:fixed;z-index:1000;left:0;top:0;right:0;bottom:0;width:100%;height:100%;" id="errMsgS"><div id="errMsgMain" style="width: 4.2rem;background: rgba(0,0,0,.58);font-size: .3rem;color:#fff;border-radius:4px;text-align:center;padding:.1rem;position:absolute;left:50%;margin-left:-2.1rem;top:50%;margin-top:-.4rem;word-wrap:break-word;font-family: STXihei;">' + msg + '</div></div>';
+    $('body').append(fadeInHtml);
+    $("#errMsgS").stop(true, true).show().delay(1500).fadeOut('slow', function () {
+      $('#errMsgS').remove();
+    });
+  }
+  //封装接口
+  $.extend({
+    ajaxJson: function (o) {
+      o.type = o.type || "post";
+      o.dataType = o.dataType || "json";
+      o.contentType = o.contentType || "application/json; charset=UTF-8";
+      //o.headers = o.headers || {"content-type": "application/json", "cache-control": "no-cache"};
+      //o.timeout = o.timeout /*|| "3000"*/;
+      //o.data = JSON.stringify($.extend({}, o.data, {clientType: "wechat", clientVersion: ""}));
+      o.data = JSON.stringify(o.data);
+      o.complete = function (xmlHttpRequest, textStatus) {
+        if (textStatus == "success") {
+          //通过XMLHttpRequest取得请求响应信息
+          var repText = jQuery.parseJSON(xmlHttpRequest.responseText);
+          if (repText.code == "900002") {
+            //fadeInOut(repText.message);
+            loginExpired();
+            /*setTimeout(function () {
+             location.href = location.protocol + "//" + location.host + location.pathname + getUrlparam() + "&time=" + (new Date()).getTime();
+             }, 1500);*/
+          } else if (repText.code == "900000") {
+            loginExpired();
+          }
+        }
+      };
+      $.ajax(o);
+    }
+  });
+
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURIComponent(r[2]);
+    return "";
+  }
+
+  function getUrlparam() {
+    return '?userId=' + $('#userId').val() + '&tag=' + $('#tag').val() + '&tokenId=' + $('#tokenId').val() + '&clientType=' + $('#clientType').val() + '&clientVersion=' + $('#clientVersion').val();
+  }
+
+  function loginExpired() {
+    $("#userId").val("");
+    $("#tokenId").val("");
+    userInfo = {
+      userId: "",
+      tokenId: "",
+      clientType: $("#clientType").val(),
+      clientVersion: $("#clientVersion").val()
+    };
+  }
+
+  function goLogin() {
+    if ($("#tag").val() == "app") { //由app进入
+      initURL('login', '活动', location.protocol + "//" + location.host + location.pathname);
+    } else { //weixin
+      location.href = "/wechat/index/register.html?act=d11&target=" + location.protocol + "//" + location.host + location.pathname;
+    }
+  }
+
+  function goInvest() {//立即投资
+    if ($("#tag").val() == "app") { //由app进入
+      initURL('banInvestment', '活动', location.protocol + "//" + location.host + location.pathname);
+    } else { //weixin
+      location.href = "/wechat/fancing/home.html";
+    }
+  }
+
+  function isActStarted() {
+    var flag = false; // false 活动结束/未开始 true 活动开始
+    //预留接口 判断活动期间范围  不需要登录   //900001 不在活动期间,900000活动期间
+    $.ajaxJson({
+      url: "/wjdai-api/activity/midautumnFetival/activityTime",
+      data: userInfo,
+      async: false,
+      success: function (json) {
+        if (json.code == "900000") { //900001 不在活动期间,900000 活动期间
+          flag = true;
+        } else {
+          //fadeInOut(json.message);
+          flag = false;
+        }
+      },
+      error: function (json) {
+        console.log("判断活动期间范围接口 暂时不通");
+      }
+    });
+    return flag;
+  }
+
+  var userInfo = {userId: "", tokenId: "", clientType: "", clientVersion: ""},
+      drawCount = 1,
+  // 土豪榜排名使用 - 每周活动开始时间区间
+      _weekStartTime = ['9月28日0时<br>至10月4日24时', '10月5日0时<br>至10月11日24时',
+        '10月12日0时<br>至10月18日24时', '10月19日0时<br>至10月25日24时'],
+  /*奖品名称           奖品对应的编号
+   小米AI音箱                1
+   小熊电炖锅                2
+   荣事达养生壶              3
+   加湿器                    4
+   保温杯                    5
+   抱枕                       6
+   30元话费                   7
+   100元红包                  8
+   50元红包                   9
+   30元红包                   10
+   20元红包                   11
+   10元红包                   12
+   2%加息券                   13
+   1%加息券                   14
+   */
+      jsonL = [
+        {"id": 0, "name": "加油，再接再厉", "icon": "img/prize/pet4-2.png"},
+        {"id": 1, "name": "小米AI音箱", "icon": "img/prize/1.png"},
+        {"id": 2, "name": "小熊电炖锅", "icon": "img/prize/2.png"},
+        {"id": 3, "name": "荣事达养生壶", "icon": "img/prize/3.png"},
+        {"id": 4, "name": "加湿器", "icon": "img/prize/4.png"},
+        {"id": 5, "name": "保温杯", "icon": "img/prize/5.png"},
+        {"id": 6, "name": "抱枕", "icon": "img/prize/6.png"},
+        {"id": 7, "name": "30元话费", "icon": "img/prize/7.png"},
+        {"id": 8, "name": "100元红包", "icon": "img/prize/8.png"},
+        {"id": 9, "name": "50元红包", "icon": "img/prize/9.png"},
+        {"id": 10, "name": "30元红包", "icon": "img/prize/10.png"},
+        {"id": 11, "name": "20元红包", "icon": "img/prize/11.png"},
+        {"id": 12, "name": "10元红包", "icon": "img/prize/12.png"},
+        {"id": 13, "name": "2%加息券", "icon": "img/prize/13.png"},
+        {"id": 14, "name": "1%加息券", "icon": "img/prize/14.png"}
+      ];
+  var timer1, closelightindex = 1; //闭合宝箱的背后光动画
+
+  $(function () {
+    $("#tag").val(getQueryString('tag'));
+    $("#userId").val(getQueryString('userId'));
+    $("#tokenId").val(getQueryString('tokenId'));
+    $("#clientType").val(getQueryString('clientType'));
+    $("#clientVersion").val(getQueryString('clientVersion'));
+    userInfo = {
+      userId: $("#userId").val(),
+      tokenId: $("#tokenId").val(),
+      clientType: $("#clientType").val(),
+      clientVersion: $("#clientVersion").val()
+    };
+
+    //初始化 - 宝箱背景光动效 + 清空模拟数据（伪装成未登录
+    init0();
+
+    /*if ($("#userId").val() == "") { //未登录
+     notLogin();
+     }*/
+
+    $(".goLoginBtn").unbind("click").click(function () {
+      //goLogin();
+      popGoLogin();
+    });
+
+    $(".denglu").unbind("click").click(function () {
+      goLogin();
+    });
+
+
+    //功能性
+    $(".nowtz-btn").unbind("click").bind("click", goInvest);
+    $(".myprizes").click(function () {
+      if (userInfo.userId == "") {
+//        goLogin();
+        popGoLogin();
+      } else {
+        location.href = "myprizes.html" + getUrlparam();
+      }
+    });
+    // 我的抽奖次数和年化投资额
+    init1();
+
+    // 获奖名单
+    init2();
+
+    // 我的排名； 土豪榜排名；
+    init3();
+
+    // 每周活动结束后的排名前5的用户
+    init4();
+
+    // 抽奖功能
+    initChoujiang();
+
+
+    // test use only
+    drawCount = 22;
+    $("#chanceforopenbox").html(drawCount);
+    $(".box-gold").unbind('click').bind("click", openBoxFun);
+  });
+
+  function notLogin() {
+    drawCount = 1;
+    //1 我的累计年化投资金额：
+    $("#mtz").html('<span class="goLoginBtn">未登录</span>');
+    //2 开宝箱机会
+    $("#chanceforopenbox").html(drawCount);
+    //3 我的当前排名
+    $(".myRank").html('<span class="goLoginBtn">您还未登录</span>');
+    $("#txttime").html("");
+    $('#countDownBlock').hide();
+
+    $(".goLoginBtn").unbind("click").click(function () {
+      //goLogin();
+      popGoLogin();
+    });
+  }
+
+  function initChoujiang() {
+    $("#chanceforopenbox").html(drawCount >= 0 ? drawCount : 0);
+    // 活动结束后， 点击无效果，
+    if (!isActStarted()) {
+      $(".btz > div:not(:first-child)").hide(); // 隐藏开宝箱机会
+      $(".box-gold").unbind('click').bind("click", popActEnd);
+      return;
+    } else {
+      $(".box-gold").unbind('click').bind("click", openBoxFun);
+    }
+  }
+
+  function clearWinnerBlock() {
+    // 获奖名单清空
+    var date1 = new Date(),
+        date2 = new Date("2017-09-28 00:00:00"),
+        date3 = date2.getTime() - date1.getTime(),
+        sec = date3 / 1000;
+
+    sec <= 0 && (sec = 1);
+    _genSCList({list: [], time: sec, id: 'block1'});
+    _genSCList({list: [], time: sec + 7 * 24 * 60 * 60, id: 'block2'});
+    _genSCList({list: [], time: sec + 14 * 24 * 60 * 60, id: 'block3'});
+    _genSCList({list: [], time: sec + 21 * 24 * 60 * 60, id: 'block4'});
+  }
+
+  function animationforCloseBoxLight() {
+    if (timer1 != undefined) {
+      clearInterval(timer1);
+    }
+    $(".box-closed.boxlight").hide();
+    $(".box1 .box-closed.boxlight").show();
+    timer1 = setInterval(function () {
+      $(".box" + closelightindex + " .box-closed.boxlight").hide();
+      closelightindex = (closelightindex == 3 ? 1 : (closelightindex + 1));
+      $(".box" + closelightindex + " .box-closed.boxlight").show();
+    }, 1000);
+  }
+
+  function init0() { //宝箱背景光动效 + 清空模拟数据（伪装成未登录
+    animationforCloseBoxLight();
+    notLogin();
+    //_gen4OrderList();
+    //clearWinnerBlock();
+    //_showOrder(1);
+  }
+
+  function init1() {
+    //我的抽奖次数和年化投资额  需要登录
+    /*
+     {   "code":"000000",
+     "message":"已登录",
+     "totalInvest":5000               投资总额
+     "drawCount":5                    抽奖次数
+     }
+     */
+    $.ajaxJson({
+      url: "/wjdai-api/activity/midautumnFetival/lotteryNumYearInvest",
+      data: userInfo,
+      async: false,
+      success: function (json) {
+        if (json.code == "000000") {
+          $("#mtz").html(json.totalInvest == 0 ? "0" : (json.totalInvest || '<span class="noval">0</span>'));
+          drawCount = json.drawCount;
+        } else if (json.code == "900002" || json.code == "900000") {
+          notLogin();
+        }
+      },
+      error: function (json) {
+        console.log("我的抽奖次数和年化投资额  接口 暂时不通  test drawCount = 1;");
+        drawCount = 1;
+      }
+    });
+  }
+  function init2() {
+    //中奖用户对应的中奖名称   不需要登录
+    /*         {
+     "list":[
+     {"drawTime":10,                              中奖名称对应的编号
+     "rewardName":"30元红包",          中奖名称
+     "userPhone":"158****7054"        用户
+     },
+     {"drawTime":1,
+     "rewardName":"小米AI音箱",
+     "userPhone":"158****7054"
+     }
+     ]
+     }      */
+    $.ajaxJson({
+      url: "/wjdai-api/activity/midautumnFetival/prizeUser",
+      data: userInfo,
+      success: function (json) {
+        var _list = json.list || [], len = _list.length, _html = "";
+        if (len == 0) { // 没有中奖用户
+          $(".win-list-none").show();
+          $(".wlist").hide();
+          return;
+        } else {
+          $(".win-list-none").hide();
+          for (var i = 0; i < len; i++) {
+            _html += '<div class="witem"><div>' + _list[i].userPhone + '</div><div>' + _list[i].rewardName + '</div></div>';
+          }
+          $(".wlist").html(_html).show();
+        }
+      },
+      error: function (json) {
+        console.log("中奖用户对应的中奖名称 暂时不通,");
+        $(".win-list-none").show();
+        $(".wlist").hide();
+      }
+    });
+
+  }
+  function init3() {
+    //预留接口 土豪榜排名 /wjdai-api/activity/midautumnFetival/tyrantStandings
+    /*
+
+     {"currentWeek":1,        当前第几周         1 第一周 ，2第二周 ，3 第三周 ，4 第四周
+     "fourList":[],                第四周的用户排名
+     "fristList":[{"drawTime":3000,                        第一周年化投资额
+     "id":1,                                           排名次数
+     "userPhone":"158****7054"        用户名
+     }],            第一周的用户排名
+     "secoundList":[],    第二周的用户排名
+     "threeList":[],          第三周的用户排名
+     "time":36496          距离本周活动结束时间
+     }
+     */
+    $.ajaxJson({
+      url: "/wjdai-api/activity/midautumnFetival/tyrantStandings",
+      data: userInfo,
+      success: function (json) {
+        var _index = json.currentWeek || 1;
+        //var _fl = json.list.slice(0, 10), _sl = json.list.slice(10, 20), _tl = json.list.slice(20, 30), _tl = json.list.slice(30, 40);
+        _genOrderList(json.fristList || [], "order1", _index);
+        _genOrderList(json.secoundList || [], "order2", _index);
+        _genOrderList(json.threeList || [], "order3", _index);
+        _genOrderList(json.fourList || [], "order4", _index);
+
+        $(".order.switchPage .leftBtn").click(function () {
+          var t = $(this).parents('.switchPage').data('orderid');
+          t = (t - 1 == 0 ? 4 : t - 1);
+          _showOrder(t);
+        });
+        $(".order.switchPage .rightBtn").click(function () {
+          var t = $(this).parents('.switchPage').data('orderid');
+          t = (t + 1 == 5 ? 1 : t + 1);
+          _showOrder(t);
+        });
+
+        // 土豪排名，显示当前周
+        _showOrder(_index);
+
+        // 是否显示 距离本周活动结束时间
+        if (json.time > 0) {
+          $("#txttime").html(json.time);
+          $('#countDownBlock').show();
+        } else {
+          $("#txttime").html("");
+          $('#countDownBlock').hide();
+        }
+      },
+      error: function (json) {
+        console.log("土豪榜排名 暂时不通 - 不显示倒计时 ");
+        //test1();
+        _gen4OrderList();
+        _showOrder(1);
+        $('#countDownBlock').hide();
+        $("#txttime").html("");
+      }
+    });
+
+
+    //预留接口 我的每场排名  需要登录
+    /*
+     {"code":"000000",
+     "fourOrder":"1",        第四周我的排名          "fourOrder":" "   如果是空的话说明本周还没有进行投资
+     "fristOrder":"1",         第一周我的排名
+     "message":"已登录",
+     "secoundOrder":"1", 第二周我的排名
+     "threeOrder":"1"       第三周我的排名
+     }
+     */
+    $.ajaxJson({
+      url: "/wjdai-api/activity/midautumnFetival/myRanking",
+      data: userInfo,
+      success: function (json) {
+        if (json.code == "000000") {
+          $(".mr1 .myRank").html(json.fristOrder || '<span class="noval">您还未投资</span>');
+          $(".mr2 .myRank").html(json.secoundOrder || '<span class="noval">您还未投资</span>');
+          $(".mr3 .myRank").html(json.threeOrder || '<span class="noval">您还未投资</span>');
+          $(".mr4 .myRank").html(json.fourOrder || '<span class="noval">您还未投资</span>');
+
+        } else if (json.code == "900002" || json.code == "900000") {
+          notLogin();
+        }
+      },
+      error: function (json) {
+        console.log("我的每场排名 暂时不通  ");
+      }
+    });
+  }
+
+  function _gen4OrderList() {
+    _genOrderList([], "order1", 1);
+    _genOrderList([], "order2", 1);
+    _genOrderList([], "order3", 1);
+    _genOrderList([], "order4", 1);
+
+    $(".order.switchPage .leftBtn").click(function () {
+      var t = $(this).parents('.switchPage').data('orderid');
+      t = (t - 1 == 0 ? 4 : t - 1);
+      _showOrder(t);
+    });
+    $(".order.switchPage .rightBtn").click(function () {
+      var t = $(this).parents('.switchPage').data('orderid');
+      t = (t + 1 == 5 ? 1 : t + 1);
+      _showOrder(t);
+    });
+  }
+
+  function _showOrder(index) {
+    $(".order").hide();
+    $(".order" + index).show();
+    $(".order.myrankblock").show();
+    $(".order.myrankblock .myRankGroup").hide();
+    $(".order.myrankblock .myRankGroup.mr" + index).show();
+  }
+
+  function _genOrderList(arr, id, currId) {
+    var _html = "", len = arr.length,
+        _index = 0,  // 每一页排名的数字，都由0开始
+        weekId = (id.slice(-1) || 1 ); //计算当前传入arr是属于那一周的数据
+
+    if (arr.length == 0) {
+      if (weekId == currId) {
+        // 当前周 活动无数据  显示去投资
+        $("." + id + ".list").html('<span class="emptyList"><div>还未有用户上榜，<br>快去投资吧！</div><div class="btn nowtz-btn" style="">立即投资</div></span>');
+        $(".nowtz-btn").unbind("click").bind("click", goInvest);
+      } else {
+        // 不是当前周 活动无数据  显示对应当前周活动开始时间区间
+        $("." + id + ".list").html('<span class="emptyList"><div>本周活动<span class="eltime">' + _weekStartTime[weekId - 1] + '</span>开始</div></span>');
+      }
+      return;
+    }
+
+    //_index = (id.slice(-1) - 1) * 10; // 第一页 由 0 开始，第二页 由10开始，第三页 由 20 开始
+    for (var i = 0; i < len; i++) {
+      _html += '<div><span class="num">' + (_index + i + 1) + '</span><span class="uname">' + arr[i].userPhone + '</span><span class="uinvest"> ' + (arr[i].drawTime - 0).toFixed(0) + '元</span></div>';
+    }
+    // 不足10条的页面补齐6条（无数据）
+    if (len < 10) {
+      for (var i = len; i < 10; i++) {
+        _html += '<div class=""><span class="num"></span><span class="uname"></span><span class="uinvest"></span></div>';
+      }
+    }
+
+    $("." + id + ".list").html(_html);
+    if (_index == 0) { // 第一页的前5名特殊样式
+      $("." + id + ".list .num").eq(0).addClass("first").html("").parent().addClass("firstRow");
+      $("." + id + ".list .num").eq(1).addClass("second").html("").parent().addClass("secondRow");
+      $("." + id + ".list .num").eq(2).addClass("third").html("").parent().addClass("thirdRow");
+      $("." + id + ".list .num").eq(3).addClass("forth").html("").parent().addClass("forthRow");
+      $("." + id + ".list .num").eq(4).addClass("fifth").html("").parent().addClass("fifthRow");
+    }
+  }
+
+  function init4() {
+    //每周活动结束后的排名前5的用户 不需要登录
+    /*
+     {"firstList":[{"drawTime":3000,                          年化投资额
+     "id":1,                                            排名次数
+     "userPhone":"158****7054"         用户名
+     },
+     {"drawTime":3000,
+     "id":2,
+     "userPhone":"158****7044"
+     },
+     {"drawTime":3000,
+     "id":3,
+     "userPhone":"158****7012"
+     },
+     {"drawTime":3000,
+     "id":4,
+     "userPhone":"158****7013"
+     },
+     {"drawTime":3000,
+     "id":5,
+     "userPhone":"158****7674"
+     }
+     ],                         第一周排名前5的用户
+     "fristTime":-35546,            第一周距离活动结束时间
+     "fourList":[],                       第四周排名前5的用户
+     "fourTime":294746,            第四周距离活动结束的时间
+     "secondList":[],                  第二周排名前5的用户
+     "secondTime":121946,     第二周距离活动结束的时间
+     "threeList":[],                     第三周排名前5的用户
+     "threeTime":208346         第三周距离活动结束的时间
+     }
+
+     */
+    $.ajaxJson({
+      url: "/wjdai-api/activity/midautumnFetival/winnersList",
+      data: userInfo,
+      success: function (json) {
+        if (json.fristTime == undefined) { // 测试用
+          clearWinnerBlock();
+          return;
+        }
+        _genSCList({list: json.firstList || [], time: json.fristTime || 1, id: 'block1'});
+        _genSCList({list: json.secondList || [], time: json.secondTime || 1, id: 'block2'});
+        _genSCList({list: json.threeList || [], time: json.threeTime || 1, id: 'block3'});
+        _genSCList({list: json.fourList || [], time: json.fourTime || 1, id: 'block4'});
+      },
+      error: function (json) {
+        console.log("每周活动结束后的排名前5的用户 暂时不通,");
+        clearWinnerBlock();
+      }
+    });
+  }
+
+  function _genSCList(params) {
+    /*{ list: [] , time : 0, id : 'block1' }}*/
+    var _list = params.list || [], len = _list.length, time = params.time;
+    if (len == 0) { // 获奖名单 无
+      time <= 0 && (time = 1);
+      $(".swiper-container2  ." + params.id + " .sc-countdown .sc-countdown-day").html(Math.ceil(time / ( 60 * 60 * 24)));
+      $(".swiper-container2  ." + params.id + " .sc-countdown").show();
+      $(".swiper-container2  ." + params.id + " .sc-list").hide();
+    } else {
+      $(".swiper-container2  ." + params.id + " .sc-countdown").hide();
+      for (var i = 0; i < len; i++) {
+        $(".swiper-container2 ." + params.id + ".sc-list li").find(".uname" + (i + 1)).html(_list[i].userPhone)
+      }
+      $(".swiper-container2 ." + params.id + " .sc-list").show();
+    }
+
+    /*mySwiper2.update();
+     mySwiper2.reLoop();*/
+  }
+
+  function iniInt7() {
+    //预留接口7.	获取距离开始时间的倒计时秒数 x倒计时接口，离活动开始时间，单位：秒
+    /*
+
+     */
+    $.ajaxJson({
+      url: "/7",
+      data: userInfo,
+      async: false,
+      success: function (json) {
+
+      },
+      error: function (json) {
+        console.log(" 时间倒计时接口 不通");
+        $("#txttime").html(1266);
+      }
+    });
+  }
+
+  // 倒计时逻辑
+  $(function () {
+    var k = $('.txttime').length;
+    fill2 = function (a) {
+      var s = "" + a;
+      return s.length < 2 ? "0" + a : s;
+    };
+    fill3 = function (a, i) {
+      var s = "" + a;
+      return (s.length < 2 ? "0" + a : s).split("")[i];
+    };
+
+    var _tn = 0, _ts = 0, t_t = 0;
+
+    txttimeshow = function (mt, i) {
+      var ms = parseInt(mt % 1000 / 10);
+      mt = parseInt(mt / 1000);
+      var s = mt % 60;
+      mt = parseInt(mt /= 60);
+      var m = mt % 60;
+      mt = parseInt(mt /= 60);
+      var h = mt % 24;
+      d = parseInt(mt / 24);
+      /*$(".txttimeshow").eq(i - 1).html('<span class="txtime">'
+       + '<span class="jjj">' + fill3(h, 0) + '</span>' + '<span class="jjj">' + fill3(h, 1) + '</span>' + '<span class="dred">' + ':' + '</span>'
+       + '<span class="jjj">' + fill3(m, 0) + '</span>' + '<span class="jjj">' + fill3(m, 1) + '</span>' + '<span class="dred">' + ':' + '</span>'
+       + '<span class="jjj">' + fill3(s, 0) + '</span>' + '<span class="jjj">' + fill3(s, 1) + '</span>');*/
+      $(".txttimeshow").eq(i - 1).html('<div class="djs-timer"><span id="t_h">' + fill2(h) + '</span>:<span id="t_m">' + fill2(m) + '</span>:<span id="t_s">' + fill2(s) + '</span></div>');
+    };
+
+    for (var i = 0; i < k; i++) {
+      var v_t = parseInt($(".txttime").eq(i - 1).text() + "000");
+      _ts = new Date();
+      txttimeshow(v_t, i);
+      $(".txttime").eq(i - 1).text(v_t);
+    }
+    timer2 = setInterval(function () {
+      for (var i = 0; i < k; i++) {
+        var t = parseInt($(".txttime").eq(i - 1).text()), _tn = new Date();
+        t = t - _tn.getTime() + _ts.getTime();
+        t = t < 0 ? 0 : t;
+        if (t <= 10) {
+          $('#countDownBlock').hide();
+          //iniInt7();
+          clearInterval(timer2);
+        } else if (t < 210 * 1000) {
+
+        }
+        txttimeshow(t, i);
+      }
+    }, 10);
+  });
+
+  function openBoxFun() {
+    if (userInfo.userId == "") {
+      notLogin();
+      popGoLogin();
+    }
+    $(".box-gold").unbind("click");
+
+    var boxid = $(this).parents('.box').data('boxid');
+    // 预留接口 抽奖
+    /*
+     未登录
+     {"code":"900002","message":"未登陆"}
+     已登录
+     没有抽奖机会  status 是1
+     {"code":"000000","message":"已登陆","result":"很抱歉，你已经没有抽奖奖机会，快去投资吧","status":"1"}
+     有抽奖机会     status 是0
+     {"code":"000000","message":"已登陆",
+     "prizeCount":1,                       剩余抽奖次数
+     "result":"抽奖成功",
+     "rewardName":"30元话费",     奖品名称                注：如果是‘谢谢参与’对应的编号为 0
+     "drawTime":7,                         奖品对应的编号
+     "status":"0"
+     }
+     */
+    $.ajaxJson({
+      url: "/wjdai-api/activity/midautumnFetival/lotteryDraw",
+      data: userInfo,
+      async: false,
+      success: function (json) {
+        if (json.code == "000000") { //已登陆
+          if (json.status == "1") {// 1:没有抽奖机会
+            drawCount = 0;
+            popNoChance();
+            $(".box-gold").unbind("click").bind("click", openBoxFun);
+          } else if (json.status == "0") {//0:抽中奖品
+            drawCount = json.prizeCount;
+            choujiangStart(json.drawTime || 0, boxid);
+          } else {// 异常
+            $(".box-gold").unbind("click").bind("click", openBoxFun);
+          }
+        } else if (json.code == "900002" || json.code == "900000") {
+          notLogin();
+          popGoLogin();
+          $(".box-gold").unbind("click").bind("click", openBoxFun);
+        }
+      },
+      error: function (json) {
+        console.log("抽奖 接口 暂时不通 ");
+        choujiangStart(_getRandomPrize(), boxid); //测试抽奖
+        drawCount > 0 ? drawCount-- : 0;
+      }
+    });
+
+  }
+
+  function choujiangStart(prizeId, boxid) {
+    if (prizeId < 0 || prizeId >= jsonL.length) {
+      return;
+    }
+
+    // 停止 闭合宝箱 背后光
+    clearInterval(timer1);
+    // 打开当前选中箱子
+    //var boxid = $(this).parents('.box').data('boxid');
+    $(".box" + boxid + " .box-openj .priz-wp .img_j").attr("src", jsonL[prizeId].icon);
+    $(".box" + boxid + " .box-closed ").hide();
+    $(".box" + boxid + " .box-openj").show();
+    // 2s 后打开其余箱子
+    //console.log("prizeId : " + prizeId);
+    setTimeout(function () {
+      $(" .box-closed ").hide();
+      var k = 0, tmp = 0;
+      do {
+        tmp = _getRandomPrize();
+        //console.log("--"+ k + " -tmp : " + tmp + "       url : " + jsonL[tmp].icon);
+        if (tmp != prizeId) {
+          $(".box").not(".box" + boxid).eq(k).find(".box-openj").find(".img_j").attr("src", jsonL[tmp].icon);
+          k++;
+        }
+      }
+      while (k < 2);
+      $(".box").not(".box" + boxid).find(".box-openj").show();
+    }, 2000);
+    // 5s 后闭合箱子
+    setTimeout(function () {
+      $(" .box-closed ").show();
+      $(" .box-openj").hide();
+      animationforCloseBoxLight();
+
+      $(".box-gold").unbind("click").bind("click", openBoxFun);
+      //initChoujiang();
+    }, 5000);
+  }
+
+  function _getRandomPrize() {
+    return (Math.random() * (jsonL.length) | 0)
+  }
+  /**
+   *  去登陆
+   */
+  function popGoLogin() {
+    $(".close-btn").click();
+    var tmp = '<div class="alert-bg"></div>';
+    $(".alert-gologin").show();
+    $("body").append(tmp);
+
+    $(".alert-bg").on("click", function () {
+      $(".alert-bg").remove();
+      $(".alert").hide();
+    });
+  }
+  /**
+   *  活动已结束
+   */
+  function popActEnd() {
+    $(".close-btn").click();
+    var tmp = '<div class="alert-bg"></div>';
+    $(".alert-actEnd").show();
+    $("body").append(tmp);
+
+    $(".alert-bg").on("click", function () {
+      $(".alert-bg").remove();
+      $(".alert").hide();
+    });
+
+    setTimeout(function () {
+      $(".alert-bg").click();
+    }, 3000);
+  }
+  /**
+   *  很抱歉，您已没有抽奖机会了
+   快去投资吧
+   */
+  function popNoChance() {
+    $(".close-btn").click();
+    var tmp = '<div class="alert-bg"></div>';
+    $(".alert-nochance").show();
+    $("body").append(tmp);
+
+    $(".alert-bg").on("click", function () {
+      $(".alert-bg").remove();
+      $(".alert").hide();
+    })
+  }
+  /**
+   * 关闭弹窗
+   */
+  $(".close-btn, .nowtz-btn").on("click", function () {
+    $(".alert-bg").remove();
+    $(".alert").hide();
+  })
+</script>
+<script type="text/javascript">
+  var clientType = "";
+  function initURL(obj, title, url) {
+    var u = navigator.userAgent;
+    if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+      clientType = "Android";
+    } else if (u.indexOf('iPhone') > -1) {
+      clientType = "ios";
+    } else if (u.indexOf('Windows Phone') > -1) {
+      clientType = "winphone";
+    }
+
+    document.title = title;
+    if ("ios" == clientType) {
+      iosShow(obj, url);
+
+    } else if ("Android" == clientType) {
+      androidShow(obj, title, url);
+    }
+  }
+
+  function androidShow(obj, title, url) {
+    banner.obj(obj, title, url);
+  }
+
+  function iosShow(obj, url) {
+    var bann = "banner:///" + obj + "::/" + url;
+    window.location.hash = bann;
+  }
+</script>
+
+</html>

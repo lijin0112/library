@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>MinYa_李超君</title>
+  <link rel="stylesheet" href="css/public.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script type="text/javascript" src="scripts/respond.js"></script>
+  <!-- IE下兼容@media screen -->
+  <script type="text/javascript" src="scripts/jquery-1.11.3.js"></script>
+  <script type="text/javascript" src="scripts/sketch.min.js"></script>
+
+</head>
+<body>
+<!-- 首页顶部 -->
+<div id="index_top">
+  <div class="top_wrap">
+    <div class="top_left">
+      <img src="images/logo.png"/>
+
+      <p>记录我的每一天！</p>
+    </div>
+    <div class="top_right">
+      <p class="border_left_none">微信</p>
+
+      <p>QQ</p>
+
+      <p>TEL</p>
+
+      <p>MSN</p>
+    </div>
+  </div>
+</div>
+<div class="top_color"></div>
+
+<!-- 鼠标跟随DIV -->
+<div id="test" style="position:fixed;top:0px;z-index:20;"></div>
+
+<script language="JavaScript">
+  function getOs() {
+    var OsObject = "";
+    if (navigator.userAgent.indexOf("MSIE") > 0) {
+      return "MSIE";
+    }
+    if (isFirefox = navigator.userAgent.indexOf("Firefox") > 0) {
+      $.getScript('scripts/mousefollow.js');
+      return "Firefox";
+    }
+    if (isSafari = navigator.userAgent.indexOf("Safari") > 0) {
+      $.getScript('scripts/mousefollow.js');
+      return "Safari";
+    }
+    if (isCamino = navigator.userAgent.indexOf("Camino") > 0) {
+      $.getScript('scripts/mousefollow.js');
+      return "Camino";
+    }
+    if (isMozilla = navigator.userAgent.indexOf("Gecko/") > 0) {
+      $.getScript('scripts/mousefollow.js');
+      return "Gecko";
+    }
+  }
+  getOs();
+</script>
+
+</body>
+</html>

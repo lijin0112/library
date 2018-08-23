@@ -1,0 +1,18 @@
+https://test.wjdai.com/wechat/activity/1709nationalDay/act1.html?tag=wechat&clientType=wechat&uid=157927&tokenId=302300f01cc7c75a4b08b8afbf710c61&userId=157927
+
+    mySwiper2 = new Swiper('.swiper-container2', {
+      effect: 'coverflow',
+      slidesPerView: 3,
+      centeredSlides: true,
+      pagination: '.swiper-pagination2',
+      loop: true,
+      observer: true,//修改swiper自己或子元素时，自动初始化swiper
+      observeParents: true,//修改swiper的父元素时，自动初始化swiper
+      coverflow: {
+        rotate: 20,
+        stretch: 10,
+        depth: 60,
+        modifier: 2,
+        slideShadows: false
+      }
+    });

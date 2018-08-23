@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8" >
+  <meta name="renderer" content="webkit">
+  <meta name="format-detection" content="telephone=no, email=no">
+  <meta name="robots" content="none"/>
+  <meta name="apple-mobile-web-app-title" content="万家贷">
+  <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui" name="viewport" id="viewport">
+  <title>万家贷十一月运营报告</title>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery.form.min.js"></script>
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/jquery.data.resource.js"></script>
+  <link href="https://api.wjdai.com/Skins/css/common.css" rel="stylesheet">
+  <script type="text/javascript" src="https://api.wjdai.com/Skins/js/underscore-min.js"></script>
+<script type="text/javascript">
+  (function() {
+    // deicePixelRatio ：设备像素
+    var scale = 1 / devicePixelRatio;
+    //设置meta 压缩界面 模拟设备的高分辨率
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+    //debounce 为节流函数，自己实现。或者引入underscoure即可。
+    var reSize = _.debounce(function() {
+      var deviceWidth = document.documentElement.clientWidth > 1300 ? 1300 : document.documentElement.clientWidth;
+      //按照640像素下字体为100px的标准来，得到一个字体缩放比例值 6.4
+      document.documentElement.style.fontSize = (deviceWidth / 6.4) + 'px';
+    }, 50);
+
+    window.onresize = reSize;
+
+    reSize();
+  })();
+</script>
+<style>
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.loading {
+  border: 1px solid #c0c0c0;
+  padding: 10px;
+  margin: 20px;
+}
+
+.all {
+  max-width: 1242px;
+  min-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  background: #494f61;
+  padding-bottom: .45rem;
+}
+
+.all .top-banner {
+  position: relative;
+  font-size: 0;
+}
+
+.page .title-box {
+  width: 100%;
+  height: .7rem;
+  line-height: .7rem;
+  background-color: #434a5a;
+  color: #8499d0;
+}
+
+.page1 .title-box {
+  margin-bottom: .6rem;
+}
+
+.page2 .title-box {
+  margin-bottom: .38rem;
+  margin-top: .86rem;
+}
+
+.page2 .nums-content {
+  margin-top: .49rem;
+}
+
+.page2 .title-box {
+  margin-bottom: .35rem;
+  margin-top: .75rem;
+}
+
+.page3 .title-box {
+  margin-bottom: .35rem;
+  margin-top: .75rem;
+}
+
+.page4 .title-box {
+  margin-bottom: .35rem;
+  margin-top: .50rem;
+}
+
+.page5 .title-box {
+  margin-bottom: .24rem;
+  margin-top: .34rem;
+}
+
+.page6 .title-box {
+  margin-bottom: .25rem;
+  margin-top: .26rem;
+}
+
+.page7 .title-box {
+  margin-bottom: .21rem;
+  margin-top: .3rem;
+}
+
+.page8 .title-box {
+  margin-bottom: .25rem;
+  margin-top: .6rem;
+}
+
+.page9 .title-box {
+  margin-bottom: .43rem;
+  margin-top: .66rem;
+}
+
+.page10 .title-box {
+  margin-bottom: .13rem;
+  margin-top: .48rem;
+}
+
+.page11 .title-box {
+  margin-bottom: .35rem;
+}
+
+.page .title-box .title-index {
+  display: inline-block;
+  font-size: .371rem;
+  padding: 0 .2rem 0 .24rem;
+  float: left;
+}
+
+.page .title-box .title-content {
+  display: inline-block;
+  line-height: .7rem;
+  margin-top: .165rem;
+  float: left;
+  padding-left: .12rem;
+  border-left: 2px solid #8499d0;
+}
+
+.page .title-box .title {
+  color: #fc6a6b;
+  font-size: .1855rem;
+  line-height: initial;
+}
+
+.page .title-box .title-additional-info {
+  font-size: .12rem;
+  line-height: initial;
+}
+
+.page .content-box {
+  padding: 0 .3rem;
+}
+
+.page8 .content-box .nums-content {
+  margin-top: .1rem;
+  margin-bottom: .8rem;
+}
+
+.page .content-box .nums-content>div {
+  display: inline-block;
+  text-align: center;
+  width: 32%;
+}
+
+.page8 .content-box .nums-content>div {
+  display: inline-block;
+  text-align: center;
+  width: 24%;
+}
+
+.page8 .content-box .nums2-content>div {
+  display: inline-block;
+  text-align: center;
+  width: 32%;
+}
+
+.page6 .content-box .nums-content {
+  width: 45%;
+  margin: .4rem auto;
+}
+
+.page11 .content-box .nums-content {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.page6 .content-box .nums-content>div, .page11 .content-box .nums-content>div
+  {
+  width: 48%;
+}
+
+.page .content-box .item-img {
+  width: .68rem;
+  margin: 0 auto .24rem;
+}
+
+.page5 .content-box .item-img {
+  width: 1.77rem;
+  margin: .5rem auto;
+}
+
+.page6 .content-box .item-img {
+  width: .87rem;
+  margin: 0 auto .1rem;
+}
+
+.page8 .content-box .item-img {
+  width: .83rem;
+  margin: 0 auto .25rem;
+}
+
+.page8 .content-box .nums2-content .item-img {
+  width: .66rem;
+  margin: 0 auto .25rem;
+}
+
+.page11 .content-box .item-img {
+  width: 1.37rem;
+  margin: 0 auto .15rem;
+}
+
+.page .content-box .item-title {
+  display: inline-block;
+  width: 100%;
+  font-size: .1855rem;
+  color: #fff;
+}
+
+.page6 .content-box .item-title {
+  font-size: .1237rem;
+}
+
+.page8 .content-box .nums-content .item-title {
+  font-size: .134rem;
+}
+
+.page8 .content-box .nums2-content .item-title {
+  font-size: .2473rem;
+}
+
+.page11 .content-box .nums-content .item-title {
+  font-size: .2655rem;
+}
+
+.page .content-box .item-figure {
+  display: inline-block;
+  font-size: .3092rem;
+  color: #ffba01;
+  line-height: .58rem;
+  font-weight: bold;
+}
+
+.page8 .content-box .nums-content .item-figure {
+  font-size: .1855rem;
+  line-height: .2369rem;
+}
+
+.page8 .content-box .nums2-content .item-figure {
+  font-size: .2473rem;
+  line-height: .3147rem;
+}
+
+.page .content-box .item-figure span {
+  font-size: .1855rem;
+}
+
+.page .content-box .nums-content .item-figure span.normal {
+  padding-left: .06rem;
+  background: #494f61;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  -webkit-background-clip: text;
+  font-weight: normal;
+}
+
+.page8 .content-box .nums-content .item-figure span.normal {
+  font-size: .1237rem;
+}
+
+.page8 .content-box .nums2-content .item-figure span.normal {
+  font-size: .2473rem;
+}
+
+.page .content-box .desc-content, .page .content-box .statement {
+  display: inline-block;
+  width: 100%;
+}
+
+.page3 .content-box .desc-content {
+  margin-bottom: .2rem;
+}
+
+.page8 .content-box .desc-content {
+  margin-bottom: .6rem;
+}
+
+.page .content-box .desc-title {
+  display: inline-block;
+  float: left;
+  width: 100%;
+  font-size: .1546rem;
+  color: #fff;
+  border-left: .04rem solid #8499d0;
+  padding-left: .06rem;
+  line-height: .26rem;
+  color: #fff;
+  margin-bottom: .1rem;
+}
+
+.page11 .content-box .desc-title {
+  border: none;
+  font-size: .1855rem;
+  line-height: .3556rem;
+}
+
+.page .content-box .desc-additional-content {
+  display: inline-block;
+  float: left;
+  width: 100%;
+  font-size: .1546rem;
+  color: #fff;
+  padding-left: .06rem;
+  line-height: .26rem;
+  color: #fff;
+}
+
+.page11 .content-box .desc-additional-content {
+  font-size: .1855rem;
+  line-height: .371rem;
+  padding: .3rem .13rem .4rem;
+}
+
+.page8 .content-box .desc2-content .desc-additional-content {
+  font-size: .1456rem;
+  line-height: .3705rem;
+  padding: .2rem;
+  color: #8c9fd9;
+  background-color: #434a5a;
+  text-align: justify;
+  background-color: #434a5a;
+  text-align: justify;
+  margin-top: .32rem;
+}
+
+.page8 .content-box .desc2-content ul li {
+  float: left;
+  width: 50%;
+}
+
+.page8 .content-box .desc2-content ul li span {
+  display: inline-block;
+  width: 40%;
+}
+
+.page8 .content-box .desc2-content ul li span:first-child {
+  width: 11%;
+}
+
+.page9 .content-box .desc-additional-content {
+  line-height: .2473rem;
+  padding: .33rem .13rem .17rem;
+  background-color: #434a5a;
+  text-align: justify;
+  margin-bottom: .21rem;
+  margin-top: .1rem;
+}
+
+.page9 .content-box .desc-additional-content .writer {
+  padding-top: .1rem;
+  text-align: right;
+  display: inline-block;
+  width: 100%;
+}
+
+.page .content-box .statement {
+  font-size: .134rem;
+  line-height: .299rem;
+  color: #fff;
+  text-align: center;
+}
+
+.page9 .content-box .statement {
+  padding: .2rem 0;
+  font-size: .1546rem;
+  line-height: .1134rem;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+}
+
+.page11 .content-box .desc3-content {
+  text-align: center;
+}
+
+.page11 .content-box .desc3-content .desc-title {
+  font-size: .5878rem;
+  line-height: .2787rem;
+  font-weight: 600;
+}
+
+.page11 .content-box .desc3-content .desc-additional-content {
+  font-size: .2071rem;
+  line-height: .3rem;
+  font-weight: 600;
+}
+
+.page10 .list-content {
+  font-size: .1546rem;
+  line-height: .2473rem;
+  color: #ccc;
+}
+
+.page10 .list-content li {
+  height: 1.51rem;
+}
+
+.page10 .list-content li:nth-child(even) {
+  background-color: #434a5a;
+}
+
+.page10 .list-content li>div {
+  display: inline-block;
+  float: left;
+}
+
+.page10 .list-content li .p10-l0 {
+  overflow: hidden;
+  height: 1.51rem;
+  padding-left: .29rem;
+}
+
+.page10 .list-content li .p10-l0 .p10-line1 {
+  height: .66rem;
+  border-left: 2px solid #df6468;
+}
+
+.page10 .list-content li .p10-l0 .p10-line2 {
+  height: .85rem;
+  border-left: 2px solid #df6468;
+}
+
+.page10 .list-content li .p10-l1 {
+  width: .65rem;
+  font-size: .12rem;
+  line-height: .182rem;
+  position: relative;
+  top: .52rem;
+}
+
+.page10 .list-content li .p10-l1>i {
+  display: inline-block;
+  width: .12rem;
+  height: .12rem;
+  border-radius: 50%;
+  background-color: #df6468;
+  position: relative;
+  left: -.07rem;
+  top: .02rem;
+}
+
+.page10 .list-content li.start-point .p10-line1 {
+  border-left: 2px solid transparent;
+}
+
+.page10 .list-content li.end-point .p10-line2 {
+  border-left: 2px solid transparent;
+}
+
+.page10 .list-content li .p10-l2 {
+  width: 2.7rem;
+  padding: .2rem .1rem;
+  margin-right: .2rem;
+}
+
+.page10 .list-content li .p10-l3 {
+  width: 1.88rem;
+  padding-top: .12rem;
+}
+
+.page10 .list-content li .p10-l2 .p10-l2-t {
+  display: inline-block;
+  color: #ffb643;
+  font-size: .1855rem;
+  line-height: .1855rem;
+  margin-bottom: .1rem;
+}
+
+.trOrange {
+  /* background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffa25e), to(#ff5051)); */
+  background: -webkit-linear-gradient(top, #ffa25e, #ff5051);
+  background: -moz-linear-gradient(top, #ffa25e, #ff5051);
+  background: -o-linear-gradient(top, #ffa25e, #ff5051);
+  background: -ms-linear-gradient(top, #ffa25e, #ff5051);
+  background: linear-gradient(to bottom, #ffa25e, #ff5051);
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.trGreen {
+  background: -webkit-linear-gradient(top, rgba(190, 223, 118, .96),
+    rgba(59, 216, 118, .96));
+  background: -moz-linear-gradient(top, rgba(190, 223, 118, .96),
+    rgba(59, 216, 118, .96));
+  background: -o-linear-gradient(top, rgba(190, 223, 118, .96),
+    rgba(59, 216, 118, .96));
+  background: -ms-linear-gradient(top, rgba(190, 223, 118, .96),
+    rgba(59, 216, 118, .96));
+  background: linear-gradient(to bottom, rgba(190, 223, 118, .96),
+    rgba(59, 216, 118, .96));
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.trBlue {
+  /* background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8190ff), to(#21b9f8)); */
+  background: -webkit-linear-gradient(top, rgba(129, 144, 255, .96),
+    rgba(33, 185, 248, .96));
+  background: -moz-linear-gradient(top, rgba(129, 144, 255, .96),
+    rgba(33, 185, 248, .96));
+  background: -o-linear-gradient(top, rgba(129, 144, 255, .96),
+    rgba(33, 185, 248, .96));
+  background: -ms-linear-gradient(top, rgba(129, 144, 255, .96),
+    rgba(33, 185, 248, .96));
+  background: linear-gradient(to bottom, rgba(129, 144, 255, .96),
+    rgba(33, 185, 248, .96));
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.trYellow {
+  background: -webkit-linear-gradient(top, rgba(255, 208, 44, .96),
+    rgba(213, 255, 44, .96));
+  background: -moz-linear-gradient(top, rgba(255, 208, 44, .96),
+    rgba(213, 255, 44, .96));
+  background: -o-linear-gradient(top, rgba(255, 208, 44, .96),
+    rgba(213, 255, 44, .96));
+  background: -ms-linear-gradient(top, rgba(255, 208, 44, .96),
+    rgba(213, 255, 44, .96));
+  background: linear-gradient(to bottom, rgba(255, 208, 44, .96),
+    rgba(213, 255, 44, .96));
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.ban {
+  width: 80%;
+  padding: 2.5em 0 1em 0;
+  text-align: center;
+  clear: both;
+  margin: 0 auto;
+  color: #fff;
+  font-size: .17rem;
+}
+</style>
+</head>
+<body>
+<input type="hidden" id="p1-count" value="0"/>
+<input type="hidden" id="p2-count" value="0"/>
+<input type="hidden" id="p8-count1" value="0"/>
+<input type="hidden" id="p8-count2" value="0"/>
+
+<div class="loading">
+  正在努力为您加载...
+</div>
+<div id="main" class="all hide relative">
+  <div class="top-banner">
+    <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/top.png" alt="" /> 
+  </div>
+  <div class="page1-wrap">
+    <div class="page page1">
+      <div class="title-box">
+        <div class="title-index">01</div>
+        <div class="title-content">
+          <h1 class="title">本月数据</h1>
+          <div class="title-additional-info">This month data</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="nums-content">
+              <div class="left-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0101.png" alt="" /></div>
+                  <div class="item-title">累计成交额</div>
+                  <div class="item-figure trOrange" id="p1-f-l"></span></div>
+              </div>
+              <div class="middle-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0102.png" alt="" /></div>
+                  <div class="item-title">累计注册人数</div>
+                  <div class="item-figure trGreen" id="p1-f-m"></span></div>
+              </div>
+              <div class="right-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0103.png" alt="" /></div>
+                  <div class="item-title">累计收益</div>
+                  <div class="item-figure trBlue" id="p1-f-r"></span></div>
+              </div>
+          </div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0104.png" alt="" />
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page1-wrap end-->
+  
+  <div class="page2-wrap">
+    <div class="page page2">
+      <div class="title-box">
+        <div class="title-index">02</div>
+        <div class="title-content">
+          <h1 class="title">投资数据</h1>
+          <div class="title-additional-info">Investment data</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">11月运营数据</div>
+            <div class="desc-additional-content"></div>
+          </div>
+          <div class="nums-content">
+              <div class="left-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0101.png" alt="" /></div>
+                  <div class="item-title">11月投资总额</div>
+                  <div class="item-figure trOrange" id="p2-f-l"></span></div>
+              </div>
+              <div class="middle-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0102.png" alt="" /></div>
+                  <div class="item-title">11月注册人数</div>
+                  <div class="item-figure trGreen" id="p2-f-m"></span></div>
+              </div>
+              <div class="right-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0103.png" alt="" /></div>
+                  <div class="item-title">11月累计收益</div>
+                  <div class="item-figure trBlue" id="p2-f-r"></span></div>
+              </div>
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page2-wrap end-->
+  <div class="page3-wrap">
+    <div class="page page3">
+      <div class="title-box">
+        <div class="title-index">03</div>
+        <div class="title-content">
+          <h1 class="title">项目详情</h1>
+          <div class="title-additional-info">Object details</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">11月项目期限</div>
+            <div class="desc-additional-content">
+            11月份发标总数：  <span class="trGreen"> 704 </span>个 <br>
+            30~60天期限的数量最多，占总量的<span class="trGreen"> 50.4% </span>
+            </div>
+          </div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0301.png" alt="" />
+          </div>
+          <div class="desc-content">
+            <div class="desc-title">11月项目年化收益率</div>
+            <div class="desc-additional-content">
+             年化收益率9%~10%数量最多，占总数 <span class="trGreen"> 50.6% </span>
+            </div>
+          </div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0302.png" alt="" />
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page3-wrap end-->
+  
+  <div class="page4-wrap">
+    <div class="page page4">
+      <div class="title-box">
+        <div class="title-index">04</div>
+        <div class="title-content">
+          <h1 class="title">还款金额</h1>
+          <div class="title-additional-info">Reimbursement amount</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">11月还款总额</div>
+            <div class="desc-additional-content">
+            11月份还款总额为<span class="trOrange"> 60,463,567 </span>元 <br>
+            同比10月增长<span class="trOrange"> 19.4% </span>
+            </div>
+          </div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0401.png" alt="" />
+          </div>
+          <div class="desc-content">
+            <div class="desc-title">11月还款利息及待收金额</div>
+            <div class="desc-additional-content">
+             11月份还款利息为 <span class="trOrange"> 747,067 </span>元 <br>
+            同比10月增长<span class="trOrange"> 8.1% </span> <br>
+            截止11月待收总金额  <span class="trOrange"> 100,394,635  </span>元 
+            </div>
+          </div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0402.png" alt="" />
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page4-wrap end-->
+  <div class="page5-wrap">
+    <div class="page page5">
+      <div class="title-box">
+        <div class="title-index">05</div>
+        <div class="title-content">
+          <h1 class="title">投资渠道</h1>
+          <div class="title-additional-info">Investment channels</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">各端投资占比</div>
+            <div class="desc-additional-content">
+            </div>
+          </div>
+          <div class="nums-content">
+              <div class="left-box">
+                  <div class="item-title">移动客户端：<span class="trBlue"> 85.4% </span></div>
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0501.png" alt="" /></div>
+              </div>
+              <div class="middle-box">
+                  <div class="item-title">PC网页端：<span class="trYellow"> 13.4% </span></div>
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0502.png" alt="" /></div>
+              </div>
+              <div class="right-box">
+                  <div class="item-title">移动网页端：<span class="trOrange"> 1.2% </span></div>
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0503.png" alt="" /></div>
+              </div>
+          </div>
+          <div class="statement">移动理财已经成为主流的投资方式</div>
+      </div>
+    </div> 
+  </div> <!-- page5-wrap end-->
+  <div class="page6-wrap">
+    <div class="page page6">
+      <div class="title-box">
+        <div class="title-index">06</div>
+        <div class="title-content">
+          <h1 class="title">投资人分析</h1>
+          <div class="title-additional-info">Investors analysis</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">男女比例</div>
+            <div class="desc-additional-content">
+            男性投资人占总人数的  <span class="trBlue"> 55.19% </span> <br>
+            女性投资人占总人数的 <span class="trOrange"> 44.81% </span>
+            </div>
+          </div>
+          <div class="nums-content">
+              <div class="left-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0601.png" alt="" /></div>
+                  <div class="item-title">55.19%</div>
+              </div>
+              <div class="right-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0602.png" alt="" /></div>
+                  <div class="item-title">44.81%</div>
+              </div>
+          </div>
+          <div class="desc-content">
+            <div class="desc-title">11月投资人数及年龄分布</div>
+            <div class="desc-additional-content">
+             11月投资人数：<span class="trOrange"> 4439 </span> 人<br>
+             11月投资笔数：<span class="trOrange"> 10659 </span>
+            </div>
+          </div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0603.png" alt="" />
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page6-wrap end-->
+  <div class="page7-wrap">
+    <div class="page page7">
+      <div class="title-box">
+        <div class="title-index">07</div>
+        <div class="title-content">
+          <h1 class="title">地域分布</h1>
+          <div class="title-additional-info">Regional distribution</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">11月投资地域分布</div>
+            <div class="desc-additional-content">
+            </div>
+          </div>
+      </div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0701.png" alt="" />
+          </div>
+    </div> 
+  </div> <!-- page7-wrap end-->
+  <div class="page8-wrap">
+    <div class="page page8">
+      <div class="title-box">
+        <div class="title-index">08</div>
+        <div class="title-content">
+          <h1 class="title">月度之最</h1>
+          <div class="title-additional-info">Most of the monthly</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">11月投资之最</div>
+            <div class="desc-additional-content">
+            </div>
+          </div>
+          <div class="nums-content">
+              <div class="left-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0801.png" alt="" /></div>
+                  <div class="item-title">单日最高成交额</div>
+                  <div class="item-figure trOrange" id="p8-f-l2"></span></div>
+              </div>
+              <div class="middle-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0802.png" alt="" /></div>
+                  <div class="item-title">最快满标时间</div>
+                  <div class="item-figure trOrange" id="p8-f-m2"></span></div>
+              </div>
+              <div class="middle-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0803.png" alt="" /></div>
+                  <div class="item-title">单笔最高投资额</div>
+                  <div class="item-figure trOrange" id="p8-f-m3"></span></div>
+              </div>
+              <div class="right-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0804.png" alt="" /></div>
+                  <div class="item-title">投资次数最多</div>
+                  <div class="item-figure trOrange" id="p8-f-r2"></span></div>
+              </div>
+          </div>
+          <div class="desc-content">
+            <div class="desc-title">11月投资排行榜</div>
+            <div class="desc-additional-content">
+            </div>
+          </div>
+          <div class="nums2-content">
+              <div class="left-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0805.png" alt="" /></div>
+                  <div class="item-title trOrange">王先生</div>
+                  <div class="item-figure trOrange" id="p8-f-l"></span></div>
+              </div>
+              <div class="middle-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0806.png" alt="" /></div>
+                  <div class="item-title trOrange">段先生</div>
+                  <div class="item-figure trOrange" id="p8-f-m"></span></div>
+              </div>
+              <div class="right-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0807.png" alt="" /></div>
+                  <div class="item-title trOrange">许女士</div>
+                  <div class="item-figure trOrange" id="p8-f-r"></span></div>
+              </div>
+          </div>
+          <div class="desc2-content">
+            <div class="desc-additional-content">
+              <ul class="clearfix">
+                <li><span class="center">04</span> <span class="center">汪先生</span><span class="right">1,233,794元</span></li>
+                <li><span class="center">08</span> <span class="center">郑女士</span><span class="right">666,035元</span></li>
+                <li><span class="center">05</span> <span class="center">唐先生</span><span class="right">992,558元</span></li>
+                <li><span class="center">09</span> <span class="center">宋女士</span><span class="right">628,301元</span></li>
+                <li><span class="center">06</span> <span class="center">高先生</span><span class="right">808,709元</span></li>
+                <li><span class="center">10</span> <span class="center">王女士</span><span class="right">538,406元</span></li>
+                <li><span class="center">07</span> <span class="center">胡先生</span><span class="right">689,413元</span></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page8-wrap end-->
+  <div class="page9-wrap">
+    <div class="page page9">
+      <div class="title-box">
+        <div class="title-index">09</div>
+        <div class="title-content">
+          <h1 class="title">当月活动</h1>
+          <div class="title-additional-info">Month activity</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0902.png" alt="" />
+          </div>
+          <div class="statement">双十一狂欢节</div>
+          <div class="img-container">
+            <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/0901.png" alt="" />
+          </div>
+          <div class="statement">感恩节回馈</div>
+          <div class="desc-content">
+            <div class="desc-title">感恩节寄语</div>
+            <div class="desc-additional-content">
+            在我们的生活中，有太多需要感谢的人和事。一个高尚的人永远懂得感恩。感恩是一种文明，是一种品德，有了感恩的心，人与人、人与社会、人与自然都会变得亲近、和谐，生命也将得到滋润。学会感恩，收获别样人生，生活会因为我们的感恩而变得更加的璀璨而美丽……
+            <br><span class="writer">——用户   **飞</span>
+            </div>
+            <div class="desc-additional-content">
+            感恩节，感恩身边一切的人和事，感恩父母的给我生命，感恩公司给我平台，感恩同事给我帮助，感恩客户给我信任，感恩万家金融给我财富增值！愿大家一切都好！！            
+            <br><span class="writer">——用户   *梅</span>
+            </div>
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page9-wrap end-->
+  
+  <div class="page10-wrap">
+    <div class="page page10">
+      <div class="title-box">
+        <div class="title-index">10</div>
+        <div class="title-content">
+          <h1 class="title">月度大事件</h1>
+          <div class="title-additional-info">Month big events</div>
+        </div>
+      </div>
+      <div class="img-container hide">
+        <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/1099.png" alt="" />
+      </div>
+      <div class="list-content">
+        <ul>
+          <li class="start-point">
+            <div class="p10-l0">
+              <div class="p10-line1"></div>
+              <div class="p10-line2"></div>
+            </div>
+            <div class="p10-l1"><i></i>11月9日</div>
+            <div class="p10-l2">
+              <span class="p10-l2-t">成为安徽互联网协会会员单位</span> <br>
+              <span>安徽省互联网金融协会挂牌成立，万家金融成为首批会员单位。</span>
+            </div>
+            <div class="p10-l3">
+              <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/1001.png" alt="" />
+            </div>
+          </li>
+          <li>
+            <div class="p10-l0">
+              <div class="p10-line1"></div>
+              <div class="p10-line2"></div>
+            </div>
+            <div class="p10-l1"><i></i>11月12日</div>
+            <div class="p10-l2">
+              <span class="p10-l2-t">万家金融参加合肥国际马拉松</span> <br>
+              <span>2016合肥国际马拉松在滨湖渡江战役纪念馆鸣枪开赛，万家军团，迎着朝阳，奔跑起来！</span>
+            </div>
+            <div class="p10-l3">
+              <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/1002.png" alt="" />
+            </div>
+          </li>
+          <li>
+            <div class="p10-l0">
+              <div class="p10-line1"></div>
+              <div class="p10-line2"></div>
+            </div>
+            <div class="p10-l1"><i></i>11月16日</div>
+            <div class="p10-l2">
+              <span class="p10-l2-t">出席十一届徽商圆桌会议</span> <br>
+              <span>万家金融总裁王剑出席由徽商传媒主办的“风口上的互联网金融”2016第十一期徽商圆桌会议。</span>
+            </div>
+            <div class="p10-l3">
+              <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/1003.png" alt="" />
+            </div>
+          </li>
+          <li>
+            <div class="p10-l0">
+              <div class="p10-line1"></div>
+              <div class="p10-line2"></div>
+            </div>
+            <div class="p10-l1"><i></i>11月19日</div>
+            <div class="p10-l2">
+              <span class="p10-l2-t">出席徽商全球理事会年会</span> <br>
+              <span>万家金融总裁王剑出席2016徽商全球理事会年会，共话徽商企业新发展。</span>
+            </div>
+            <div class="p10-l3">
+              <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/1004.png" alt="" />
+            </div>
+          </li>
+          <li class="end-point">
+            <div class="p10-l0">
+              <div class="p10-line1"></div>
+              <div class="p10-line2"></div>
+            </div>
+            <div class="p10-l1 end-point"><i></i>11月27日</div>
+            <div class="p10-l2">
+              <span class="p10-l2-t">“理财课堂”成功举办</span> <br>
+              <span>万家金融第二届“理财课堂”在合肥运营中心成功举办。</span>
+            </div>
+            <div class="p10-l3">
+              <img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/1005.png" alt="" />
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div> 
+  </div> <!-- page10-wrap end-->
+  
+  
+  <div class="page11-wrap">
+    <div class="page page11">
+      <div class="title-box">
+        <div class="title-index">11</div>
+        <div class="title-content">
+          <h1 class="title">系统更新</h1>
+          <div class="title-additional-info">The system update</div>
+        </div>
+      </div>
+      <div class="content-box">
+          <div class="desc-content">
+            <div class="desc-title">我们所做的每个努力，都是为了让您有更好的使用体验</div>
+            <div class="desc-additional-content">
+1、网站和客户端实名认证功能优化。<br>
+2、微信端投资绑卡优化，随时随地都能安全便捷的投资。<br>
+3、网站忘记密码功能优化，找回密码更安全。<br>
+4、消息推送功能优化，确保能将最新资讯传达给您。<br>
+            </div>
+          </div>
+          <div class="desc3-content">
+            <div class="desc-title">谢谢阅读</div>
+            <div class="desc-additional-content">
+            万家金融<br>让赚钱变得更容易
+            </div>
+          </div>
+          <div class="nums-content">
+              <div class="left-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/11app.png" alt="" /></div>
+                  <div class="item-title">APP下载</div>
+              </div>
+              <div class="right-box">
+                  <div class="item-img"><img class="full-x" src="http://static.wjdai.com/img/activity/report/app/11/11wx.png" alt="" /></div>
+                  <div class="item-title">微信订阅号</div>
+              </div>
+          </div>
+      </div>
+    </div> 
+  </div> <!-- page11-wrap end-->
+  <div class="ban">Copyright&nbsp;©&nbsp;2016&nbsp;万家金融&nbsp;版权所有</div>
+</div>
+
+</body>
+<script type="text/javascript">
+(function ($) {
+  $.fn.numRolling = function (options) {
+      var defaults = {
+          times: 1000,
+          point: 0,
+          interval: 50,
+          callback: function (num) { return num; }
+      };
+      var options = $.extend(defaults, options);
+      var _ = this;
+      if (!Number(options.num)) {
+          return _.html(options.num);
+      }
+      var num = Number(options.num) ? options.num : parseFloat(options.num);// || parseFloat(_.text());
+      if (num == 0) {
+          return _.html(num);
+      }
+      options.point = num.toString().split('.')[1] == undefined ? 0 : num.toString().split('.')[1].length;
+      var times = options.times / options.interval;//滚动次数
+      var index = num / times;//自增
+      var number = 0;//
+
+      (function show() {
+          var nums = (number += index).toFixed(options.point);
+          _.html(options.callback(nums, options.unit));
+          if (number > (num - index)) {
+              _.html(options.callback(parseFloat(num).toFixed(options.point), options.unit));
+              return;
+          }
+          setTimeout(show, options.interval);
+      })();
+  };
+})(jQuery);
+
+//三个总金额统计显示
+var showTotalNum = function (str,unit) {
+    var _index = str.toString().split('.')[1] == undefined ? 0 : str.toString().split('.')[1].length + 1; //新增代码，计算小数点后有多少位
+    var arr = new Array();
+    arr = str.toString().split("");
+    var result = "";
+    if ( unit == "人"){
+      result += str+'<span class="normal">' + unit + '</span>';
+    } else if (unit == "秒") {
+      for (i = 0; i < arr.length; i++) {
+        if (arr[i] != ',') {
+            result += arr[i];
+            switch (arr.length - i) {
+                case (4 + _index):
+                    result += '<span>.</span>';
+                    break;
+                case (1):
+                    result += '<span class="normal">' + unit + '</span>';
+                    break;
+            }
+        }
+      }
+    } else {
+      for (i = 0; i < arr.length; i++) {
+          if (arr[i] != ',') {
+              result += arr[i];
+  
+              switch (arr.length - i) {
+                  case (10 + _index):
+                    result += '<span>,</span>';
+                    break;
+                  case (7 + _index):
+                      result += '<span>,</span>';
+                      break;
+                  case (4 + _index):
+                      result += '<span>,</span>';
+                      break;
+                  case (1):
+                      result += '<span class="normal">' + unit + '</span>';
+                      break;
+              }
+          }
+      }
+    }
+    return result;
+};
+
+  $(function(){
+    $(".loading").hide();
+    $("#main").show();
+    
+    if($(window).scrollTop()+$(window).height() - 20>$(".page1 .content-box .nums-content").offset().top+$(".page1 .content-box .nums-content").outerHeight()){
+      if ($("#p1-count").val() != "0") return;
+      else $("#p1-count").val(parseInt($("#p1-count").val())+1);
+      /* 01 */
+        $("#p1-f-l").numRolling({
+          num: 1096202,
+          callback: showTotalNum,
+          unit: '元'
+        });
+        $("#p1-f-m").numRolling({
+          num: 257697,
+          callback: showTotalNum,
+          unit: '人'
+        });
+        $("#p1-f-r").numRolling({
+          num: 8957726,
+          callback: showTotalNum,
+          unit: '元'
+        });
+      }
+    
+    $(window).scroll(function(){
+      numRoll();
+  	})
+  	function numRoll(){
+      //console.log("$(window).scrollTop() + $(window).height() - 20   --",$(window).scrollTop() + $(window).height()- 20);
+      
+      if( $(window).scrollTop() + $(window).height() - 20 >$(".page8 .content-box .nums2-content").offset().top+$(".page8 .content-box .nums2-content").outerHeight()){
+        if ($("#p8-count2").val() != "0") return;
+        else $("#p8-count2").val(parseInt($("#p8-count2").val())+1);
+        /* 08 */
+        $("#p8-f-l").numRolling({
+          num: 4702651,
+          callback: showTotalNum,
+          unit: '元'
+        });
+        $("#p8-f-m").numRolling({
+          num: 3689441,
+          callback: showTotalNum,
+          unit: '元'
+        });
+        $("#p8-f-r").numRolling({
+          num: 1665906,
+          callback: showTotalNum,
+          unit: '元'
+        });
+      } else if( $(window).scrollTop() + $(window).height() - 20 >$(".page8 .content-box .nums-content").offset().top+$(".page8 .content-box .nums-content").outerHeight()){
+        if ($("#p8-count1").val() != "0") return;
+        else $("#p8-count1").val(parseInt($("#p8-count1").val())+1);
+        /* 08 */
+        $("#p8-f-l2").numRolling({
+          num: 7933810,
+          callback: showTotalNum,
+          unit: '元'
+        });
+        $("#p8-f-m2").numRolling({
+          num: 7998,
+          callback: showTotalNum,
+          unit: '秒'
+        });
+        $("#p8-f-m3").numRolling({
+          num: 349000,
+          callback: showTotalNum,
+          unit: '元'
+        });
+        $("#p8-f-r2").numRolling({
+          num: 219,
+          callback: showTotalNum,
+          unit: '次'
+        });
+      } else if( $(window).scrollTop() + $(window).height() - 20 >$(".page2 .content-box .nums-content").offset().top+$(".page2 .content-box .nums-content").outerHeight()){
+        if ($("#p2-count").val() != "0") return;
+        else $("#p2-count").val(parseInt($("#p2-count").val())+1);
+        /* 02 */
+        $("#p2-f-l").numRolling({
+          num: 65059000,
+          callback: showTotalNum,
+          unit: '元'
+        });
+        $("#p2-f-m").numRolling({
+          num: 14965,
+          callback: showTotalNum,
+          unit: '人'
+        });
+        $("#p2-f-r").numRolling({
+          num: 958868,
+          callback: showTotalNum,
+          unit: '元'
+        });
+      } else if($(window).scrollTop()+$(window).height() - 20 >$(".page1 .content-box .nums-content").offset().top+$(".page1 .content-box .nums-content").outerHeight()){
+        if ($("#p1-count").val() != "0") return;
+        else $("#p1-count").val(parseInt($("#p1-count").val())+1);
+        /* 01 */
+          $("#p1-f-l").numRolling({
+            num: 1096202,
+            callback: showTotalNum,
+            unit: '元'
+          });
+          $("#p1-f-m").numRolling({
+            num: 257697,
+            callback: showTotalNum,
+            unit: '人'
+          });
+          $("#p1-f-r").numRolling({
+            num: 8957726,
+            callback: showTotalNum,
+            unit: '元'
+          });
+        }
+    }
+  })
+</script>
+</html>
