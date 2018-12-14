@@ -1,0 +1,13 @@
+function exitFullScreen () {
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+  } else if (document.webkitCurrentFullScreenElement) {
+    document.webkitCancelFullScreen()
+  } else if (document.mozFullScreenElement) {
+    document.mozCancelFullScreen()
+  }
+}
+
+
+注：
+  document.fullscreenElement  -- 当前全屏显示的DOM元素。没有全屏元素时，值为null。
