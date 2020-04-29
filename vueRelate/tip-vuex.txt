@@ -1,0 +1,96 @@
+﻿store.commit('changeLocationInfo',{cityName:result.city,cityCode:result.cityCode,cityCenter:[result.position.lng,result.position.lat]})
+		
+
+
+let locationInfo = this.$store.state.locationInfo
+
+
+
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+const store = new Vuex.Store({
+    state: {
+		// tenantId:'611270067979550720',
+		tenantId:'519142041838419968',
+		orderEffectTime: 30, // 订单支付有效时间，暂为30分钟
+		cityName:'loading',
+		cityCode:'',
+		cityCenter:[],
+		locationInfo:{
+			cityName:'',
+			cityCode:'',
+			cityCenter:[]
+		},
+		mapCenter: [115.73, 28.72],
+		weatherConfig: {
+			appid: 'ec2e584c374c44c2a6f83f553ad7e88d',
+			sign: '1810fd0e75cd49cb876dd657c9f67c29'
+		},
+		wxAppid:'',
+		userInfo:uni.getStorageSync('userInfo')||
+		{
+			openId: '',
+			memberId: '',
+			memberName: '',
+			headimgurl: '',
+			subscribe: '',
+			sex: '',
+		},
+		proxyUrl:'https://lmyxtest-web.limachufa.com/',
+		// proxyUrl:'http://192.168.0.25:12128/',
+		// proxyUrl:'http://store1test.lishicloud.com',
+		wxShare: { // 微信分享
+			storeName: '',
+			desc: '水通南国三千里，气压江城十四州。金华本地旅游体验平台！',
+			// img:require('../public/officialAvatar.jpg')
+			// #ifdef H5
+			img: `http://${window.location.host}${window.location.pathname.lastIndexOf('/') > 0 ? window.location.pathname.replace('/index.html', '') : ''}/static/officialAvatar.jpg`
+			// #endif
+		},
+		storeConfig: {
+			wxAppid: '',
+			wxAppSecret: '',
+			serverPhone: '',
+			serviceTime: '',
+			ossResourceUrl: '',
+			ossUploadDirectory: ''
+		},
+		indexs:'',
+		length:'',
+		info:{			
+		}
+	},
+    mutations: {
+		changeStoreConfig(state,val){
+			state.storeConfig=val
+		},
+		changeUserInfo(state,userInfo){
+			state.userInfo=userInfo
+		},
+		changeCityName(state,cityName){
+			state.cityName=cityName
+		},
+		changeCityCode(state,cityCode){
+			state.cityCode=cityCode
+		},
+		changeIndexs(state,val){
+			state.indexs=val
+		},
+		changeLength(state,val){
+			state.length=val
+		},
+		changeInfo(state,val){
+			state.info=val
+		},
+		changeCityCenter(state,val){
+			state.cityCenter=val
+		},
+		changeLocationInfo(state,val){
+			state.locationInfo=val
+		}
+	},
+    actions: {}
+})
+
+export default store
