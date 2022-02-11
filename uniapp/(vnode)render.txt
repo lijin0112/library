@@ -1,0 +1,51 @@
+
+        {
+          title: '使用情况',
+          key: 'userSituation',
+          render: (h, params) => {
+            let _usedCount = params.row.usedCount || this.detail.usedCount || 0
+            let _base = h('span', {
+              style: {
+                display: 'inline-block',
+                width: '100%',
+                whiteSpace: 'nowrap',
+                color: _usedCount > 0 ? '#1890ff' : '#495060',
+                cursor: _usedCount > 0 ? 'pointer' : 'text'
+              }
+            }, `已使用${_usedCount}`)
+
+            let _userList = []
+            if (params.row.userPersons.length > 0) {
+              for (let u of params.row.userPersons) {
+                _userList.push(h('div', {}, u))
+              }
+            }
+
+            return h(
+              'div',
+              [
+                _usedCount > 0
+                  ? h('Poptip', {
+                    props: {
+                      placement: 'top-end',
+                      transfer: true,
+                      content: params.row.userPersons.join(','),
+                      title: '已使用'
+                    },
+                    on: {
+                      'on-popper-show': () => {
+                      }
+                    }
+                  }, [
+                    _base,
+                    [
+                      h('div', {
+                        slot: 'content'
+                      }, _userList)
+                    ]
+                  ]
+                  ) : _base
+              ]
+            )
+          }
+        },
